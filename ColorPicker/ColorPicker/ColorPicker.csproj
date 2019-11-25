@@ -11,6 +11,7 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <RepositoryUrl>https://github.com/vpapenko/ColorPicker</RepositoryUrl>
     <PackageTags>ColorPicker xamarin forms dotnet netstandard csharp c-sharp</PackageTags>
+    <PackageId>ColorPicker.Forms</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
