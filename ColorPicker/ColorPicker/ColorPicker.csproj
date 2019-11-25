@@ -1,8 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <Version>0.1.0</Version>
+    <Description>Color picker for xamarin forms.</Description>
+    <Authors>Victor Papenko</Authors>
+    <PackageProjectUrl>https://github.com/vpapenko/ColorPicker</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/vpapenko/ColorPicker</RepositoryUrl>
+    <PackageTags>ColorPicker xamarin forms dotnet netstandard csharp c-sharp</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +23,10 @@
   <ItemGroup>
     <None Update="BasicControls\ColorWheel.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 
