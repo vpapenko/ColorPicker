@@ -6,8 +6,9 @@ using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    interface IColorPicker : INotifyPropertyChanged
+    public interface IColorPicker : INotifyPropertyChanged
     {
         Color SelectedColor { get; set; }
+        IColorPicker ConnectedColorPicker { get; set; }
     }
 }

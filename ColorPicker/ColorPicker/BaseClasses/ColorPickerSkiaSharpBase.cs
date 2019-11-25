@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    public abstract class ColorPickerSkiaSharpBase : SkiaSharpBase
+    public abstract class ColorPickerSkiaSharpBase : SkiaSharpPickerBase
     {
 
         public static readonly BindableProperty PickerRadiusProperty = BindableProperty.Create(

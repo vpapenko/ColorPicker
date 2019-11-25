@@ -8,11 +8,11 @@ using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    public abstract class SkiaSharpBase : ColorPickerContentViewBase
+    public abstract class SkiaSharpPickerBase : ColorPickerContentViewBase
     {
         protected SKCanvasView CanvasView = new SKCanvasView();
 
-        public SkiaSharpBase()
+        public SkiaSharpPickerBase()
         {
             CanvasView.VerticalOptions = LayoutOptions.Center;
             CanvasView.HorizontalOptions = LayoutOptions.Center;

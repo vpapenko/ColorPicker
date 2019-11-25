@@ -8,8 +8,15 @@
              x:Class="TestApp.MainPage">
 
     <StackLayout>
-        <colorpicker:ColorWheel x:Name="ColorWheel1" PickerRadius="16"/>
-        <colorpicker:HSLSliders x:Name="HSLSliders1" PickerRadius="16" SelectedColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor, Mode=TwoWay}"/>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Color" TextColor="Black" FontSize="Large" FontAttributes="Bold" BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}"/>
+                <Label Text="Color" TextColor="White" FontSize="Large" FontAttributes="Bold" BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}"/>
+                <colorpicker:ColorWheel x:Name="ColorWheel1" PickerRadius="16"/>
+                <colorpicker:HSLSliders x:Name="HSLSliders1" PickerRadius="16" ConnectedColorPicker="{x:Reference Name=ColorWheel1}"/>
+                <colorpicker:RGBSliders x:Name="RGBSliders1" PickerRadius="16" ConnectedColorPicker="{x:Reference Name=HSLSliders1}" SelectedColor="Gray"/>
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 
 </ContentPage>
