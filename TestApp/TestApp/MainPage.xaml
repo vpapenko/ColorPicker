@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             mc:Ignorable="d"
+             x:Class="TestApp.MainPage">
+
+    <StackLayout>
+        <colorpicker:ColorWheel x:Name="ColorWheel1" PickerRadius="16"/>
+        <colorpicker:HSLSliders x:Name="HSLSliders1" PickerRadius="16" SelectedColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor, Mode=TwoWay}"/>
+    </StackLayout>
+
+</ContentPage>

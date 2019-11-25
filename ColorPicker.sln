@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPicker", "ColorPicker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.Droid", "ColorPicker\ColorPicker.Droid\ColorPicker.Droid.csproj", "{CA41D8B3-16FF-4937-AB68-92D08B43C292}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.Android", "TestApp\TestApp.Android\TestApp.Android.csproj", "{DCB71EA1-4E20-48DE-8C63-2799058ABD25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp\TestApp.csproj", "{53C9203C-8214-48D2-BAF0-BBC1494961E0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,16 @@ Global
 		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB71EA1-4E20-48DE-8C63-2799058ABD25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB71EA1-4E20-48DE-8C63-2799058ABD25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB71EA1-4E20-48DE-8C63-2799058ABD25}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DCB71EA1-4E20-48DE-8C63-2799058ABD25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB71EA1-4E20-48DE-8C63-2799058ABD25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCB71EA1-4E20-48DE-8C63-2799058ABD25}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{53C9203C-8214-48D2-BAF0-BBC1494961E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C9203C-8214-48D2-BAF0-BBC1494961E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C9203C-8214-48D2-BAF0-BBC1494961E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C9203C-8214-48D2-BAF0-BBC1494961E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
