@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPicker", "ColorPicker\ColorPicker\ColorPicker.csproj", "{A81A0563-4647-466B-9908-426C989FC7DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.Droid", "ColorPicker\ColorPicker.Droid\ColorPicker.Droid.csproj", "{CA41D8B3-16FF-4937-AB68-92D08B43C292}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A81A0563-4647-466B-9908-426C989FC7DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81A0563-4647-466B-9908-426C989FC7DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81A0563-4647-466B-9908-426C989FC7DA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A81A0563-4647-466B-9908-426C989FC7DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81A0563-4647-466B-9908-426C989FC7DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A81A0563-4647-466B-9908-426C989FC7DA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA41D8B3-16FF-4937-AB68-92D08B43C292}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01E34AD3-BABA-4BA5-B8E9-E76D9569D7B3}
+	EndGlobalSection
+EndGlobal
