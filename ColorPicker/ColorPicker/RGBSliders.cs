@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
-using ColorPicker.Forms.Effects;
+﻿using ColorPicker.Forms.Effects;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
