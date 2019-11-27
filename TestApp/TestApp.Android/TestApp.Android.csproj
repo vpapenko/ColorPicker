@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DCB71EA1-4E20-48DE-8C63-2799058ABD25}</ProjectGuid>
+    <ProjectGuid>{3C31110C-E3BB-4CBD-B41D-E87BB46B0427}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -89,12 +93,12 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ColorPicker\ColorPicker.Droid\ColorPicker.Droid.csproj">
-      <Project>{ca41d8b3-16ff-4937-ab68-92d08b43c292}</Project>
-      <Name>ColorPicker.Droid</Name>
+    <ProjectReference Include="..\..\ColorPicker\ColorPicker.Android\ColorPicker.Android.csproj">
+      <Project>{00ad97c9-a424-49a8-85c2-ea7499595b97}</Project>
+      <Name>ColorPicker.Android</Name>
     </ProjectReference>
     <ProjectReference Include="..\TestApp\TestApp.csproj">
-      <Project>{B8BD6C0A-3E1B-4487-ACC0-77055CE48ADA}</Project>
+      <Project>{37f51700-374e-4239-9556-4a50a6b5d91e}</Project>
       <Name>TestApp</Name>
     </ProjectReference>
   </ItemGroup>
