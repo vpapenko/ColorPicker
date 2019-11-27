@@ -3259,41 +3259,35 @@ namespace ColorPicker.Droid
 			// aapt resource value: 0x7F0B001C
 			public static int abc_toolbar_collapse_description = 2131427356;
 			
-			// aapt resource value: 0x7F0B001E
-			public static int appbar_scrolling_view_behavior = 2131427358;
-			
 			// aapt resource value: 0x7F0B001D
-			public static int app_name = 2131427357;
+			public static int appbar_scrolling_view_behavior = 2131427357;
+			
+			// aapt resource value: 0x7F0B001E
+			public static int bottom_sheet_behavior = 2131427358;
 			
 			// aapt resource value: 0x7F0B001F
-			public static int bottom_sheet_behavior = 2131427359;
+			public static int character_counter_pattern = 2131427359;
 			
 			// aapt resource value: 0x7F0B0020
-			public static int character_counter_pattern = 2131427360;
+			public static int password_toggle_content_description = 2131427360;
 			
 			// aapt resource value: 0x7F0B0021
-			public static int hello = 2131427361;
+			public static int path_password_eye = 2131427361;
 			
 			// aapt resource value: 0x7F0B0022
-			public static int password_toggle_content_description = 2131427362;
+			public static int path_password_eye_mask_strike_through = 2131427362;
 			
 			// aapt resource value: 0x7F0B0023
-			public static int path_password_eye = 2131427363;
+			public static int path_password_eye_mask_visible = 2131427363;
 			
 			// aapt resource value: 0x7F0B0024
-			public static int path_password_eye_mask_strike_through = 2131427364;
+			public static int path_password_strike_through = 2131427364;
 			
 			// aapt resource value: 0x7F0B0025
-			public static int path_password_eye_mask_visible = 2131427365;
+			public static int search_menu_title = 2131427365;
 			
 			// aapt resource value: 0x7F0B0026
-			public static int path_password_strike_through = 2131427366;
-			
-			// aapt resource value: 0x7F0B0027
-			public static int search_menu_title = 2131427367;
-			
-			// aapt resource value: 0x7F0B0028
-			public static int status_bar_notification_info_overflow = 2131427368;
+			public static int status_bar_notification_info_overflow = 2131427366;
 			
 			static String()
 			{

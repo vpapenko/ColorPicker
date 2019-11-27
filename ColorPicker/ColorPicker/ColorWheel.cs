@@ -43,9 +43,16 @@ namespace ColorPicker
 
         protected override void OnSizeAllocated(double width, double height)
         {
-            CanvasView.WidthRequest = width;
-            CanvasView.HeightRequest = width;
-            base.OnSizeAllocated(width, height);
+            var size = width < height ? width : height;
+            CanvasView.WidthRequest = size;
+            CanvasView.HeightRequest = size;
+
+            if (PickerRadius == null)
+            {
+                PickerRadiusProtected = GetDefaultPickerRadius(height);
+            }
+
+            base.OnSizeAllocated(size, size);
         }
 
         protected override void OnTouchActionPressed(ColorPickerTouchActionEventArgs args)
@@ -120,7 +127,43 @@ namespace ColorPicker
             PaintPicker(canvas, locationHS);
             PaintPicker(canvas, locationL);
         }
-        
+
+        protected override void SelectedColorChanged(Color color)
+        {
+            if (color.Luminosity != 0 || !IsInHSArea(locationHS))
+            {
+                var angleHS = (0.5 - color.Hue) * (2 * Math.PI);
+                var radiusHS = WheelHSRadius * color.Saturation;
+
+                var resultHS = FromPolar(new PolarPoint((float)radiusHS, (float)angleHS));
+                resultHS.X += CanvasRadius;
+                resultHS.Y += CanvasRadius;
+                locationHS = resultHS;
+            }
+
+            var polarL = ToPolar(ToWheelLCoordinates(locationL));
+            polarL.Angle -= (float)Math.PI / 2F;
+            var signOld = polarL.Angle <= 0 ? 1 : -1;
+            var angleL = color.Luminosity * Math.PI * signOld;
+
+            var resultL = FromPolar(new PolarPoint(WheelLRadius, (float)(angleL - Math.PI / 2)));
+            resultL.X += CanvasRadius;
+            resultL.Y += CanvasRadius;
+            locationL = resultL;
+
+            CanvasView.InvalidateSurface();
+        }
+
+        protected override float GetDefaultPickerRadius()
+        {
+            return GetDefaultPickerRadius(CanvasView.Height);
+        }
+
+        private float GetDefaultPickerRadius(double canvasViewHeight)
+        {
+            return (float)(canvasViewHeight / 20d); 
+        }
+
         private void UpdateColors()
         {
             var wheelHSPoint = ToWheelHSCoordinates(locationHS);
@@ -216,33 +259,7 @@ namespace ColorPicker
             };
             canvas.DrawPaint(paint);
         }
-
-        protected override void SelectedColorChanged(Color color)
-        {
-            if (color.Luminosity != 0 || !IsInHSArea(locationHS))
-            {
-                var angleHS = (0.5 - color.Hue) * (2 * Math.PI);
-                var radiusHS = WheelHSRadius * color.Saturation;
-
-                var resultHS = FromPolar(new PolarPoint((float)radiusHS, (float)angleHS));
-                resultHS.X += CanvasRadius;
-                resultHS.Y += CanvasRadius;
-                locationHS = resultHS;
-            }
-
-            var polarL = ToPolar(ToWheelLCoordinates(locationL));
-            polarL.Angle -= (float)Math.PI / 2F;
-            var signOld = polarL.Angle <= 0 ? 1 : -1;
-            var angleL = color.Luminosity * Math.PI * signOld;
-
-            var resultL = FromPolar(new PolarPoint(WheelLRadius, (float)(angleL - Math.PI / 2)));
-            resultL.X += CanvasRadius;
-            resultL.Y += CanvasRadius;
-            locationL = resultL;
-
-            CanvasView.InvalidateSurface();
-        }
-
+        
         private SKPoint ToWheelHSCoordinates(SKPoint point)
         {
             var result = new SKPoint(point.X, point.Y);
