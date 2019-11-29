@@ -1,6 +1,9 @@
-steps:
-name: ASP.NET CI
-on: [push]
+name: Tests
+
+on: 
+  release:
+    types: [published]
+
 jobs:
   build:
     runs-on: windows-latest
