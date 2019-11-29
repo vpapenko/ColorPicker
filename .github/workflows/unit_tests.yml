@@ -21,4 +21,4 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
       
     - name: Pack
-      run: nuget pack ./ColorPicker.nuspec -version 0.1.1
+      run: nuget pack ../ColorPicker.nuspec -version 0.1.1
