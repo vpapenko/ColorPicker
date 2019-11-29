@@ -11,8 +11,5 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
       
-    - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
-
     - name: MSBuild
       run: msbuild /t:restore /p:Configuration=ReleaseNuGet ColorPicker.sln
