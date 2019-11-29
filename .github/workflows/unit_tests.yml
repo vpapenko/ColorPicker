@@ -1,0 +1,26 @@
+name: Tests
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        dotnet: [ '2.2.103' ]
+    
+    name: Dotnet ${{ matrix.dotnet }} sample
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
+    
+    - name: Build with dotnet
+      run: dotnet build --configuration Release
+    
+    - name: Unit Tests
+      run: dotnet test
