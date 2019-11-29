@@ -5,6 +5,7 @@
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <Version>0.1.0</Version>
     <Authors>Victor Papenko</Authors>
+    <Configurations>Debug;Release;ReleaseNuGet</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
