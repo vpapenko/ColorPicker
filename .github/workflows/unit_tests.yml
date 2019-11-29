@@ -15,4 +15,4 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
 
     - name: MSBuild
-      run: msbuild /t:restore ColorPicker.sln
+      run: msbuild /t:restore /p:Configuration=ReleaseNuGet ColorPicker.sln
