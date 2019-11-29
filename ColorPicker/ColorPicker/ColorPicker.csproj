@@ -21,7 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE">
+    <None Include="../../LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="NuGet.icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
