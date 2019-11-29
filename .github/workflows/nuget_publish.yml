@@ -1,0 +1,26 @@
+name: Publish to NuGet
+
+on: 
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: [windows-latest]
+    steps:
+    - uses: actions/checkout@v1
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.2.108
+
+    - name: Build with dotnet
+      run: dotnet build --configuration ReleaseNuget
+  
+    - name: Dotnet pack
+      run: dotnet pack -c ReleaseNuget -o out -p:PackageVersion=${{ github.event.release.tag_name }}
+
+    - name: NuGet publish HttpWorker v${{ github.event.release.tag_name }}
+      run: dotnet nuget push out\HttpWorker.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.HttpWorker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+      
