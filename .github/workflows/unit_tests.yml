@@ -15,4 +15,4 @@ jobs:
 
     - name: MSBuild
       working-directory: src
-      run: msbuild /t:restore  ColorPicker.sln
+      run: msbuild ColorPicker.sln
