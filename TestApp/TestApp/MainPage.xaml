@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             mc:Ignorable="d"
+             x:Class="TestApp.MainPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <StackLayout Orientation="Horizontal" Grid.Row="0"
+                     BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}">
+            <Label Text="Color" TextColor="Black" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+            <Label Text="Color" TextColor="White" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        <colorpicker:ColorWheel x:Name="ColorWheel1" VerticalOptions="Fill"
+                                Grid.Row="1"/>
+        <colorpicker:HSLSliders x:Name="HSLSliders1" VerticalOptions="Fill"
+                                ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
+                                Grid.Row="2"/>
+        <colorpicker:RGBSliders x:Name="RGBSliders1" VerticalOptions="Fill"
+                                ConnectedColorPicker="{x:Reference Name=HSLSliders1}"
+                                SelectedColor="Gray"
+                                Grid.Row="3"/>
+    </Grid>
+</ContentPage>

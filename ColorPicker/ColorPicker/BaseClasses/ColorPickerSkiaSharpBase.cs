@@ -1,43 +1,51 @@
-﻿using ColorPicker.Forms.Effects;
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    public abstract class ColorPickerSkiaSharpBase : SkiaSharpBase
+    public abstract class ColorPickerSkiaSharpBase : SkiaSharpPickerBase
     {
+        public ColorPickerSkiaSharpBase()
+        {
+            PickerRadius = (float?)GetValue(PickerRadiusProperty);
+        }
 
         public static readonly BindableProperty PickerRadiusProperty = BindableProperty.Create(
            nameof(PickerRadius),
-           typeof(float),
+           typeof(float?),
            typeof(ColorPickerSkiaSharpBase),
-           8F,
+           null,
            propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
 
-        public float PickerRadius
+        public float? PickerRadius
         {
             get
             {
-                return (float)GetValue(PickerRadiusProperty);
+                return (float?)GetValue(PickerRadiusProperty);
             }
             set
             {
-                float current = (float)GetValue(PickerRadiusProperty);
-                if (value < 3)
+                var currentValue = (float?)GetValue(PickerRadiusProperty);
+                if (value == currentValue)
                 {
-                    value = 3;
-                }
-                if (value != current)
-                {
-                    SetValue(PickerRadiusProperty, value);
-                    CanvasView.InvalidateSurface();
+                    float newPickerRadius;
+                    if(value == null)
+                    {
+                        newPickerRadius = GetDefaultPickerRadius();
+                    }
+                    else
+                    {
+                        newPickerRadius = (float)value;
+                    }
+                    PickerRadiusProtected = newPickerRadius;
                 }
             }
         }
+
+        protected abstract float GetDefaultPickerRadius();
+
+        protected float PickerRadiusProtected { get; set; }
 
         static void HandlePickerRadiusSet(BindableObject bindable, object oldValue, object newValue)
         {
@@ -47,7 +55,7 @@ namespace ColorPicker
 
         public float PickerInternalRadius { get => PickerRadiusPixels - 3; }
 
-        protected float PickerRadiusPixels { get => ConvertToPixel(PickerRadius); }
+        protected float PickerRadiusPixels { get => ConvertToPixel(PickerRadiusProtected); }
         
         protected void PaintPicker(SKCanvas canvas, SKPoint point)
         {

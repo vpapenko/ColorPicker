@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace ColorPicker
 {
@@ -9,15 +6,53 @@ namespace ColorPicker
     {
         public ColorPickerContentViewBase()
         {
-            BindingContextChanged += ColorPickerContentViewBase_BindingContextChanged;
             SelectedColorChanged(SelectedColor);
+        }
+
+
+        public static readonly BindableProperty ConnectedColorPickerProperty = BindableProperty.Create(
+           nameof(ConnectedColorPicker),
+           typeof(IColorPicker),
+           typeof(IColorPicker),
+           null);
+
+        public IColorPicker ConnectedColorPicker
+        {
+            get
+            {
+                return (IColorPicker)GetValue(ConnectedColorPickerProperty);
+            }
+            set
+            {
+                IColorPicker current = (IColorPicker)GetValue(ConnectedColorPickerProperty);
+                if (value != current)
+                {
+                    if (current != null)
+                    {
+                        current.PropertyChanged -= BindedIColorPicker_PropertyChanged;
+                    }
+                    if (value != null)
+                    {
+                        value.PropertyChanged += BindedIColorPicker_PropertyChanged;
+                        value.SelectedColor = SelectedColor;
+                    }
+                    SetValue(ConnectedColorPickerProperty, value);
+                }
+            }
         }
 
         public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(
            nameof(SelectedColor),
            typeof(Color),
            typeof(IColorPicker),
-           Color.Black);
+           Color.Black,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
+
+        static void HandlePickerRadiusSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ColorPickerSkiaSharpBase)bindable).SetSelectedColor((Color)newValue);
+            ((ColorPickerSkiaSharpBase)bindable).SelectedColorChanged((Color)newValue);
+        }
 
         public Color SelectedColor
         {
@@ -37,26 +72,13 @@ namespace ColorPicker
         }
 
         protected abstract void SelectedColorChanged(Color color);
+
         protected void SetSelectedColor(Color color)
         {
             SetValue(SelectedColorProperty, color);
-            if (BindingContext != null)
+            if (ConnectedColorPicker != null)
             {
-                if (BindingContext is IColorPicker)
-                {
-                    ((IColorPicker)BindingContext).SelectedColor = color;
-                }
-            }
-        }
-
-        private void ColorPickerContentViewBase_BindingContextChanged(object sender, EventArgs e)
-        {
-            if (((ColorPickerContentViewBase)sender).BindingContext != null)
-            {
-                if (((ColorPickerContentViewBase)sender).BindingContext is IColorPicker)
-                {
-                    ((IColorPicker)((ColorPickerContentViewBase)sender).BindingContext).PropertyChanged += BindedIColorPicker_PropertyChanged;
-                }
+                ConnectedColorPicker.SelectedColor = color;
             }
         }
 

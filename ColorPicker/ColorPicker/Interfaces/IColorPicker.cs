@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+﻿using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    interface IColorPicker : INotifyPropertyChanged
+    public interface IColorPicker : INotifyPropertyChanged
     {
         Color SelectedColor { get; set; }
+        IColorPicker ConnectedColorPicker { get; set; }
     }
 }

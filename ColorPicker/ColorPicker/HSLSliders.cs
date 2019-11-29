@@ -1,10 +1,7 @@
 ﻿using ColorPicker.Forms.Effects;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using Xamarin.Forms;
 
 namespace ColorPicker
@@ -26,7 +23,15 @@ namespace ColorPicker
         protected override void OnSizeAllocated(double width, double height)
         {
             CanvasView.WidthRequest = width;
-            CanvasView.HeightRequest = PickerRadius * 8.4;
+            if (PickerRadius != null)
+            {
+                height = PickerRadiusProtected * 8.4;
+            }
+            else
+            {
+                PickerRadiusProtected = GetDefaultPickerRadius(height);
+            }
+            CanvasView.HeightRequest = height;
             base.OnSizeAllocated(width, height);
         }
 
@@ -213,6 +218,16 @@ namespace ColorPicker
             locationL = new SKPoint(leftL, SlidersLHeight);
 
             CanvasView.InvalidateSurface();
+        }
+
+        protected override float GetDefaultPickerRadius()
+        {
+            return GetDefaultPickerRadius(CanvasView.Height);
+        }
+
+        private float GetDefaultPickerRadius(double canvasViewHeight)
+        {
+            return (float)(canvasViewHeight / 8.4d);
         }
 
         private void UpdateColors()

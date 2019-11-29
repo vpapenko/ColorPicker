@@ -1,18 +1,15 @@
 ﻿using ColorPicker.Forms.Effects;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    public abstract class SkiaSharpBase : ColorPickerContentViewBase
+    public abstract class SkiaSharpPickerBase : ColorPickerContentViewBase
     {
         protected SKCanvasView CanvasView = new SKCanvasView();
 
-        public SkiaSharpBase()
+        public SkiaSharpPickerBase()
         {
             CanvasView.VerticalOptions = LayoutOptions.Center;
             CanvasView.HorizontalOptions = LayoutOptions.Center;
