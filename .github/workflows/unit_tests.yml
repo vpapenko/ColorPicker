@@ -1,8 +1,7 @@
 name: Tests
 
 on: 
-  release:
-    types: [push]
+    [push]
 
 jobs:
   build:
