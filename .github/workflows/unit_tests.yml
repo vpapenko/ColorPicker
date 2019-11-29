@@ -1,26 +1,18 @@
 name: Tests
-on: [push]
+
+on: 
+    [push]
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        dotnet: [ '2.2.103' ]
-    
-    name: Dotnet ${{ matrix.dotnet }} sample
-    
+    runs-on: windows-latest
+
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: ${{ matrix.dotnet }}
-    
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-    
-    - name: Unit Tests
-      run: dotnet test
+      
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+
+    - name: MSBuild
+      run: msbuild /t:restore ColorPicker.sln
