@@ -19,3 +19,9 @@ jobs:
       
     - name: MSBuild Build
       run: msbuild /p:Configuration=ReleaseNuGet ColorPicker.sln
+
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+      
+    - name: Pack
+      run: nuget pack ColorPicker.nuspec -version ${{ github.event.release.tag_name }}
