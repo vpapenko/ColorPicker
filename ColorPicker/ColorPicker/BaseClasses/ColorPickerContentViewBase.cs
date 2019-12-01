@@ -46,9 +46,9 @@ namespace ColorPicker
            typeof(Color),
            typeof(IColorPicker),
            Color.Black,
-           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleSelectedColorSet));
 
-        static void HandlePickerRadiusSet(BindableObject bindable, object oldValue, object newValue)
+        static void HandleSelectedColorSet(BindableObject bindable, object oldValue, object newValue)
         {
             ((ColorPickerSkiaSharpBase)bindable).SetSelectedColor((Color)newValue);
             ((ColorPickerSkiaSharpBase)bindable).SelectedColorChanged((Color)newValue);

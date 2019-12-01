@@ -45,15 +45,33 @@ namespace ColorPicker
 
         protected abstract float GetDefaultPickerRadius();
 
-        protected float PickerRadiusProtected { get; set; }
+        float _pickerRadiusProtected;
+        protected float PickerRadiusProtected 
+        {
+            get
+            {
+                return _pickerRadiusProtected;
+            }
+            set
+            {
+                if(_pickerRadiusProtected !=value)
+                {
+                    _pickerRadiusProtected = value;
+                    OnPickerRadiusProtectedChanged(value);
+                }
+            }
+        }
+
+        protected virtual void OnPickerRadiusProtectedChanged(float newValue)
+        {
+
+        }
 
         static void HandlePickerRadiusSet(BindableObject bindable, object oldValue, object newValue)
         {
             ((ColorPickerSkiaSharpBase)bindable).PickerRadius = (float)newValue;
             ((ColorPickerSkiaSharpBase)bindable).CanvasView.InvalidateSurface();
         }
-
-        public float PickerInternalRadius { get => PickerRadiusPixels - 3; }
 
         protected float PickerRadiusPixels { get => ConvertToPixel(PickerRadiusProtected); }
         

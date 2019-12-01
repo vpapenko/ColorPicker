@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
     <Version>0.1.0</Version>
-    <Description>Color picker for xamarin forms.</Description>
+    <Description>Color picker for Xamarin Forms.</Description>
     <Authors>Victor Papenko</Authors>
     <PackageProjectUrl>https://github.com/vpapenko/ColorPicker</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
