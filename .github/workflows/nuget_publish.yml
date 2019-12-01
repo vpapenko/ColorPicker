@@ -6,21 +6,27 @@ on:
 
 jobs:
   build:
-    runs-on: [windows-latest]
+    runs-on: windows-latest
+
     steps:
-    - uses: actions/checkout@v1
-    
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.2.108
+    - name: Checkout
+      uses: actions/checkout@v1
+      
+    - name: Setup MSBuild.exe
+      uses: warrenbuckley/Setup-MSBuild@v1
+      
+    - name: MSBuild Restore
+      run: msbuild /t:restore /p:Configuration=ReleaseNuGet ColorPicker.sln
+      
+    - name: MSBuild Build
+      run: msbuild /p:Configuration=ReleaseNuGet ColorPicker.sln
+      
+    - name: Setup Nuget.exe
+      uses: warrenbuckley/Setup-Nuget@v1
+      
+    - name: Pack
+      run: nuget pack ColorPicker.nuspec -version ${{ github.event.release.tag_name }}
 
-    - name: Build with dotnet
-      run: dotnet build --configuration ReleaseNuget
-  
-    - name: Dotnet pack
-      run: dotnet pack -c ReleaseNuget -o out -p:PackageVersion=${{ github.event.release.tag_name }}
-
-    - name: NuGet publish HttpWorker v${{ github.event.release.tag_name }}
-      run: dotnet nuget push out\HttpWorker.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.HttpWorker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+    - name: NuGet publish ColorPicker.Forms v${{ github.event.release.tag_name }}
+      run: dotnet nuget push ColorPicker.Forms.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
       
