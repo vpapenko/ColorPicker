@@ -24,4 +24,4 @@ jobs:
       uses: warrenbuckley/Setup-Nuget@v1
       
     - name: Pack
-      run: nuget pack ColorPicker.nuspec -version ${{ github.event.release.tag_name }}
+      run: nuget pack ColorPicker.nuspec
