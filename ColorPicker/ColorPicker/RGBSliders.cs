@@ -1,208 +1,94 @@
-﻿using ColorPicker.Forms.Effects;
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using System.Collections.Generic;
 using Xamarin.Forms;
 
 namespace ColorPicker
 {
-    public class RGBSliders : ColorPickerSkiaSharpBase
+    public class RGBSliders : SliderPicker
     {
-        private long? locationRProgressId = null;
-        private long? locationGProgressId = null;
-        private long? locationBProgressId = null;
-        private SKPoint locationR = new SKPoint();
-        private SKPoint locationG = new SKPoint();
-        private SKPoint locationB = new SKPoint();
-
-        private float SlidersWidht { get => CanvasView.CanvasSize.Width - PickerRadiusPixels * 4; }
-        private float SlidersRHeight { get => PickerRadiusPixels * 2; }
-        private float SlidersGHeight { get => PickerRadiusPixels * 4.2F; }
-        private float SlidersBHeight { get => PickerRadiusPixels * 6.4F; }
-
-        protected override void OnSizeAllocated(double width, double height)
+        public RGBSliders()
+            : base(GetSliders())
         {
-            CanvasView.WidthRequest = width;
-            if (PickerRadius != null)
-            {
-                height = PickerRadiusProtected * 8.4;
-            }
-            else
-            {
-                PickerRadiusProtected = GetDefaultPickerRadius(height);
-            }
-            CanvasView.HeightRequest = height;
-            base.OnSizeAllocated(width, height);
         }
 
-        protected override void OnPaintSurface(SKCanvas canvas)
+        private static IEnumerable<SliderBase> GetSliders()
         {
-            SelectedColorChanged(SelectedColor);
-            canvas.Clear();
-
-            var startColor = new Color(0, SelectedColor.G, SelectedColor.B).ToSKColor();
-            var endColor = new Color(1, SelectedColor.G, SelectedColor.B).ToSKColor();
-            PaintSlider(canvas, SlidersRHeight, startColor, endColor);
-
-            startColor = new Color(SelectedColor.R, 0, SelectedColor.B).ToSKColor();
-            endColor = new Color(SelectedColor.R, 1, SelectedColor.B).ToSKColor();
-            PaintSlider(canvas, SlidersGHeight, startColor, endColor);
-
-            startColor = new Color(SelectedColor.R, SelectedColor.G, 0).ToSKColor();
-            endColor = new Color(SelectedColor.R, SelectedColor.G, 1).ToSKColor();
-            PaintSlider(canvas, SlidersBHeight, startColor, endColor);
-
-            PaintPicker(canvas, locationR);
-            PaintPicker(canvas, locationG);
-            PaintPicker(canvas, locationB);
+            return new Slider[]
+            {
+                new Slider(NewValueR, IsSelectedColorChanged, GetNewColorR, GetPaintR),
+                new Slider(NewValueG, IsSelectedColorChanged, GetNewColorG, GetPaintG),
+                new Slider(NewValueB, IsSelectedColorChanged, GetNewColorB, GetPaintB)
+            };
         }
 
-        private void PaintSlider(SKCanvas canvas, float slidersHeight, SKColor startColor, SKColor endColor)
+        private static float NewValueR(Color color)
         {
-            var canvasWidth = CanvasView.CanvasSize.Width;
-            SKPoint startPoint = new SKPoint(PickerRadiusPixels * 2, slidersHeight);
-            SKPoint endPoint = new SKPoint(canvasWidth - PickerRadiusPixels * 2, slidersHeight);
-
-            using (SKPaint paint = new SKPaint())
-            {
-                paint.Style = SKPaintStyle.Stroke;
-                paint.StrokeCap = SKStrokeCap.Round;
-                paint.StrokeJoin = SKStrokeJoin.Round;
-                paint.StrokeWidth = PickerRadiusPixels * 1.3F;
-                paint.Shader = SKShader.CreateLinearGradient(startPoint, endPoint
-                    , new SKColor[] { startColor, endColor }, new float[] { 0, 1 }, SKShaderTileMode.Clamp);
-                canvas.DrawLine(startPoint, endPoint, paint);
-            }
-        }
-        
-        protected override void OnTouchActionPressed(ColorPickerTouchActionEventArgs args)
-        {
-            SKPoint point = ConvertToPixel(args.Location);
-            if (locationRProgressId == null && IsInSliderArea(point, SlidersRHeight))
-            {
-                locationRProgressId = args.Id;
-                locationR = LimitToSliderLocation(point, SlidersRHeight);
-                UpdateColors();
-            }
-            else if (locationGProgressId == null && IsInSliderArea(point, SlidersGHeight))
-            {
-                locationGProgressId = args.Id;
-                locationG = LimitToSliderLocation(point, SlidersGHeight);
-                UpdateColors();
-            }
-            else if (locationBProgressId == null && IsInSliderArea(point, SlidersBHeight))
-            {
-                locationBProgressId = args.Id;
-                locationB = LimitToSliderLocation(point, SlidersBHeight);
-                UpdateColors();
-            }
+            return (float)color.R;
         }
 
-        protected override void OnTouchActionMoved(ColorPickerTouchActionEventArgs args)
+        private static float NewValueG(Color color)
         {
-            SKPoint point = ConvertToPixel(args.Location);
-            if (locationRProgressId == args.Id)
-            {
-                locationR = LimitToSliderLocation(point, SlidersRHeight);
-                UpdateColors();
-            }
-            else if (locationGProgressId == args.Id)
-            {
-                locationG = LimitToSliderLocation(point, SlidersGHeight);
-                UpdateColors();
-            }
-            else if (locationBProgressId == args.Id)
-            {
-                locationB = LimitToSliderLocation(point, SlidersBHeight);
-                UpdateColors();
-            }
+            return (float)color.G;
         }
 
-        protected override void OnTouchActionReleased(ColorPickerTouchActionEventArgs args)
+        private static float NewValueB(Color color)
         {
-            SKPoint point = ConvertToPixel(args.Location);
-            if (locationRProgressId == args.Id)
+            return (float)color.B;
+        }
+
+        private static bool IsSelectedColorChanged(Color color)
+        {
+            return true;
+        }
+
+        private static Color GetNewColorR(float newValue, Color oldColor)
+        {
+            return Color.FromRgb(newValue, oldColor.G, oldColor.B);
+        }
+
+        private static Color GetNewColorG(float newValue, Color oldColor)
+        {
+            return Color.FromRgb(oldColor.R, newValue, oldColor.B);
+        }
+
+        private static Color GetNewColorB(float newValue, Color oldColor)
+        {
+            return Color.FromRgb(oldColor.R, oldColor.G, newValue);
+        }
+               
+        private static SKPaint GetPaintR(Color color, SKPoint startPoint, SKPoint endPoint)
+        {
+            var startColor = new Color(0, color.G, color.B).ToSKColor();
+            var endColor = new Color(1, color.G, color.B).ToSKColor();
+            return GetPaint(startColor, endColor, startPoint, endPoint);
+        }
+
+        private static SKPaint GetPaintG(Color color, SKPoint startPoint, SKPoint endPoint)
+        {
+            var startColor = new Color(color.R, 0, color.B).ToSKColor();
+            var endColor = new Color(color.R, 1, color.B).ToSKColor();
+            return GetPaint(startColor, endColor, startPoint, endPoint);
+        }
+
+        private static SKPaint GetPaintB(Color color, SKPoint startPoint, SKPoint endPoint)
+        {
+            var startColor = new Color(color.R, color.G, 0).ToSKColor();
+            var endColor = new Color(color.R, color.G, 1).ToSKColor();
+            return GetPaint(startColor, endColor, startPoint, endPoint);
+        }
+
+        private static SKPaint GetPaint(SKColor startColor, SKColor endColor, SKPoint startPoint, SKPoint endPoint)
+        {
+            var paint = new SKPaint()
             {
-                locationRProgressId = null;
-                locationR = LimitToSliderLocation(point, SlidersRHeight);
-                UpdateColors();
-            }
-            else if (locationGProgressId == args.Id)
-            {
-                locationGProgressId = null;
-                locationG = LimitToSliderLocation(point, SlidersGHeight);
-                UpdateColors();
-            }
-            else if (locationBProgressId == args.Id)
-            {
-                locationBProgressId = null;
-                locationB = LimitToSliderLocation(point, SlidersBHeight);
-                UpdateColors();
-            }
-        }
-
-        protected override void OnTouchActionCancelled(ColorPickerTouchActionEventArgs args)
-        {
-            if (locationRProgressId == args.Id)
-            {
-                locationRProgressId = null;
-            }
-            else if (locationGProgressId == args.Id)
-            {
-                locationGProgressId = null;
-            }
-            else if (locationBProgressId == args.Id)
-            {
-                locationBProgressId = null;
-            }
-        }
-
-        protected override void SelectedColorChanged(Color color)
-        {
-            float leftR = PickerRadiusPixels * 2 + SlidersWidht * (float)color.R;
-            locationR = new SKPoint(leftR, SlidersRHeight);
-
-            float leftG = PickerRadiusPixels * 2 + SlidersWidht * (float)color.G;
-            locationG = new SKPoint(leftG, SlidersGHeight);
-
-            float leftB = PickerRadiusPixels * 2 + SlidersWidht * (float)color.B;
-            locationB = new SKPoint(leftB, SlidersBHeight);
-
-            CanvasView.InvalidateSurface();
-        }
-
-        protected override float GetDefaultPickerRadius()
-        {
-            return GetDefaultPickerRadius(CanvasView.Height);
-        }
-
-        private float GetDefaultPickerRadius(double canvasViewHeight)
-        {
-            return (float)(canvasViewHeight / 8.4d);
-        }
-
-        private SKPoint LimitToSliderLocation(SKPoint point, float slidersHeight)
-        {
-            SKPoint result = new SKPoint(point.X, point.Y);
-            result.X = result.X >= PickerRadiusPixels * 2 ? result.X : PickerRadiusPixels * 2;
-            result.X = result.X <= CanvasView.CanvasSize.Width - PickerRadiusPixels * 2 ? result.X : CanvasView.CanvasSize.Width - PickerRadiusPixels * 2;
-            result.Y = slidersHeight;
-            return result;
-        }
-
-        private bool IsInSliderArea(SKPoint point, float slidersHeight)
-        {
-            return point.Y >= slidersHeight - PickerRadiusPixels
-                && point.Y <= slidersHeight + PickerRadiusPixels;
-        }
-
-        private void UpdateColors()
-        {
-            var r = (locationR.X - PickerRadiusPixels * 2) / SlidersWidht;
-            var g = (locationG.X - PickerRadiusPixels * 2) / SlidersWidht;
-            var b = (locationB.X - PickerRadiusPixels * 2) / SlidersWidht;
-            var newColor = new Color(r, g, b);
-            SetSelectedColor(newColor);
-            CanvasView.InvalidateSurface();
+                Style = SKPaintStyle.Stroke,
+                StrokeCap = SKStrokeCap.Round,
+                StrokeJoin = SKStrokeJoin.Round,
+                Shader = SKShader.CreateLinearGradient(startPoint, endPoint
+                    , new SKColor[] { startColor, endColor }, new float[] { 0, 1 }, SKShaderTileMode.Clamp)
+            };
+            return paint;
         }
     }
 }

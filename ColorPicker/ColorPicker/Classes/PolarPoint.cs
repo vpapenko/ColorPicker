@@ -21,7 +21,6 @@ namespace ColorPicker.Forms
             }
             set
             {
-                //angel = (float)((value + 2 * Math.PI) % (2 * Math.PI));
                 angel = (float)Math.Atan2(Math.Sin(value), Math.Cos(value));
             }
         }
