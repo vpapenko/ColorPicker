@@ -8,7 +8,6 @@ namespace ColorPicker
             Slider = slider;
         }
         public SliderBase Slider { get; private set; }
-        public float SliderTop { get; set; }
         public long? LocationProgressId { get; set; }
         public SKPoint Location { get; set; } = new SKPoint();
         public float TopLocationMultiplier { get; set; }
