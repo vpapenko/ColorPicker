@@ -289,7 +289,7 @@ namespace ColorPicker
             var h = (Math.PI - polarHS.Angle) / (2 * Math.PI);
             var s = polarHS.Radius;
             var l = Math.Abs(polarL.Angle) / Math.PI;
-            return Color.FromHsla(h, s, l);
+            return Color.FromHsla(h, s, l, SelectedColor.A);
         }
 
         private SKPoint LimitToHSRadius(SKPoint point)

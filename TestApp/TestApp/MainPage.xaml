@@ -4,28 +4,40 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              mc:Ignorable="d"
              x:Class="TestApp.MainPage">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <StackLayout Orientation="Horizontal" Grid.Row="0"
-                     BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}">
-            <Label Text="Color" TextColor="Black" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
-            <Label Text="Color" TextColor="White" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+        <forms:SKCanvasView PaintSurface="SKCanvasView_PaintSurface"
+                            Grid.Row="0"/>
+        <StackLayout BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}"
+                     Grid.Row="0">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Color" TextColor="Black" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                <Label Text="Color" TextColor="White" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <Switch x:Name="ShowAlphaSwitch"/>
         </StackLayout>
         <colorpicker:ColorWheel x:Name="ColorWheel1" VerticalOptions="Fill"
                                 Grid.Row="1"/>
-        <colorpicker:HSLSliders x:Name="HSLSliders1" VerticalOptions="Fill"
+        <colorpicker:AlphaSlider x:Name="AlphaSliders1" VerticalOptions="Fill"
                                 ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
                                 Grid.Row="2"/>
+        <colorpicker:HSLSliders x:Name="HSLSliders1" VerticalOptions="Fill"
+                                ConnectedColorPicker="{x:Reference Name=AlphaSliders1}"
+                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
+                                Grid.Row="3"/>
         <colorpicker:RGBSliders x:Name="RGBSliders1" VerticalOptions="Fill"
                                 ConnectedColorPicker="{x:Reference Name=HSLSliders1}"
+                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
                                 SelectedColor="Gray"
-                                Grid.Row="3"/>
+                                Grid.Row="4"/>
     </Grid>
 </ContentPage>
