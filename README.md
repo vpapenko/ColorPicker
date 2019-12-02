@@ -10,8 +10,9 @@ ColorPicker is the pack of color pickers for Xamarin Forms.
 - iOs: Comming soon.
 
 # How to use
+See TestApp for example.
 Add this package both to Xamarin and platform-specific projects.
-Add color picker to as any other Xamarin Forms control.
+Add color picker as any other Xamarin Forms control.
 
 ### Useful properties:
 
