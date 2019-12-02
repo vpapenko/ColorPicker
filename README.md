@@ -5,6 +5,8 @@
 # ColorPicker
 ColorPicker is the pack of color pickers for Xamarin Forms.
 
+<img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/TestApp.png" width="400">
+
 # Supported platforms
 - Android: Supported.
 - iOs: Comming soon.
