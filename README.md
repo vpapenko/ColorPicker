@@ -33,12 +33,12 @@ AlphaSlider
 
 
 # TestApp
-TestApp provides a basic example of how to use color pickers.
+TestApp provides a basic examples of how to use color pickers.
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/TestApp.png" width="300">
 
 # How to use
-Add this package both to Xamarin and platform-specific projects.
+Add this package both to Xamarin Forms and platform-specific projects.
 
 Add color picker as any other Xamarin Forms control.
 
@@ -49,4 +49,5 @@ Add color picker as any other Xamarin Forms control.
 **ConnectedColorPicker.** Multiple color picker could be connected using this property. Bind color pickers one by one in chain.
 
 **ShowAlphaSwitch.** Applied to slider pickers. Turn alpha switch slider on and off. For ColorWheel use separate AlphaSlider
+
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ShowAlphaSwitchFalse.png" width="300">  <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ShowAlphaSwitchTrue.png" width="300">
