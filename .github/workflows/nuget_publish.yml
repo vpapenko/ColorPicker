@@ -27,6 +27,6 @@ jobs:
     - name: Pack
       run: nuget pack ColorPicker.nuspec -version ${{ github.event.release.tag_name }}
 
-    - name: NuGet publish ColorPicker.Forms v${{ github.event.release.tag_name }}
-      run: dotnet nuget push ColorPicker.Forms.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+    - name: NuGet publish ColorPicker.Xamarin.Forms v${{ github.event.release.tag_name }}
+      run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
       
