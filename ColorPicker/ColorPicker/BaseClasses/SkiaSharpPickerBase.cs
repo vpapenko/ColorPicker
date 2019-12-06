@@ -8,38 +8,45 @@ namespace ColorPicker
     public abstract class SkiaSharpPickerBase : ColorPickerContentViewBase
     {
         protected SKCanvasView CanvasView = new SKCanvasView();
+        protected Grid mainGrid;
+        protected const double CanvasViewRowHeight = 100;
 
         public SkiaSharpPickerBase()
         {
             CanvasView.VerticalOptions = LayoutOptions.Center;
             CanvasView.HorizontalOptions = LayoutOptions.Center;
             CanvasView.PaintSurface += CanvasView_PaintSurface;
+            CanvasView.BackgroundColor = Color.Pink;
 
             ColorPickerTouchEffect touchEffect = new ColorPickerTouchEffect()
             {
                 Capture = true
             };
             touchEffect.TouchAction += TouchEffect_TouchAction;
-            
+
+            mainGrid = new Grid()
+            {
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center,
+                RowSpacing = 0,
+                ColumnSpacing = 0,
+                Effects =
+                {
+                    touchEffect
+                }
+            };
+
+            mainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(CanvasViewRowHeight, GridUnitType.Star) });
+            mainGrid.Children.Add(CanvasView, 0, 0);
+
             Content = new Grid
             {
                 Children =
                 {
-                    new Grid
-                    {
-                        HorizontalOptions = LayoutOptions.Center,
-                        VerticalOptions = LayoutOptions.Center,
-                        Children =
-                        {
-                            CanvasView
-                        },
-                        Effects =
-                        {
-                            touchEffect
-                        }
-                    }
+                    mainGrid
                 }
             };
+
         }
 
         protected abstract void OnPaintSurface(SKCanvas canvas);

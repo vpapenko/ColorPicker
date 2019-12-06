@@ -17,6 +17,13 @@ namespace ColorPicker
         private float CanvasRadius { get => CanvasView.CanvasSize.Width / 2F; }
         private float WheelHSRadius { get => CanvasRadius - 3 * PickerRadiusPixels - 2; }
         private float WheelLRadius { get => CanvasRadius - PickerRadiusPixels; }
+        private readonly object  _alphaSlider = new AlphaSlider() { IsVisible = false, BackgroundColor = Color.Aqua };
+        private readonly LuminositySlider _luminositySlider = new LuminositySlider() { IsVisible = false, BackgroundColor = Color.BurlyWood };
+        protected const double LuminositySliderRowHeight = 10;
+        protected const double AlphaSliderRowHeight = 10;
+
+        private RowDefinition _alphaSliderRowDefinition = new RowDefinition { Height = new GridLength(AlphaSliderRowHeight, GridUnitType.Star) };
+        private RowDefinition _luminositySliderRowDefinition = new RowDefinition { Height = new GridLength(LuminositySliderRowHeight, GridUnitType.Star) };
 
         public static readonly BindableProperty WheelBackgroundColorProperty = BindableProperty.Create(
            nameof(WheelBackgroundColor),
@@ -41,18 +48,73 @@ namespace ColorPicker
             }
         }
 
+        protected override void UpdateSliders()
+        {
+            _alphaSlider.IsVisible = ShowAlphaSlider;
+            _luminositySlider.IsVisible = ShowAlphaSlider;
+            if (ShowAlphaSlider)
+            {
+                mainGrid.RowDefinitions.Add(_alphaSliderRowDefinition);
+                mainGrid.RowDefinitions.Add(_luminositySliderRowDefinition);
+                mainGrid.Children.Add(_luminositySlider, 0, 1);
+                mainGrid.Children.Add(_alphaSlider, 0, 2);
+                _luminositySlider.SelectedColor = SelectedColor;
+                _alphaSlider.SelectedColor = SelectedColor;
+                _luminositySlider.SetBinding(ConnectedColorPickerProperty, new Binding() { Source = this });
+                _alphaSlider.SetBinding(ConnectedColorPickerProperty, new Binding() { Source = this });
+                //SetBinding(ConnectedColorPickerProperty, new Binding() { Source = _luminositySlider });
+                //SetBinding(ConnectedColorPickerProperty, new Binding() { Source = _alphaSlider });
+            }
+            else
+            {
+                mainGrid.Children.Remove(_luminositySlider);
+                mainGrid.Children.Remove(_alphaSlider);
+                if (mainGrid.RowDefinitions.Contains(_alphaSliderRowDefinition))
+                {
+                    mainGrid.RowDefinitions.Remove(_alphaSliderRowDefinition);
+                }
+                if (mainGrid.RowDefinitions.Contains(_luminositySliderRowDefinition))
+                {
+                    mainGrid.RowDefinitions.Remove(_luminositySliderRowDefinition);
+                }
+                _luminositySlider.RemoveBinding(ConnectedColorPickerProperty);
+                _alphaSlider.RemoveBinding(ConnectedColorPickerProperty);
+            }
+            var width = Width;
+            var height = Height;
+            SetCanvasViewSize(ref width, ref height);
+            _luminositySlider.WidthRequest = width;
+            _alphaSlider.WidthRequest = width;
+            WidthRequest = width;
+            HeightRequest = height;
+        }
+
         protected override void OnSizeAllocated(double width, double height)
         {
-            var size = width < height ? width : height;
+            SetCanvasViewSize(ref width, ref height);
+            base.OnSizeAllocated(width, height);
+        }
+
+        protected void SetCanvasViewSize(ref double width, ref double height)
+        {
+            var multiplier = CanvasViewRowHeight;
+            if(ShowAlphaSlider)
+            {
+                multiplier += LuminositySliderRowHeight;
+                multiplier += AlphaSliderRowHeight;
+            }
+            multiplier /= CanvasViewRowHeight;
+
+            var size = width < height / multiplier ? width : height / multiplier;
+            width = size;
+            height = size * multiplier;
             CanvasView.WidthRequest = size;
             CanvasView.HeightRequest = size;
 
             if (PickerRadius == null)
             {
-                PickerRadiusProtected = GetDefaultPickerRadius(height);
+                PickerRadiusProtected = GetDefaultPickerRadius(size);
             }
-
-            base.OnSizeAllocated(size, size);
         }
 
         protected override void OnTouchActionPressed(ColorPickerTouchActionEventArgs args)

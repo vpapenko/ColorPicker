@@ -26,6 +26,7 @@
             <Switch x:Name="ShowAlphaSwitch"/>
         </StackLayout>
         <colorpicker:ColorWheel x:Name="ColorWheel1" VerticalOptions="Fill"
+                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
                                 Grid.Row="1"/>
         <colorpicker:AlphaSlider x:Name="AlphaSliders1" VerticalOptions="Fill"
                                 ConnectedColorPicker="{x:Reference Name=ColorWheel1}"

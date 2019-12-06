@@ -14,7 +14,8 @@ namespace ColorPicker
            nameof(ConnectedColorPicker),
            typeof(IColorPicker),
            typeof(IColorPicker),
-           null);
+           null,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleConnectedColorPickerSet));
 
         public IColorPicker ConnectedColorPicker
         {
@@ -25,20 +26,13 @@ namespace ColorPicker
             set
             {
                 IColorPicker current = (IColorPicker)GetValue(ConnectedColorPickerProperty);
-                if (value != current)
-                {
-                    if (current != null)
-                    {
-                        current.PropertyChanged -= BindedIColorPicker_PropertyChanged;
-                    }
-                    if (value != null)
-                    {
-                        value.PropertyChanged += BindedIColorPicker_PropertyChanged;
-                        value.SelectedColor = SelectedColor;
-                    }
-                    SetValue(ConnectedColorPickerProperty, value);
-                }
+                SetConnectedColorPicker(current, value);
             }
+        }
+
+        static void HandleConnectedColorPickerSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ColorPickerSkiaSharpBase)bindable).SetConnectedColorPicker((IColorPicker)oldValue, (IColorPicker)newValue);
         }
 
         public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(
@@ -89,5 +83,23 @@ namespace ColorPicker
                 SelectedColor = ((IColorPicker)sender).SelectedColor;
             }
         }
+
+        private void SetConnectedColorPicker(IColorPicker oldValue, IColorPicker newValue)
+        {
+            if (newValue != oldValue)
+            {
+                if (oldValue != null)
+                {
+                    oldValue.PropertyChanged -= BindedIColorPicker_PropertyChanged;
+                }
+                if (newValue != null)
+                {
+                    newValue.PropertyChanged += BindedIColorPicker_PropertyChanged;
+                    newValue.SelectedColor = SelectedColor;
+                }
+                SetValue(ConnectedColorPickerProperty, newValue);
+            }
+        }
+
     }
 }

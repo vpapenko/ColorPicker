@@ -9,6 +9,7 @@ namespace ColorPicker
         public ColorPickerSkiaSharpBase()
         {
             PickerRadius = (float?)GetValue(PickerRadiusProperty);
+            UpdateSliders();
         }
 
         public static readonly BindableProperty PickerRadiusProperty = BindableProperty.Create(
@@ -17,6 +18,38 @@ namespace ColorPicker
            typeof(ColorPickerSkiaSharpBase),
            null,
            propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
+
+
+        public static readonly BindableProperty ShowAlphaSliderProperty = BindableProperty.Create(
+           nameof(ShowAlphaSlider),
+           typeof(bool),
+           typeof(ColorPickerSkiaSharpBase),
+           false,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleShowAlphaSliderSet));
+
+        public bool ShowAlphaSlider
+        {
+            get
+            {
+                return (bool)GetValue(ShowAlphaSliderProperty);
+            }
+            set
+            {
+                var currentValue = (bool)GetValue(ShowAlphaSliderProperty);
+                if (value == currentValue)
+                {
+                    UpdateSliders();
+                }
+            }
+        }
+
+        protected abstract void UpdateSliders();
+
+        static void HandleShowAlphaSliderSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ColorPickerSkiaSharpBase)bindable).ShowAlphaSlider = (bool)newValue;
+        }
+
 
         public float? PickerRadius
         {

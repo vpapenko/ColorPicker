@@ -13,40 +13,6 @@ namespace ColorPicker
 
         protected abstract IEnumerable<SliderBase> GetSliders();
 
-        public SliderPicker()
-        {
-            SetSliders();
-        }
-               
-        public static readonly BindableProperty ShowAlphaSliderProperty = BindableProperty.Create(
-           nameof(ShowAlphaSlider),
-           typeof(bool),
-           typeof(SliderPicker),
-           false,
-           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleShowAlphaSliderSet));
-
-        public bool ShowAlphaSlider
-        {
-            get
-            {
-                return (bool)GetValue(ShowAlphaSliderProperty);
-            }
-            set
-            {
-                var currentValue = (bool)GetValue(ShowAlphaSliderProperty);
-                if (value == currentValue)
-                {
-                    SetSliders();
-                }
-            }
-        }
-
-        static void HandleShowAlphaSliderSet(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((SliderPicker)bindable).ShowAlphaSlider = (bool)newValue;
-        }
-
-
         protected override void OnPickerRadiusProtectedChanged(float newValue)
         {
             base.OnPickerRadiusProtectedChanged(newValue);
@@ -217,7 +183,7 @@ namespace ColorPicker
             return result;
         }
 
-        private void SetSliders()
+        protected override void UpdateSliders()
         {
             _sliders.Clear();
             var i = 0;
