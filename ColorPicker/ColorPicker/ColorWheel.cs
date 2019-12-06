@@ -17,7 +17,7 @@ namespace ColorPicker
         private float CanvasRadius { get => CanvasView.CanvasSize.Width / 2F; }
         private float WheelHSRadius { get => CanvasRadius - 3 * PickerRadiusPixels - 2; }
         private float WheelLRadius { get => CanvasRadius - PickerRadiusPixels; }
-        private readonly object  _alphaSlider = new AlphaSlider() { IsVisible = false, BackgroundColor = Color.Aqua };
+        private readonly AlphaSlider _alphaSlider = new AlphaSlider() { IsVisible = false, BackgroundColor = Color.Aqua };
         private readonly LuminositySlider _luminositySlider = new LuminositySlider() { IsVisible = false, BackgroundColor = Color.BurlyWood };
         protected const double LuminositySliderRowHeight = 10;
         protected const double AlphaSliderRowHeight = 10;
