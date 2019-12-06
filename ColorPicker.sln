@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorPicker", "ColorPicker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.Android", "ColorPicker\ColorPicker.Android\ColorPicker.Android.csproj", "{00AD97C9-A424-49A8-85C2-EA7499595B97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.iOS", "TestApp\TestApp.iOS\TestApp.iOS.csproj", "{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +106,22 @@ Global
 		{00AD97C9-A424-49A8-85C2-EA7499595B97}.ReleaseNuGet|iPhone.Build.0 = ReleaseNuGet|Any CPU
 		{00AD97C9-A424-49A8-85C2-EA7499595B97}.ReleaseNuGet|iPhoneSimulator.ActiveCfg = ReleaseNuGet|Any CPU
 		{00AD97C9-A424-49A8-85C2-EA7499595B97}.ReleaseNuGet|iPhoneSimulator.Build.0 = ReleaseNuGet|Any CPU
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Debug|Any CPU.ActiveCfg = Debug|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Debug|iPhone.Build.0 = Debug|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Release|Any CPU.ActiveCfg = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Release|iPhone.Build.0 = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.ReleaseNuGet|Any CPU.ActiveCfg = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.ReleaseNuGet|Any CPU.Build.0 = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.ReleaseNuGet|iPhone.ActiveCfg = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.ReleaseNuGet|iPhone.Build.0 = Release|iPhone
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.ReleaseNuGet|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8511A2C4-F6D7-4E06-A6B1-FB0C8A046396}.ReleaseNuGet|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
