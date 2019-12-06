@@ -12,14 +12,6 @@ namespace ColorPicker
             UpdateSliders();
         }
 
-        public static readonly BindableProperty PickerRadiusProperty = BindableProperty.Create(
-           nameof(PickerRadius),
-           typeof(float?),
-           typeof(ColorPickerSkiaSharpBase),
-           null,
-           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
-
-
         public static readonly BindableProperty ShowAlphaSliderProperty = BindableProperty.Create(
            nameof(ShowAlphaSlider),
            typeof(bool),
@@ -36,21 +28,30 @@ namespace ColorPicker
             set
             {
                 var currentValue = (bool)GetValue(ShowAlphaSliderProperty);
-                if (value == currentValue)
+                if (value != currentValue)
                 {
                     UpdateSliders();
                 }
             }
         }
 
-        protected abstract void UpdateSliders();
-
         static void HandleShowAlphaSliderSet(BindableObject bindable, object oldValue, object newValue)
         {
-            ((ColorPickerSkiaSharpBase)bindable).ShowAlphaSlider = (bool)newValue;
+            if (newValue != oldValue)
+            {
+                ((ColorPickerSkiaSharpBase)bindable).UpdateSliders();
+            }
         }
 
 
+        public static readonly BindableProperty PickerRadiusProperty = BindableProperty.Create(
+           nameof(PickerRadius),
+           typeof(float?),
+           typeof(ColorPickerSkiaSharpBase),
+           null,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
+
+               
         public float? PickerRadius
         {
             get
@@ -60,23 +61,16 @@ namespace ColorPicker
             set
             {
                 var currentValue = (float?)GetValue(PickerRadiusProperty);
-                if (value == currentValue)
-                {
-                    float newPickerRadius;
-                    if(value == null)
-                    {
-                        newPickerRadius = GetDefaultPickerRadius();
-                    }
-                    else
-                    {
-                        newPickerRadius = (float)value;
-                    }
-                    PickerRadiusProtected = newPickerRadius;
-                }
+                SetPickerRadius(currentValue, value);
             }
         }
 
-        protected abstract float GetDefaultPickerRadius();
+        static void HandlePickerRadiusSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((ColorPickerSkiaSharpBase)bindable).SetPickerRadius((float?)oldValue, (float?)newValue);
+            ((ColorPickerSkiaSharpBase)bindable).CanvasView.InvalidateSurface();
+        }
+
 
         float _pickerRadiusProtected;
         protected float PickerRadiusProtected 
@@ -93,17 +87,6 @@ namespace ColorPicker
                     OnPickerRadiusProtectedChanged(value);
                 }
             }
-        }
-
-        protected virtual void OnPickerRadiusProtectedChanged(float newValue)
-        {
-
-        }
-
-        static void HandlePickerRadiusSet(BindableObject bindable, object oldValue, object newValue)
-        {
-            ((ColorPickerSkiaSharpBase)bindable).PickerRadius = (float)newValue;
-            ((ColorPickerSkiaSharpBase)bindable).CanvasView.InvalidateSurface();
         }
 
         protected float PickerRadiusPixels { get => ConvertToPixel(PickerRadiusProtected); }
@@ -124,5 +107,31 @@ namespace ColorPicker
             canvas.DrawCircle(point, PickerRadiusPixels - 4, paint);
             canvas.DrawCircle(point, PickerRadiusPixels, paint);
         }
+
+        protected virtual void OnPickerRadiusProtectedChanged(float newValue)
+        {
+
+        }
+
+        protected abstract void UpdateSliders();
+        protected abstract float GetDefaultPickerRadius();
+               
+        private void SetPickerRadius(float? oldValue, float? newValue)
+        {
+            if (newValue != oldValue)
+            {
+                float newPickerRadius;
+                if (newValue == null)
+                {
+                    newPickerRadius = GetDefaultPickerRadius();
+                }
+                else
+                {
+                    newPickerRadius = (float)newValue;
+                }
+                PickerRadiusProtected = newPickerRadius;
+            }
+        }
+
     }
 }

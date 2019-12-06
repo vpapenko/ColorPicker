@@ -16,7 +16,6 @@ namespace ColorPicker
             CanvasView.VerticalOptions = LayoutOptions.Center;
             CanvasView.HorizontalOptions = LayoutOptions.Center;
             CanvasView.PaintSurface += CanvasView_PaintSurface;
-            CanvasView.BackgroundColor = Color.Pink;
 
             ColorPickerTouchEffect touchEffect = new ColorPickerTouchEffect()
             {
