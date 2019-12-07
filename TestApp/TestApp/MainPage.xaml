@@ -25,7 +25,7 @@
             <StackLayout Orientation="Horizontal">
                 <Switch x:Name="ShowLuminositySlider"/>
                 <Label Text="Show Luminosity As Slider" HorizontalOptions="StartAndExpand"/>
-                <Switch x:Name="ShowLuminosityWheel"/>
+                <Switch x:Name="ShowLuminosityWheel" IsToggled="True"/>
                 <Label Text="Show Luminosity As Wheel" HorizontalOptions="StartAndExpand"/>
             </StackLayout>
         </StackLayout>

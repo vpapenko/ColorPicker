@@ -15,7 +15,7 @@ namespace ColorPicker
         private SKPoint locationHS = new SKPoint();
         private SKPoint locationL = new SKPoint();
         private float CanvasRadius { get => CanvasView.CanvasSize.Width / 2F; }
-        private float WheelHSRadius { get => ShowLuminosityWheel ? CanvasRadius - PickerRadiusPixels : CanvasRadius - 3 * PickerRadiusPixels - 2; }
+        private float WheelHSRadius { get => !ShowLuminosityWheel ? CanvasRadius - PickerRadiusPixels : CanvasRadius - 3 * PickerRadiusPixels - 2; }
         private float WheelLRadius { get => CanvasRadius - PickerRadiusPixels; }
         private readonly AlphaSlider _alphaSlider = new AlphaSlider() { IsVisible = false };
         private readonly LuminositySlider _luminositySlider = new LuminositySlider() { IsVisible = false };
@@ -30,7 +30,7 @@ namespace ColorPicker
            nameof(ShowLuminosityWheel),
            typeof(bool),
            typeof(ColorPickerSkiaSharpBase),
-           false);
+           true);
 
         public bool ShowLuminosityWheel
         {
@@ -277,7 +277,7 @@ namespace ColorPicker
             SelectedColorChanged(SelectedColor);
             canvas.Clear();
             PaintBackground(canvas);
-            if (!ShowLuminosityWheel)
+            if (ShowLuminosityWheel)
             {
                 PaintLGradient(canvas);
                 PaintPicker(canvas, locationL);
@@ -340,7 +340,7 @@ namespace ColorPicker
 
         private bool IsInLArea(SKPoint point)
         {
-            if (ShowLuminosityWheel)
+            if (!ShowLuminosityWheel)
             {
                 return false;
             }
