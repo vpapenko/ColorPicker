@@ -33,8 +33,6 @@ This library contains several base classes for custom color pickers.
 # TestApp
 TestApp provides basic examples of how to use color pickers.
 
-<img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/TestApp.png" width="300">
-
 # How to use
 Add this package both to Xamarin Forms and platform-specific projects.
 
