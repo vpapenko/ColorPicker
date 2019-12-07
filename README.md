@@ -11,7 +11,7 @@ ColorPicker is the pack of color pickers for Xamarin Forms.
 - Android: Supported.
 - iOs: Comming soon.
 
-# Ready to use controls
+# Clor pickers
 ColorWheel
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ColorWheel.png" width="300">
@@ -27,9 +27,7 @@ RGBSliders
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/RGBSliders.png" width="300">
 
 
-AlphaSlider
-
-<img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/AlphaSlider.png" width="300">
+This library contains several base classes for custom color pickers.
 
 
 # TestApp
@@ -42,12 +40,16 @@ Add this package both to Xamarin Forms and platform-specific projects.
 
 Add color picker as any other Xamarin Forms control.
 
-### Useful properties:
+## Useful properties
 
+### Common properties
 **SelectedColor.** It could be used to read selected color and to set the color to picker.
   
 **ConnectedColorPicker.** Multiple color picker could be connected using this property. Bind color pickers one by one in chain.
 
-**ShowAlphaSlider.** Applied to slider pickers. Turning alpha slider on and off. For ColorWheel use separate AlphaSlider
+**ShowAlphaSlider.**
 
-<img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ShowAlphaSwitchFalse.png" width="300">  <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ShowAlphaSwitchTrue.png" width="300">
+### Color wheel
+**ShowLuminosityWheel**
+
+**ShowLuminositySlider**
