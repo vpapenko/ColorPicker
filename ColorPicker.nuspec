@@ -11,7 +11,7 @@
     <icon>NuGet.icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>ColorPicker for Xamarin Forms Android and iOS.</description>
-    <tags>ColorPicker Xamarin Forms dotnet netstandard csharp c-sharp</tags>
+    <tags>ColorPicker Xamarin Forms Android iOS dotnet netstandard csharp c-sharp</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
         <dependency id="SkiaSharp.Views.Forms" version="1.68.1" />
