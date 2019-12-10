@@ -18,8 +18,10 @@
         <dependency id="Xamarin.Forms" version="4.3.0.991221" />
       </group>
       <group targetFramework="MonoAndroid10">
+        <dependency id="Xamarin.Forms" version="4.3.0.991221" />
       </group>
       <group targetFramework="Xamarin.iOS10">
+        <dependency id="Xamarin.Forms" version="4.3.0.991221" />
       </group>
     </dependencies>
   </metadata>
