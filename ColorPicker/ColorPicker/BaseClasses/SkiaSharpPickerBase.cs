@@ -1,6 +1,8 @@
 ﻿using ColorPicker.Forms.Effects;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using System.Linq;
+using System.Reflection;
 using Xamarin.Forms;
 
 namespace ColorPicker

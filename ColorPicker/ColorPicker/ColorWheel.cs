@@ -30,7 +30,8 @@ namespace ColorPicker
            nameof(ShowLuminosityWheel),
            typeof(bool),
            typeof(ColorPickerSkiaSharpBase),
-           true);
+           true,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleShowLuminositySet));
 
         public bool ShowLuminosityWheel
         {
@@ -47,13 +48,13 @@ namespace ColorPicker
                 }
             }
         }
-
+        
         public static readonly BindableProperty ShowLuminositySliderProperty = BindableProperty.Create(
            nameof(ShowLuminositySlider),
            typeof(bool),
            typeof(ColorPickerSkiaSharpBase),
            false,
-           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleShowLuminositySliderSet));
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleShowLuminositySet));
 
         public bool ShowLuminositySlider
         {
@@ -71,7 +72,7 @@ namespace ColorPicker
             }
         }
 
-        static void HandleShowLuminositySliderSet(BindableObject bindable, object oldValue, object newValue)
+        static void HandleShowLuminositySet(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != oldValue)
             {
@@ -178,6 +179,7 @@ namespace ColorPicker
             _alphaSlider.WidthRequest = width;
             WidthRequest = width;
             HeightRequest = height;
+            CanvasView.InvalidateSurface();
         }
 
         protected override void OnSizeAllocated(double width, double height)

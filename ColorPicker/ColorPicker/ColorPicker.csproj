@@ -1,23 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <Version>0.1.0</Version>
-    <Description>Color picker for Xamarin Forms.</Description>
-    <Authors>Victor Papenko</Authors>
-    <PackageProjectUrl>https://github.com/vpapenko/ColorPicker</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <RepositoryUrl>https://github.com/vpapenko/ColorPicker</RepositoryUrl>
-    <PackageTags>ColorPicker xamarin forms dotnet netstandard csharp c-sharp</PackageTags>
-    <PackageId>ColorPicker.Forms</PackageId>
     <Configurations>Debug;Release;ReleaseNuGet</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SkiaSharp.Views.Forms" Version="1.68.1" />
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991221" />
   </ItemGroup>
+
 </Project>
