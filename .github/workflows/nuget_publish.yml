@@ -33,7 +33,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.ColorPicker_Release }}
       with:
         upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./ColorPicker.Xamarin.Forms.${{ github.event.release.tag_name }}.nupkg
+        asset_path: D:\a\ColorPicker\ColorPicker\ColorPicker.Xamarin.Forms.${{ github.event.release.tag_name }}.nupkg
         asset_name: ColorPicker.Xamarin.Forms.${{ github.event.release.tag_name }}.nupkg
         asset_content_type: application/nupkg
      
