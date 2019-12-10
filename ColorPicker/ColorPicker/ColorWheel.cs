@@ -15,8 +15,69 @@ namespace ColorPicker
         private SKPoint locationHS = new SKPoint();
         private SKPoint locationL = new SKPoint();
         private float CanvasRadius { get => CanvasView.CanvasSize.Width / 2F; }
-        private float WheelHSRadius { get => CanvasRadius - 3 * PickerRadiusPixels - 2; }
+        private float WheelHSRadius { get => !ShowLuminosityWheel ? CanvasRadius - PickerRadiusPixels : CanvasRadius - 3 * PickerRadiusPixels - 2; }
         private float WheelLRadius { get => CanvasRadius - PickerRadiusPixels; }
+        private readonly AlphaSlider _alphaSlider = new AlphaSlider() { IsVisible = false };
+        private readonly LuminositySlider _luminositySlider = new LuminositySlider() { IsVisible = false };
+        protected const double LuminositySliderRowHeight = 12;
+        protected const double AlphaSliderRowHeight = 12;
+
+        private readonly RowDefinition _alphaSliderRowDefinition = new RowDefinition { Height = new GridLength(AlphaSliderRowHeight, GridUnitType.Star) };
+        private readonly RowDefinition _luminositySliderRowDefinition = new RowDefinition { Height = new GridLength(LuminositySliderRowHeight, GridUnitType.Star) };
+
+
+        public static readonly BindableProperty ShowLuminosityWheelProperty = BindableProperty.Create(
+           nameof(ShowLuminosityWheel),
+           typeof(bool),
+           typeof(ColorPickerSkiaSharpBase),
+           true);
+
+        public bool ShowLuminosityWheel
+        {
+            get
+            {
+                return (bool)GetValue(ShowLuminosityWheelProperty);
+            }
+            set
+            {
+                var currentValue = (bool)GetValue(ShowLuminosityWheelProperty);
+                if (value != currentValue)
+                {
+                    UpdateSliders();
+                }
+            }
+        }
+
+        public static readonly BindableProperty ShowLuminositySliderProperty = BindableProperty.Create(
+           nameof(ShowLuminositySlider),
+           typeof(bool),
+           typeof(ColorPickerSkiaSharpBase),
+           false,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleShowLuminositySliderSet));
+
+        public bool ShowLuminositySlider
+        {
+            get
+            {
+                return (bool)GetValue(ShowLuminositySliderProperty);
+            }
+            set
+            {
+                var currentValue = (bool)GetValue(ShowLuminositySliderProperty);
+                if (value != currentValue)
+                {
+                    UpdateSliders();
+                }
+            }
+        }
+
+        static void HandleShowLuminositySliderSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != oldValue)
+            {
+                ((ColorWheel)bindable).UpdateSliders();
+            }
+        }
 
         public static readonly BindableProperty WheelBackgroundColorProperty = BindableProperty.Create(
            nameof(WheelBackgroundColor),
@@ -41,18 +102,113 @@ namespace ColorPicker
             }
         }
 
+        protected override void UpdateSliders()
+        {
+            _alphaSlider.IsVisible = ShowAlphaSlider;
+            _luminositySlider.IsVisible = ShowLuminositySlider;
+            var alphaRow = -1;
+            var luminosityRow = -1;
+            if (ShowAlphaSlider && ShowLuminositySlider)
+            {
+                luminosityRow = 1;
+                alphaRow = 2;
+            }
+            else if (ShowAlphaSlider)
+            {
+                alphaRow = 1;
+            }
+            else if (ShowLuminositySlider)
+            {
+                luminosityRow = 1;
+            }
+
+            if (mainGrid.Children.Contains(_alphaSlider))
+            {
+                mainGrid.Children.Remove(_alphaSlider);
+                if (mainGrid.RowDefinitions.Contains(_alphaSliderRowDefinition))
+                {
+                    mainGrid.RowDefinitions.Remove(_alphaSliderRowDefinition);
+                }
+            }
+            if (mainGrid.Children.Contains(_luminositySlider))
+            {
+                mainGrid.Children.Remove(_luminositySlider);
+                if (mainGrid.RowDefinitions.Contains(_luminositySliderRowDefinition))
+                {
+                    mainGrid.RowDefinitions.Remove(_luminositySliderRowDefinition);
+                }
+            }
+
+            if (ShowAlphaSlider)
+            {
+                mainGrid.RowDefinitions.Add(_alphaSliderRowDefinition);
+                mainGrid.Children.Add(_alphaSlider, 0, alphaRow);
+                _alphaSlider.SelectedColor = SelectedColor;
+                _alphaSlider.SetBinding(ConnectedColorPickerProperty, new Binding() { Source = this });
+            }
+            else
+            {
+                mainGrid.Children.Remove(_alphaSlider);
+                if (mainGrid.RowDefinitions.Contains(_alphaSliderRowDefinition))
+                {
+                    mainGrid.RowDefinitions.Remove(_alphaSliderRowDefinition);
+                }
+                _alphaSlider.RemoveBinding(ConnectedColorPickerProperty);
+            }
+            if (ShowLuminositySlider)
+            {
+                mainGrid.RowDefinitions.Add(_luminositySliderRowDefinition);
+                mainGrid.Children.Add(_luminositySlider, 0, luminosityRow);
+                _luminositySlider.SelectedColor = SelectedColor;
+                _luminositySlider.SetBinding(ConnectedColorPickerProperty, new Binding() { Source = this });
+            }
+            else
+            {
+                mainGrid.Children.Remove(_luminositySlider);
+                if (mainGrid.RowDefinitions.Contains(_luminositySliderRowDefinition))
+                {
+                    mainGrid.RowDefinitions.Remove(_luminositySliderRowDefinition);
+                }
+                _luminositySlider.RemoveBinding(ConnectedColorPickerProperty);
+            }
+            var width = Width;
+            var height = Height;
+            SetCanvasViewSize(ref width, ref height);
+            _luminositySlider.WidthRequest = width;
+            _alphaSlider.WidthRequest = width;
+            WidthRequest = width;
+            HeightRequest = height;
+        }
+
         protected override void OnSizeAllocated(double width, double height)
         {
-            var size = width < height ? width : height;
+            SetCanvasViewSize(ref width, ref height);
+            base.OnSizeAllocated(width, height);
+        }
+
+        protected void SetCanvasViewSize(ref double width, ref double height)
+        {
+            var multiplier = CanvasViewRowHeight;
+            if (ShowAlphaSlider)
+            {
+                multiplier += AlphaSliderRowHeight;
+            }
+            if (ShowLuminositySlider)
+            {
+                multiplier += LuminositySliderRowHeight;
+            }
+            multiplier /= CanvasViewRowHeight;
+
+            var size = width < height / multiplier ? width : height / multiplier;
+            width = size;
+            height = size * multiplier;
             CanvasView.WidthRequest = size;
             CanvasView.HeightRequest = size;
 
             if (PickerRadius == null)
             {
-                PickerRadiusProtected = GetDefaultPickerRadius(height);
+                PickerRadiusProtected = GetDefaultPickerRadius(size);
             }
-
-            base.OnSizeAllocated(size, size);
         }
 
         protected override void OnTouchActionPressed(ColorPickerTouchActionEventArgs args)
@@ -121,11 +277,14 @@ namespace ColorPicker
             SelectedColorChanged(SelectedColor);
             canvas.Clear();
             PaintBackground(canvas);
-            PaintLGradient(canvas);
+            if (ShowLuminosityWheel)
+            {
+                PaintLGradient(canvas);
+                PaintPicker(canvas, locationL);
+            }
             PaintColorSweepGradient(canvas);
             PaintGrayRadialGradient(canvas);
             PaintPicker(canvas, locationHS);
-            PaintPicker(canvas, locationL);
         }
 
         protected override void SelectedColorChanged(Color color)
@@ -161,7 +320,7 @@ namespace ColorPicker
 
         private float GetDefaultPickerRadius(double canvasViewHeight)
         {
-            return (float)(canvasViewHeight / 20d); 
+            return (float)(canvasViewHeight / 20d);
         }
 
         private void UpdateColors()
@@ -181,6 +340,10 @@ namespace ColorPicker
 
         private bool IsInLArea(SKPoint point)
         {
+            if (!ShowLuminosityWheel)
+            {
+                return false;
+            }
             var polar = ToPolar(new SKPoint(point.X - CanvasRadius, point.Y - CanvasRadius));
             return polar.Radius <= WheelLRadius + PickerRadiusPixels / 2F && polar.Radius >= WheelLRadius - PickerRadiusPixels / 2F;
         }
@@ -209,7 +372,7 @@ namespace ColorPicker
                 Color.FromHsla(SelectedColor.Hue, SelectedColor.Saturation, 0).ToSKColor(),
                 Color.FromHsla(SelectedColor.Hue, SelectedColor.Saturation, 0.5).ToSKColor()
             };
-            
+
             var shader = SKShader.CreateSweepGradient(center, colors.ToArray(), null);
 
             var paint = new SKPaint
@@ -259,7 +422,7 @@ namespace ColorPicker
             };
             canvas.DrawPaint(paint);
         }
-        
+
         private SKPoint ToWheelHSCoordinates(SKPoint point)
         {
             var result = new SKPoint(point.X, point.Y);
