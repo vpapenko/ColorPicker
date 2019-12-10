@@ -15,7 +15,7 @@ namespace ColorPicker.iOS.Effects
     public class ColorPickerTouchEffectiOS : PlatformEffect
     {
         UIView view;
-        TouchRecognizer touchRecognizer;
+        ColorPickerTouchRecognizeriOS touchRecognizer;
 
         protected override void OnAttached()
         {
@@ -28,7 +28,7 @@ namespace ColorPicker.iOS.Effects
             if (effect != null && view != null)
             {
                 // Create a TouchRecognizer for this UIView
-                touchRecognizer = new TouchRecognizer(Element, view, effect);
+                touchRecognizer = new ColorPickerTouchRecognizeriOS(Element, view, effect);
                 view.AddGestureRecognizer(touchRecognizer);
             }
         }

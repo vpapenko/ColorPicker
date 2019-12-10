@@ -11,20 +11,20 @@ using ColorPicker.Forms.Effects;
 
 namespace ColorPicker.iOS.Effects
 {
-    class TouchRecognizer : UIGestureRecognizer
+    class ColorPickerTouchRecognizeriOS : UIGestureRecognizer
     {
         Element element;        // Forms element for firing events
         UIView view;            // iOS UIView 
         ColorPickerTouchEffect touchEffect;
         bool capture;
 
-        static Dictionary<UIView, TouchRecognizer> viewDictionary =
-            new Dictionary<UIView, TouchRecognizer>();
+        static Dictionary<UIView, ColorPickerTouchRecognizeriOS> viewDictionary =
+            new Dictionary<UIView, ColorPickerTouchRecognizeriOS>();
 
-        static Dictionary<long, TouchRecognizer> idToTouchDictionary =
-            new Dictionary<long, TouchRecognizer>();
+        static Dictionary<long, ColorPickerTouchRecognizeriOS> idToTouchDictionary =
+            new Dictionary<long, ColorPickerTouchRecognizeriOS>();
 
-        public TouchRecognizer(Element element, UIView view, ColorPickerTouchEffect touchEffect)
+        public ColorPickerTouchRecognizeriOS(Element element, UIView view, ColorPickerTouchEffect touchEffect)
         {
             this.element = element;
             this.view = view;
@@ -132,7 +132,7 @@ namespace ColorPicker.iOS.Effects
             long id = touch.Handle.ToInt64();
 
             // TODO: Might require converting to a List for multiple hits
-            TouchRecognizer recognizerHit = null;
+            ColorPickerTouchRecognizeriOS recognizerHit = null;
 
             foreach (UIView view in viewDictionary.Keys)
             {
@@ -157,7 +157,7 @@ namespace ColorPicker.iOS.Effects
             }
         }
 
-        void FireEvent(TouchRecognizer recognizer, long id, ColorPickerTouchActionType actionType, UITouch touch, bool isInContact)
+        void FireEvent(ColorPickerTouchRecognizeriOS recognizer, long id, ColorPickerTouchActionType actionType, UITouch touch, bool isInContact)
         {
             // Convert touch location to Xamarin.Forms Point value
             CGPoint cgPoint = touch.LocationInView(recognizer.View);

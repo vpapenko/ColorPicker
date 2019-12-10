@@ -54,19 +54,19 @@
   <ItemGroup>
     <Compile Include="ColorPickerEffects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TouchEffect.cs" />
-    <Compile Include="TouchRecognizer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>4.3.0.991221</Version>
-    </PackageReference>
+    <Compile Include="ColorPickerTouchEffectiOS.cs" />
+    <Compile Include="ColorPickerTouchRecognizeriOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ColorPicker\ColorPicker.csproj">
       <Project>{e85189df-5ee1-4463-aa6d-f913d2bdcd26}</Project>
       <Name>ColorPicker</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.3.0.991221</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

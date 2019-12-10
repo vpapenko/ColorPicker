@@ -3,13 +3,13 @@
 ![](https://github.com/vpapenko/ColorPicker/workflows/Tests/badge.svg)
 
 # ColorPicker
-ColorPicker is the pack of color pickers for Xamarin Forms.
+ColorPicker is the multi platform pack of color pickers for Xamarin Forms.
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/TestApp.gif" width="400">
 
 # Supported platforms
-- Android: Supported.
-- iOs: Comming soon.
+- Android
+- iOs
 
 # Clor pickers
 ColorWheel
@@ -35,6 +35,8 @@ TestApp provides basic examples of how to use color pickers.
 
 # How to use
 Add this package both to Xamarin Forms and platform-specific projects.
+
+For iOS project: add ```ColorPickerEffects.Init()``` to ```AppDelegate.FinishedLaunching```
 
 Add color picker as any other Xamarin Forms control.
 
