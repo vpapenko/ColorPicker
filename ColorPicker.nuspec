@@ -23,6 +23,9 @@
         <dependency id="Xamarin.Android.Support.v7.AppCompat" version="28.0.0.3" />
         <dependency id="Plugin.CurrentActivity" version="2.1.0.4" />
       </group>
+      <group targetFramework="Xamarin.iOS10">
+        <dependency id="Xamarin.Forms" version="4.3.0.991221" />
+      </group>
     </dependencies>
   </metadata>
   <files>
@@ -35,6 +38,6 @@
     <file src="ColorPicker/ColorPicker.Android/bin/ReleaseNuGet/ColorPicker.Android.dll"      target="lib/MonoAndroid10/ColorPicker.Android.dll" />
     <!-- Xamarin.iOS -->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/Xamarin.iOS10/ColorPicker.dll" />
-    <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.iOS.dll"              target="lib/Xamarin.iOS10/ColorPicker.Android.dll" />
+    <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.iOS.dll"              target="lib/Xamarin.iOS10/ColorPicker.iOS.dll" />
   </files>
 </package>
