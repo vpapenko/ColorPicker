@@ -33,5 +33,8 @@
     <!-- Xamarin.Android -->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/MonoAndroid10/ColorPicker.dll" />
     <file src="ColorPicker/ColorPicker.Android/bin/ReleaseNuGet/ColorPicker.Android.dll"      target="lib/MonoAndroid10/ColorPicker.Android.dll" />
+    <!-- Xamarin.iOS -->
+    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/Xamarin.iOS10/ColorPicker.dll" />
+    <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.iOS.dll"              target="lib/Xamarin.iOS10/ColorPicker.Android.dll" />
   </files>
 </package>
