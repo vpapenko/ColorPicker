@@ -4094,50 +4094,56 @@ namespace ColorPicker.Droid
 			// aapt resource value: 0x7F0C0026
 			public static int abc_toolbar_collapse_description = 2131492902;
 			
-			// aapt resource value: 0x7F0C0027
-			public static int appbar_scrolling_view_behavior = 2131492903;
-			
 			// aapt resource value: 0x7F0C0028
-			public static int bottom_sheet_behavior = 2131492904;
+			public static int appbar_scrolling_view_behavior = 2131492904;
+			
+			// aapt resource value: 0x7F0C0027
+			public static int app_name = 2131492903;
 			
 			// aapt resource value: 0x7F0C0029
-			public static int character_counter_content_description = 2131492905;
+			public static int bottom_sheet_behavior = 2131492905;
 			
 			// aapt resource value: 0x7F0C002A
-			public static int character_counter_pattern = 2131492906;
+			public static int character_counter_content_description = 2131492906;
 			
 			// aapt resource value: 0x7F0C002B
-			public static int fab_transformation_scrim_behavior = 2131492907;
+			public static int character_counter_pattern = 2131492907;
 			
 			// aapt resource value: 0x7F0C002C
-			public static int fab_transformation_sheet_behavior = 2131492908;
+			public static int fab_transformation_scrim_behavior = 2131492908;
 			
 			// aapt resource value: 0x7F0C002D
-			public static int hide_bottom_view_on_scroll_behavior = 2131492909;
+			public static int fab_transformation_sheet_behavior = 2131492909;
 			
 			// aapt resource value: 0x7F0C002E
-			public static int mtrl_chip_close_icon_content_description = 2131492910;
+			public static int hello = 2131492910;
 			
 			// aapt resource value: 0x7F0C002F
-			public static int password_toggle_content_description = 2131492911;
+			public static int hide_bottom_view_on_scroll_behavior = 2131492911;
 			
 			// aapt resource value: 0x7F0C0030
-			public static int path_password_eye = 2131492912;
+			public static int mtrl_chip_close_icon_content_description = 2131492912;
 			
 			// aapt resource value: 0x7F0C0031
-			public static int path_password_eye_mask_strike_through = 2131492913;
+			public static int password_toggle_content_description = 2131492913;
 			
 			// aapt resource value: 0x7F0C0032
-			public static int path_password_eye_mask_visible = 2131492914;
+			public static int path_password_eye = 2131492914;
 			
 			// aapt resource value: 0x7F0C0033
-			public static int path_password_strike_through = 2131492915;
+			public static int path_password_eye_mask_strike_through = 2131492915;
 			
 			// aapt resource value: 0x7F0C0034
-			public static int search_menu_title = 2131492916;
+			public static int path_password_eye_mask_visible = 2131492916;
 			
 			// aapt resource value: 0x7F0C0035
-			public static int status_bar_notification_info_overflow = 2131492917;
+			public static int path_password_strike_through = 2131492917;
+			
+			// aapt resource value: 0x7F0C0036
+			public static int search_menu_title = 2131492918;
+			
+			// aapt resource value: 0x7F0C0037
+			public static int status_bar_notification_info_overflow = 2131492919;
 			
 			static String()
 			{

@@ -10,7 +10,7 @@ using ColorPicker.Forms.Effects;
 using ColorPicker.Droid.Effects;
 
 [assembly: ResolutionGroupName("ColorPickerPlatformEffect")]
-[assembly: ExportEffect(typeof(ColorPickerTouchEffectDroid), nameof(ColorPickerTouchEffectDroid))]
+[assembly: ExportEffect(typeof(ColorPickerTouchEffectDroid), "ColorPickerTouchEffect")]
 namespace ColorPicker.Droid.Effects
 {
     public class ColorPickerTouchEffectDroid : PlatformEffect

@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using System.Reflection;
+using Xamarin.Forms;
 
 namespace ColorPicker.Forms.Effects
 {
@@ -6,7 +8,7 @@ namespace ColorPicker.Forms.Effects
     {
         public event ColorPickerTouchActionEventHandler TouchAction;
 
-        public ColorPickerTouchEffect() : base("ColorPickerPlatformEffect.ColorPickerTouchEffectDroid")
+        public ColorPickerTouchEffect() : base("ColorPickerPlatformEffect.ColorPickerTouchEffect")
         {
         }
 
