@@ -8615,22 +8615,6 @@ namespace ColorPicker.Droid
 			{
 			}
 		}
-		
-		public partial class Xml
-		{
-			
-			// aapt resource value: 0x7F0F0000
-			public static int xamarin_essentials_fileprovider_file_paths = 2131689472;
-			
-			static Xml()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Xml()
-			{
-			}
-		}
 	}
 }
 #pragma warning restore 1591
