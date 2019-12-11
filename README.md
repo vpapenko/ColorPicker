@@ -3,7 +3,7 @@
 ![](https://github.com/vpapenko/ColorPicker/workflows/Tests/badge.svg)
 
 # ColorPicker
-ColorPicker is the multi platform pack of color pickers for Xamarin Forms.
+ColorPicker is the multi-platform pack of color pickers for Xamarin Forms.
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/TestApp.gif" width="400">
 
