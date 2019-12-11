@@ -3,7 +3,7 @@
 ![](https://github.com/vpapenko/ColorPicker/workflows/Tests/badge.svg)
 
 # ColorPicker
-ColorPicker is the multi platform pack of color pickers for Xamarin Forms.
+ColorPicker is the multi-platform pack of color pickers for Xamarin Forms.
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/TestApp.gif" width="400">
 
@@ -45,7 +45,7 @@ Add color picker as any other Xamarin Forms control.
 ### Common properties
 **SelectedColor.** It could be used to read selected color and to set the color to picker.
   
-**ConnectedColorPicker.** Multiple color picker could be connected using this property. Bind color pickers one by one in chain.
+**ConnectedColorPicker.** Multiple color pickers could be connected using this property. Bind color pickers one by one in chain.
 
 **ShowAlphaSlider.**
 
