@@ -45,7 +45,7 @@ Add color picker as any other Xamarin Forms control.
 ### Common properties
 **SelectedColor.** It could be used to read selected color and to set the color to picker.
   
-**ConnectedColorPicker.** Multiple color picker could be connected using this property. Bind color pickers one by one in chain.
+**ConnectedColorPicker.** Multiple color pickers could be connected using this property. Bind color pickers one by one in chain.
 
 **ShowAlphaSlider.**
 
