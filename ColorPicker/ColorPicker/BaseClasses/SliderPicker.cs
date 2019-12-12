@@ -198,6 +198,7 @@ namespace ColorPicker
             }
 
             SetSize(CanvasView.Width, CanvasView.Height);
+            CanvasView.InvalidateSurface();
         }
 
         private void SetSize(double width, double height)
