@@ -15,17 +15,17 @@
     <dependencies>
       <group targetFramework="netstandard2.0">
         <dependency id="SkiaSharp" version="1.68.1" />
-        <dependency id="SkiaSharp.Views" version="1.68.1" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.1" />
         <dependency id="Xamarin.Forms" version="4.3.0.991221" />
       </group>
       <group targetFramework="MonoAndroid10">
         <dependency id="SkiaSharp" version="1.68.1" />
-        <dependency id="SkiaSharp.Views" version="1.68.1" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.1" />
         <dependency id="Xamarin.Forms" version="4.3.0.991221" />
       </group>
       <group targetFramework="Xamarin.iOS10">
+        <dependency id="SkiaSharp" version="1.68.1" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.1" />
         <dependency id="Xamarin.Forms" version="4.3.0.991221" />
       </group>
     </dependencies>
