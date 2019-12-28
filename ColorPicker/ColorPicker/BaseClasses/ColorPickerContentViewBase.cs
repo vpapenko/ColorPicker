@@ -39,7 +39,7 @@ namespace ColorPicker
            nameof(SelectedColor),
            typeof(Color),
            typeof(IColorPicker),
-           Color.Black,
+           Color.Gray,
            propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleSelectedColorSet));
 
         static void HandleSelectedColorSet(BindableObject bindable, object oldValue, object newValue)
