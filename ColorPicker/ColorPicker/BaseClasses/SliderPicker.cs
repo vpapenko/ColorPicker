@@ -214,6 +214,5 @@ namespace ColorPicker
             }
             CanvasView.HeightRequest = height;
         }
-
     }
 }

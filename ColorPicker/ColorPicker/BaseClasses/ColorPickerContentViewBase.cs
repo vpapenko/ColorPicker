@@ -8,8 +8,7 @@ namespace ColorPicker
         {
             SelectedColorChanged(SelectedColor);
         }
-
-
+        
         public static readonly BindableProperty ConnectedColorPickerProperty = BindableProperty.Create(
            nameof(ConnectedColorPicker),
            typeof(IColorPicker),
@@ -100,6 +99,5 @@ namespace ColorPicker
                 SetValue(ConnectedColorPickerProperty, newValue);
             }
         }
-
     }
 }
