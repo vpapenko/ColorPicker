@@ -43,7 +43,6 @@ namespace ColorPicker
             }
         }
 
-
         public static readonly BindableProperty PickerRadiusProperty = BindableProperty.Create(
            nameof(PickerRadius),
            typeof(float?),
@@ -51,7 +50,6 @@ namespace ColorPicker
            null,
            propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusSet));
 
-               
         public float? PickerRadius
         {
             get
@@ -70,7 +68,6 @@ namespace ColorPicker
             ((ColorPickerSkiaSharpBase)bindable).SetPickerRadius((float?)oldValue, (float?)newValue);
             ((ColorPickerSkiaSharpBase)bindable).CanvasView.InvalidateSurface();
         }
-
 
         float _pickerRadiusProtected;
         protected float PickerRadiusProtected 
@@ -110,7 +107,6 @@ namespace ColorPicker
 
         protected virtual void OnPickerRadiusProtectedChanged(float newValue)
         {
-
         }
 
         protected abstract void UpdateSliders();
@@ -132,6 +128,5 @@ namespace ColorPicker
                 PickerRadiusProtected = newPickerRadius;
             }
         }
-
     }
 }

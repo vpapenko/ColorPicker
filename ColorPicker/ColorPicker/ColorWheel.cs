@@ -24,8 +24,7 @@ namespace ColorPicker
 
         private readonly RowDefinition _alphaSliderRowDefinition = new RowDefinition { Height = new GridLength(AlphaSliderRowHeight, GridUnitType.Star) };
         private readonly RowDefinition _luminositySliderRowDefinition = new RowDefinition { Height = new GridLength(LuminositySliderRowHeight, GridUnitType.Star) };
-
-
+        
         public static readonly BindableProperty ShowLuminosityWheelProperty = BindableProperty.Create(
            nameof(ShowLuminosityWheel),
            typeof(bool),
