@@ -2,6 +2,8 @@
 
 ![](https://github.com/vpapenko/ColorPicker/workflows/Tests/badge.svg)
 
+[![CodeFactor](https://www.codefactor.io/repository/github/vpapenko/ColorPicker/badge)](https://www.codefactor.io/repository/github/vpapenko/ColorPicker)
+
 # ColorPicker
 ColorPicker is the multi-platform pack of color pickers for Xamarin Forms.
 
