@@ -18,6 +18,11 @@
         <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
         <dependency id="Xamarin.Forms" version="4.4.0.991265" />
       </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="SkiaSharp" version="1.68.1.1" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
+        <dependency id="Xamarin.Forms" version="4.4.0.991265" />
+      </group>
       <group targetFramework="MonoAndroid10">
         <dependency id="SkiaSharp" version="1.68.1.1" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
@@ -32,8 +37,10 @@
   </metadata>
   <files>
     <file src="Assets\NuGet.icon.png" target="" />
-    <!-- NetStandard -->
+    <!-- NetStandard 2.1-->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.1/ColorPicker.dll"       target="lib/netstandard2.1/ColorPicker.dll" />
+    <!-- NetStandard 2.0-->
+    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/netstandard2.0/ColorPicker.dll" />
     <!-- Xamarin.Android -->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.1/ColorPicker.dll"       target="lib/MonoAndroid10/ColorPicker.dll" />
     <file src="ColorPicker/ColorPicker.Android/bin/ReleaseNuGet/ColorPicker.Android.dll"      target="lib/MonoAndroid10/ColorPicker.Android.dll" />
