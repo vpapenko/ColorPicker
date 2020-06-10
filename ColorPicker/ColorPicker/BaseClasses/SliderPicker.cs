@@ -20,7 +20,7 @@ namespace ColorPicker
 
         protected override void OnPaintSurface(SKCanvas canvas)
         {
-            SelectedColorChanged(SelectedColor);
+            UpdateLocations(SelectedColor);
             canvas.Clear();
             foreach (var slider in _sliders)
             {
@@ -31,6 +31,13 @@ namespace ColorPicker
 
         protected override void SelectedColorChanged(Color color)
         {
+            UpdateLocations(color);
+
+            CanvasView.InvalidateSurface();
+        }
+
+        private void UpdateLocations(Color color)
+        {
             foreach (var slider in _sliders)
             {
                 if (slider.Slider.IsSelectedColorChanged(color) || !IsInSliderArea(slider.Location, slider.GetSliderTop(PickerRadiusPixels)))
@@ -39,8 +46,6 @@ namespace ColorPicker
                     slider.Location = new SKPoint(left, slider.GetSliderTop(PickerRadiusPixels));
                 }
             }
-
-            CanvasView.InvalidateSurface();
         }
 
         protected override void OnSizeAllocated(double width, double height)

@@ -275,7 +275,7 @@ namespace ColorPicker
 
         protected override void OnPaintSurface(SKCanvas canvas)
         {
-            SelectedColorChanged(SelectedColor);
+            UpdateLocations(SelectedColor);
             canvas.Clear();
             PaintBackground(canvas);
             if (ShowLuminosityWheel)
@@ -289,6 +289,13 @@ namespace ColorPicker
         }
 
         protected override void SelectedColorChanged(Color color)
+        {
+            UpdateLocations(color);
+
+            CanvasView.InvalidateSurface();
+        }
+
+        private void UpdateLocations(Color color)
         {
             if (color.Luminosity != 0 || !IsInHSArea(locationHS))
             {
@@ -310,8 +317,6 @@ namespace ColorPicker
             resultL.X += CanvasRadius;
             resultL.Y += CanvasRadius;
             locationL = resultL;
-
-            CanvasView.InvalidateSurface();
         }
 
         protected override float GetDefaultPickerRadius()
