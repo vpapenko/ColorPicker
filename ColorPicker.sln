@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.iOS", "ColorPic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp.UWP", "TestApp\TestApp.UWP\TestApp.UWP.csproj", "{2DDD4A00-B85D-489A-861B-F3866F49688C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.UWP", "..\..\..\Users\Victor.Papenko\source\repos\ColorPicker.UWP\ColorPicker.UWP.csproj", "{C2EC63CF-AB34-4D35-B525-4D0385C82B06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker.UWP", "ColorPicker\ColorPicker.UWP\ColorPicker.UWP.csproj", "{C2EC63CF-AB34-4D35-B525-4D0385C82B06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
