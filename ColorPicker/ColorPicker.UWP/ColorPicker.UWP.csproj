@@ -139,7 +139,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\work\GitHub\ColorPicker\ColorPicker\ColorPicker\ColorPicker.csproj">
+    <ProjectReference Include="..\ColorPicker\ColorPicker.csproj">
       <Project>{e85189df-5ee1-4463-aa6d-f913d2bdcd26}</Project>
       <Name>ColorPicker</Name>
     </ProjectReference>

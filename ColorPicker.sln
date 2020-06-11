@@ -217,6 +217,8 @@ Global
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.Release|iPhoneSimulator.Deploy.0 = Release|iPhoneSimulator
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.Release|x64.ActiveCfg = Release|iPhone
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.Release|x86.ActiveCfg = Release|iPhone
+		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.Release|x86.Build.0 = Release|iPhone
+		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.Release|x86.Deploy.0 = Release|iPhone
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|Any CPU.ActiveCfg = ReleaseNuGet|iPhone
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|ARM.ActiveCfg = ReleaseNuGet|iPhoneSimulator
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|ARM64.ActiveCfg = ReleaseNuGet|iPhoneSimulator
@@ -225,7 +227,8 @@ Global
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|iPhoneSimulator.ActiveCfg = ReleaseNuGet|iPhoneSimulator
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|iPhoneSimulator.Build.0 = ReleaseNuGet|iPhoneSimulator
 		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|x64.ActiveCfg = ReleaseNuGet|iPhoneSimulator
-		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|x86.ActiveCfg = ReleaseNuGet|iPhoneSimulator
+		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|x86.ActiveCfg = ReleaseNuGet|iPhone
+		{CCFBC78C-B1DE-43C8-A5C8-B0B6FDBD9B4D}.ReleaseNuGet|x86.Build.0 = ReleaseNuGet|iPhone
 		{AD36A49D-68F1-4077-82FC-CA25EAA5F0F8}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
 		{AD36A49D-68F1-4077-82FC-CA25EAA5F0F8}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
 		{AD36A49D-68F1-4077-82FC-CA25EAA5F0F8}.Ad-Hoc|ARM.ActiveCfg = ReleaseNuGet|Any CPU
