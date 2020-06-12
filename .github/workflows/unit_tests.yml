@@ -15,7 +15,7 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
       
     - name: MSBuild Restore
-      run: msbuild /t:restore /p:Configuration=ReleaseNuGet;Platform="x64" ColorPicker.sln
+      run: msbuild /t:restore /p:Configuration=ReleaseNuGet ColorPicker.sln
       
     - name: MSBuild Build
       run: msbuild /p:Configuration=ReleaseNuGet;Platform="x64" ColorPicker.sln
