@@ -33,7 +33,7 @@
         <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
         <dependency id="Xamarin.Forms" version="4.6.0.847" />
       </group>
-      <group targetFramework="Xamarin.UWP">
+      <group targetFramework="UAP10">
         <dependency id="SkiaSharp" version="1.68.3" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
         <dependency id="Xamarin.Forms" version="4.6.0.847" />
@@ -52,8 +52,8 @@
     <!-- Xamarin.iOS -->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.1/ColorPicker.dll"       target="lib/Xamarin.iOS10/ColorPicker.dll" />
     <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.iOS.dll"              target="lib/Xamarin.iOS10/ColorPicker.iOS.dll" />
-    <!-- Xamarin.UWP -->
-    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/Xamarin.UWP/ColorPicker.dll" />
-    <file src="ColorPicker/ColorPicker.UWP/bin/ReleaseNuGet/ColorPicker.UWP.dll"              target="lib/Xamarin.UWP/ColorPicker.UWP.dll" />
+    <!-- UAP10 -->
+    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/UAP10/ColorPicker.dll" />
+    <file src="ColorPicker/ColorPicker.UWP/bin/x86/ReleaseNuGet/ColorPicker.UWP.dll"          target="lib/UAP10/ColorPicker.UWP.dll" />
   </files>
 </package>
