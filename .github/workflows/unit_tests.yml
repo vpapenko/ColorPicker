@@ -18,7 +18,7 @@ jobs:
       run: msbuild /t:restore /p:Configuration=ReleaseNuGet ColorPicker.sln
       
     - name: MSBuild Build
-      run: msbuild /p:Configuration=ReleaseNuGet;Platform="x64" ColorPicker.sln
+      run: msbuild /p:Configuration=ReleaseNuGet;Platform="Any CPU" ColorPicker.sln
 
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
