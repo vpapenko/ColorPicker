@@ -6,7 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 using Android.Views;
-using ColorPicker.Forms.Effects;
+using ColorPicker.Effects;
 using ColorPicker.Droid.Effects;
 
 [assembly: ResolutionGroupName("ColorPickerPlatformEffect")]

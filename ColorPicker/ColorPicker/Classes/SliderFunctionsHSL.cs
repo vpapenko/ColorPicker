@@ -3,7 +3,7 @@ using SkiaSharp.Views.Forms;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace ColorPicker
+namespace ColorPicker.Classes
 {
     public static class SliderFunctionsHSL
     {

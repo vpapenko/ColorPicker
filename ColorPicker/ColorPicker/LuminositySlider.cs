@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 
+using ColorPicker.BaseClasses;
+using ColorPicker.Classes;
+
 namespace ColorPicker
 {
     public class LuminositySlider : SliderPicker

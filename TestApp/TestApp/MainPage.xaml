@@ -23,32 +23,33 @@
                      Grid.Row="0">
             <StackLayout Orientation="Horizontal">
                 <Switch x:Name="ShowAlphaSwitch"/>
-                <Label Text="Show Alpha" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Show Alpha" HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Center"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Switch x:Name="ShowLuminositySlider"/>
-                <Label Text="Show Luminosity As Slider" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Show Luminosity As Slider" HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Center"/>
                 <Switch x:Name="ShowLuminosityWheel" IsToggled="True"/>
-                <Label Text="Show Luminosity As Wheel" HorizontalOptions="StartAndExpand"/>
+                <Label Text="Show Luminosity As Wheel" HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Center"/>
             </StackLayout>
         </StackLayout>
-        <colorpicker:ColorWheel x:Name="ColorWheel1" VerticalOptions="FillAndExpand"
+        <colorpicker:ColorWheel x:Name="ColorWheel1"
                                 ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
                                 ShowLuminositySlider="{ Binding Source={x:Reference ShowLuminositySlider}, Path=IsToggled }"
                                 ShowLuminosityWheel="{ Binding Source={x:Reference ShowLuminosityWheel}, Path=IsToggled }"
+                                Padding="5"
                                 Grid.Row="1"/>
-        <StackLayout Grid.Row="2">
-            <BoxView BackgroundColor="Silver" HeightRequest="1"  HorizontalOptions="FillAndExpand"/>
-            <colorpicker:HSLSliders x:Name="HSLSliders1" VerticalOptions="Fill"
+        <colorpicker:HSLSliders x:Name="HSLSliders1"
                                 ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
-                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"/>
-        </StackLayout>
-        <StackLayout Grid.Row="3">
-            <BoxView BackgroundColor="Silver" HeightRequest="1"  HorizontalOptions="FillAndExpand"/>
-            <colorpicker:RGBSliders x:Name="RGBSliders1" VerticalOptions="Fill"
+                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
+                                Padding="5"
+                                Grid.Row="2"/>
+        <colorpicker:RGBSliders x:Name="RGBSliders1"
                                 ConnectedColorPicker="{x:Reference Name=HSLSliders1}"
                                 ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
-                                SelectedColor="Gray"/>
-        </StackLayout>
+                                Padding="5"
+                                Grid.Row="3"/>
     </Grid>
 </ContentPage>

@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 
+using ColorPicker.BaseClasses;
+using ColorPicker.Classes;
+
 namespace ColorPicker
 {
-    public class HSLSliders : SliderPicker
+    public class HSLSliders : SliderPickerWithAlpha
     {
         protected override IEnumerable<SliderBase> GetSliders()
         {
@@ -15,7 +18,7 @@ namespace ColorPicker
                 , SliderFunctionsHSL.GetNewColorL, SliderFunctionsHSL.GetPaintL)
             };
 
-            if(ShowAlphaSlider)
+            if (ShowAlphaSlider)
             {
                 var slider = new Slider(SliderFunctionsAlpha.NewValueAlpha, SliderFunctionsAlpha.IsSelectedColorChangedAlpha
                     , SliderFunctionsAlpha.GetNewColorAlpha, SliderFunctionsAlpha.GetPaintAlpha)
@@ -24,7 +27,6 @@ namespace ColorPicker
                 };
                 result.Add(slider);
             }
-
             return result;
         }
     }

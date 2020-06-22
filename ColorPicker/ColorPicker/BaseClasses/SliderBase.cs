@@ -1,8 +1,7 @@
-﻿
-using SkiaSharp;
+﻿using SkiaSharp;
 using Xamarin.Forms;
 
-namespace ColorPicker
+namespace ColorPicker.BaseClasses
 {
     public abstract class SliderBase
     {

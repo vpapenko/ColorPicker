@@ -1,73 +1,146 @@
-﻿using ColorPicker.Forms.Effects;
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
-namespace ColorPicker
+using ColorPicker.Effects;
+
+namespace ColorPicker.BaseClasses
 {
-    public abstract class SkiaSharpPickerBase : ColorPickerContentViewBase
+    public abstract class SkiaSharpPickerBase : ColorPickerViewBase
     {
-        protected SKCanvasView CanvasView = new SKCanvasView();
-        protected Grid mainGrid;
-        protected const double CanvasViewRowHeight = 100;
+        private readonly View canvasView;
 
         public SkiaSharpPickerBase()
         {
-            CanvasView.VerticalOptions = LayoutOptions.Center;
-            CanvasView.HorizontalOptions = LayoutOptions.Center;
-            CanvasView.PaintSurface += CanvasView_PaintSurface;
+            HorizontalOptions = LayoutOptions.Center;
+            VerticalOptions = LayoutOptions.Center;
+
+
+            if (Device.RuntimePlatform == "Windows" && Device.Idiom == TargetIdiom.Phone)
+            {
+                var view = new SKCanvasView();
+                view.PaintSurface += CanvasView_PaintSurface;
+                canvasView = view;
+            }
+            else
+            {
+                var view = new SKGLView();
+                view.PaintSurface += GLView_PaintSurface;
+                canvasView = view;
+            }
 
             ColorPickerTouchEffect touchEffect = new ColorPickerTouchEffect()
             {
                 Capture = true
             };
             touchEffect.TouchAction += TouchEffect_TouchAction;
-
-            mainGrid = new Grid()
-            {
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.Center,
-                RowSpacing = 0,
-                ColumnSpacing = 0,
-                Effects =
-                {
-                    touchEffect
-                }
-            };
-
-            mainGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(CanvasViewRowHeight, GridUnitType.Star) });
-            mainGrid.Children.Add(CanvasView, 0, 0);
-
-            Content = new Grid
-            {
-                Children =
-                {
-                    mainGrid
-                }
-            };
-
+            Effects.Add(touchEffect);
+            Children.Add(canvasView);
         }
 
-        protected abstract void OnPaintSurface(SKCanvas canvas);
+        public static readonly BindableProperty PickerRadiusScaleProperty = BindableProperty.Create(
+           nameof(PickerRadiusScale),
+           typeof(float),
+           typeof(SkiaSharpPickerBase),
+           0.05F,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusScaleSet));
+
+        static void HandlePickerRadiusScaleSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((SkiaSharpPickerBase)bindable).InvalidateSurface();
+        }
+
+        public float PickerRadiusScale
+        {
+            get
+            {
+                return (float)GetValue(PickerRadiusScaleProperty);
+            }
+            set
+            {
+                SetValue(PickerRadiusScaleProperty, value);
+            }
+        }
+
+        public abstract float GetPickerRadiusPixels();
+        public abstract float GetPickerRadiusPixels(SKSize canvasSize);
+
+        protected abstract SizeRequest GetMeasure(double widthConstraint, double heightConstraint);
+        protected abstract float GetSize();
+        protected abstract float GetSize(SKSize canvasSize);
+        protected abstract void OnPaintSurface(SKCanvas canvas, int width, int height);
         protected abstract void OnTouchActionPressed(ColorPickerTouchActionEventArgs args);
         protected abstract void OnTouchActionMoved(ColorPickerTouchActionEventArgs args);
         protected abstract void OnTouchActionReleased(ColorPickerTouchActionEventArgs args);
         protected abstract void OnTouchActionCancelled(ColorPickerTouchActionEventArgs args);
 
-        protected SKPoint ConvertToPixel(Point pt)
+
+        protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {
-            return new SKPoint((float)(CanvasView.CanvasSize.Width * pt.X / CanvasView.Width),
-                               (float)(CanvasView.CanvasSize.Height * pt.Y / CanvasView.Height));
+            return GetMeasure(widthConstraint, heightConstraint);
         }
 
-        protected float ConvertToPixel(float dip)
+        protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            return (float)(CanvasView.CanvasSize.Width * dip / CanvasView.Width);
+            canvasView.Layout(new Rectangle(x, y, width, height));
+        }
+
+        protected SKPoint ConvertToPixel(Point pt)
+        {
+            var canvasSize = GetCanvasSize();
+            return new SKPoint((float)(canvasSize.Width * pt.X / canvasView.Width),
+                               (float)(canvasSize.Height * pt.Y / canvasView.Height));
+        }
+
+        protected void InvalidateSurface()
+        {
+            if (canvasView is SKCanvasView)
+            {
+                (canvasView as SKCanvasView).InvalidateSurface();
+            }
+            else
+            {
+                (canvasView as SKGLView).InvalidateSurface();
+            }
+        }
+
+        protected SKSize GetCanvasSize()
+        {
+            if (canvasView is SKCanvasView)
+            {
+                return (canvasView as SKCanvasView).CanvasSize;
+            }
+            else
+            {
+                return (canvasView as SKGLView).CanvasSize;
+            }
+        }
+
+        protected void PaintPicker(SKCanvas canvas, SKPoint point)
+        {
+            SKPaint paint = new SKPaint
+            {
+                Style = SKPaintStyle.Stroke
+            };
+
+            paint.Color = Color.White.ToSKColor();
+            paint.StrokeWidth = 2;
+            canvas.DrawCircle(point, GetPickerRadiusPixels() - 2, paint);
+
+            paint.Color = Color.Black.ToSKColor();
+            paint.StrokeWidth = 1;
+            canvas.DrawCircle(point, GetPickerRadiusPixels() - 4, paint);
+            canvas.DrawCircle(point, GetPickerRadiusPixels(), paint);
         }
 
         private void CanvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e)
         {
-            OnPaintSurface(e.Surface.Canvas);
+            OnPaintSurface(e.Surface.Canvas, e.Info.Width, e.Info.Height);
+        }
+
+        private void GLView_PaintSurface(object sender, SKPaintGLSurfaceEventArgs e)
+        {
+            OnPaintSurface(e.Surface.Canvas, e.RenderTarget.Width, e.RenderTarget.Height);
         }
 
         private void TouchEffect_TouchAction(object sender, ColorPickerTouchActionEventArgs e)

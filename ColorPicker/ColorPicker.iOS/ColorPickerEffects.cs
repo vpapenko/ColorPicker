@@ -11,7 +11,7 @@ namespace ColorPicker.iOS
     public static class ColorPickerEffects
     {
 #pragma warning disable 414
-        private static List<PlatformEffect> _effects = new List<PlatformEffect>();
+        private static List<PlatformEffect> effects = new List<PlatformEffect>();
 #pragma warning restore 414
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace ColorPicker.iOS
         /// </summary>
         public static void Init()
         {
-            _effects = new List<PlatformEffect>(typeof(ColorPickerEffects).Assembly.GetTypes().Where(t => typeof(PlatformEffect)
+            effects = new List<PlatformEffect>(typeof(ColorPickerEffects).Assembly.GetTypes().Where(t => typeof(PlatformEffect)
                 .IsAssignableFrom(t)).Select(t => (PlatformEffect)Activator.CreateInstance(t)));
         }
     }

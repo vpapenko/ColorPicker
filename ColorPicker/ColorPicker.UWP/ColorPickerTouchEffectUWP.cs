@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
-using ColorPicker.Forms.Effects;
+using ColorPicker.Effects;
 using ColorPicker.UWP.Effects;
 
 [assembly: ResolutionGroupName("ColorPickerPlatformEffect")]

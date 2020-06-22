@@ -2,7 +2,7 @@
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
-namespace ColorPicker
+namespace ColorPicker.Classes
 {
     public static class SliderFunctionsRGB
     {

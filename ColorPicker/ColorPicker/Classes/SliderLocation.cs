@@ -1,7 +1,10 @@
 ﻿using SkiaSharp;
 
-namespace ColorPicker
-{    public class SliderLocation
+using ColorPicker.BaseClasses;
+
+namespace ColorPicker.Classes
+{
+    public class SliderLocation
     {
         public SliderLocation(SliderBase slider)
         {

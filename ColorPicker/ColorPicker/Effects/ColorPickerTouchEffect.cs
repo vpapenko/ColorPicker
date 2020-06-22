@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace ColorPicker.Forms.Effects
+namespace ColorPicker.Effects
 {
     public class ColorPickerTouchEffect : RoutingEffect
     {
