@@ -5,6 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.UWP;
+
 using ColorPicker.Effects;
 using ColorPicker.UWP.Effects;
 
@@ -22,7 +23,7 @@ namespace ColorPicker.UWP.Effects
         protected override void OnAttached()
         {
             // Get the Windows FrameworkElement corresponding to the Element that the effect is attached to
-            frameworkElement = Control == null ? Container : Control;
+            frameworkElement = Control ?? Container;
 
             // Get access to the TouchEffect class in the .NET Standard library
             effect = (ColorPickerTouchEffect)Element.Effects.

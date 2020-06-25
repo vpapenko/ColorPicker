@@ -8,7 +8,7 @@ namespace ColorPicker
 {
     public class ColorWheel : ColorPickerViewBase
     {
-        private readonly ColorCircle colorCircle = new ColorCircle();
+        private readonly ColorTriangle colorCircle = new ColorTriangle();
         private readonly AlphaSlider alphaSlider = new AlphaSlider();
         private readonly LuminositySlider luminositySlider = new LuminositySlider();
 
@@ -36,7 +36,7 @@ namespace ColorPicker
 
         static void HandleShowLuminositySet(BindableObject bindable, object oldValue, object newValue)
         {
-            ((ColorWheel)bindable).colorCircle.ShowLuminosityWheel = (bool)newValue;
+            //((ColorWheel)bindable).colorCircle.ShowLuminosityWheel = (bool)newValue;
         }
 
         public bool ShowLuminosityWheel
