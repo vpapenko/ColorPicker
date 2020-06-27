@@ -120,6 +120,7 @@ namespace ColorPicker.BaseClasses
         {
             SKPaint paint = new SKPaint
             {
+                IsAntialias = true,
                 Style = SKPaintStyle.Stroke
             };
 

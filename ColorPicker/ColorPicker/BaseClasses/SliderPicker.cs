@@ -198,10 +198,12 @@ namespace ColorPicker.BaseClasses
             path.LineTo(-1 * scale, -1 * scale);
 
             SKMatrix matrix = SKMatrix.MakeScale(2 * scale, 2 * scale);
-            SKPaint paint = new SKPaint();
-            paint.PathEffect = SKPathEffect.Create2DPath(matrix, path);
-            paint.Color = Color.LightGray.ToSKColor();
-            paint.IsAntialias = true;
+            SKPaint paint = new SKPaint
+            {
+                PathEffect = SKPathEffect.Create2DPath(matrix, path),
+                Color = Color.LightGray.ToSKColor(),
+                IsAntialias = true
+            };
 
             var patternRect = new SKRect(GetPickerRadiusPixels(), sliderTop - GetPickerRadiusPixels()
                 , canvasWidth - GetPickerRadiusPixels(), sliderTop + GetPickerRadiusPixels());

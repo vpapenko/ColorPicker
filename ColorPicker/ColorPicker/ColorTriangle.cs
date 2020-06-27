@@ -279,6 +279,7 @@ namespace ColorPicker
 
             var paint = new SKPaint
             {
+                IsAntialias = true,
                 Color = WheelBackgroundColor.ToSKColor()
             };
 
@@ -293,6 +294,7 @@ namespace ColorPicker
 
             var paint = new SKPaint
             {
+                IsAntialias = true,
                 Shader = shader,
                 Style = SKPaintStyle.Stroke,
                 StrokeWidth = GetPickerRadiusPixels() * 2
@@ -335,6 +337,7 @@ namespace ColorPicker
 
             var paint = new SKPaint
             {
+                IsAntialias = true,
                 Shader = shader,
                 Style = SKPaintStyle.Fill
             };
@@ -374,6 +377,7 @@ namespace ColorPicker
 
             var paint = new SKPaint
             {
+                IsAntialias = true,
                 Shader = shader,
                 Style = SKPaintStyle.Fill
             };
@@ -492,6 +496,7 @@ namespace ColorPicker
         {
             SKPaint paint = new SKPaint
             {
+                IsAntialias = true,
                 Style = SKPaintStyle.Stroke
             };
 

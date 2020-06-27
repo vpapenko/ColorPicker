@@ -101,6 +101,7 @@ namespace ColorPicker.Classes
 
             var paint = new SKPaint()
             {
+                IsAntialias = true,
                 Style = SKPaintStyle.Stroke,
                 StrokeCap = SKStrokeCap.Round,
                 StrokeJoin = SKStrokeJoin.Round,
