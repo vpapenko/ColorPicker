@@ -321,7 +321,7 @@ namespace ColorPicker
                 pathTriangle.MoveTo(point1);
                 pathTriangle.LineTo(point2);
                 pathTriangle.LineTo(point3);
-                canvas.ClipPath(pathTriangle);
+                canvas.ClipPath(pathTriangle, SKClipOperation.Intersect, true);
             }
 
             SKMatrix matrix = SKMatrix.MakeRotation(-(float)Math.PI / 3F, point3.X, point3.Y);
@@ -373,7 +373,7 @@ namespace ColorPicker
             p2.X += centerGradient.X;
             p2.Y += centerGradient.Y;
 
-            var shader = SKShader.CreateLinearGradient(centerGradient, p2, colors, null, SKShaderTileMode.Repeat);
+            var shader = SKShader.CreateLinearGradient(centerGradient, p2, colors, null, SKShaderTileMode.Clamp);
 
             var paint = new SKPaint
             {

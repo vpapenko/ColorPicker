@@ -258,7 +258,7 @@ namespace ColorPicker
                 Color = WheelBackgroundColor.ToSKColor()
             };
 
-            canvas.DrawCircle(center, canvasRadius, paint);
+            canvas.DrawCircle(center, canvasRadius - GetPickerRadiusPixels(), paint);
         }
 
         private void PaintLGradient(SKCanvas canvas, float canvasRadius)

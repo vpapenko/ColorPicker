@@ -8,7 +8,7 @@ namespace ColorPicker
 {
     public class ColorWheel : ColorPickerViewBase
     {
-        private readonly ColorTriangle colorCircle = new ColorTriangle();
+        private readonly ColorCircle colorCircle = new ColorCircle();
         private readonly AlphaSlider alphaSlider = new AlphaSlider();
         private readonly LuminositySlider luminositySlider = new LuminositySlider();
 
@@ -36,7 +36,7 @@ namespace ColorPicker
 
         static void HandleShowLuminositySet(BindableObject bindable, object oldValue, object newValue)
         {
-            //((ColorWheel)bindable).colorCircle.ShowLuminosityWheel = (bool)newValue;
+            ((ColorWheel)bindable).colorCircle.ShowLuminosityWheel = (bool)newValue;
         }
 
         public bool ShowLuminosityWheel
@@ -99,6 +99,62 @@ namespace ColorPicker
             }
         }
 
+        public static readonly BindableProperty WheelBackgroundColorProperty = BindableProperty.Create(
+           nameof(WheelBackgroundColor),
+           typeof(Color),
+           typeof(IColorPicker),
+           Color.Transparent,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleWheelBackgroundColorSet));
+
+        static void HandleWheelBackgroundColorSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != oldValue)
+            {
+                ((ColorWheel)bindable).colorCircle.WheelBackgroundColor = (Color)newValue;
+            }
+        }
+
+        public Color WheelBackgroundColor
+        {
+            get
+            {
+                return (Color)GetValue(WheelBackgroundColorProperty);
+            }
+            set
+            {
+                SetValue(WheelBackgroundColorProperty, value);
+            }
+        }
+
+        public static readonly BindableProperty PickerRadiusScaleProperty = BindableProperty.Create(
+           nameof(PickerRadiusScale),
+           typeof(float),
+           typeof(SkiaSharpPickerBase),
+           0.05F,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandlePickerRadiusScaleSet));
+
+        static void HandlePickerRadiusScaleSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != oldValue)
+            {
+                ((ColorWheel)bindable).colorCircle.PickerRadiusScale = (float)newValue;
+                ((ColorWheel)bindable).alphaSlider.PickerRadiusScale = (float)newValue;
+                ((ColorWheel)bindable).luminositySlider.PickerRadiusScale = (float)newValue;
+            }
+        }
+
+        public float PickerRadiusScale
+        {
+            get
+            {
+                return (float)GetValue(PickerRadiusScaleProperty);
+            }
+            set
+            {
+                SetValue(PickerRadiusScaleProperty, value);
+            }
+        }
+
         protected override void SelectedColorChanged(Color color)
         {
         }
@@ -157,12 +213,10 @@ namespace ColorPicker
         {
             if (show)
             {
-                alphaSlider.ConnectedColorPicker = this;
                 Children.Add(alphaSlider);
             }
             else
             {
-                alphaSlider.ConnectedColorPicker = null;
                 Children.Remove(alphaSlider);
             }
         }
