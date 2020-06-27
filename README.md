@@ -12,6 +12,7 @@ ColorPicker is the multi-platform pack of color pickers for Xamarin Forms.
 # Supported platforms
 - Android
 - iOs
+- UWP
 
 # Clor pickers
 
