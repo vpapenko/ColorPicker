@@ -181,8 +181,8 @@ namespace ColorPicker
             if (Double.IsPositiveInfinity(widthConstraint) &&
                 Double.IsPositiveInfinity(heightConstraint))
             {
-                throw new InvalidOperationException(
-                     "AspectRatioLayout cannot be used with both dimensions unconstrained.");
+                widthConstraint = 200;
+                heightConstraint = 200;
             }
 
             double size = Math.Min(widthConstraint, heightConstraint);

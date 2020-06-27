@@ -124,10 +124,11 @@ namespace ColorPicker.BaseClasses
             if (Double.IsPositiveInfinity(widthConstraint) &&
                 Double.IsPositiveInfinity(heightConstraint))
             {
-                throw new InvalidOperationException(
-                     "AspectRatioLayout cannot be used with both dimensions unconstrained.");
+                widthConstraint = 200;
+                heightConstraint = 50;
             }
-            var height = double.IsInfinity(heightConstraint) ? widthConstraint * 0.2 * sliders.Count : heightConstraint;
+            var height = double.IsInfinity(heightConstraint) ? widthConstraint * 0.1 * sliders.Count : heightConstraint;
+            widthConstraint = double.IsInfinity(widthConstraint) ? 10 * heightConstraint / sliders.Count : widthConstraint;
             return new SizeRequest(new Size(widthConstraint, height));
         }
 
