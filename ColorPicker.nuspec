@@ -26,16 +26,19 @@
         <dependency id="Xamarin.Forms" version="4.7.0.968" />
       </group>
       <group targetFramework="MonoAndroid10">
+        <dependency id="ColorMinePortable" version="2.0.1" />
         <dependency id="SkiaSharp" version="1.68.3" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
         <dependency id="Xamarin.Forms" version="4.7.0.968" />
       </group>
       <group targetFramework="Xamarin.iOS10">
+        <dependency id="ColorMinePortable" version="2.0.1" />
         <dependency id="SkiaSharp" version="1.68.3" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
         <dependency id="Xamarin.Forms" version="4.7.0.968" />
       </group>
       <group targetFramework="UAP10">
+        <dependency id="ColorMinePortable" version="2.0.1" />
         <dependency id="Microsoft.NETCore.UniversalWindowsPlatform" version="6.2.10" />
         <dependency id="SkiaSharp" version="1.60.3" />
         <dependency id="SkiaSharp.Views.Forms" version="1.60.3" />
