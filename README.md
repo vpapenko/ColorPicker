@@ -14,19 +14,28 @@ ColorPicker is the multi-platform pack of color pickers for Xamarin Forms.
 - iOs
 
 # Clor pickers
-ColorWheel
+
+```ColorWheel```: color circle with alpha slider and luminosity slider.
+
+```ColorCircle```: only color circle.
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ColorWheel.png" width="300">
 
 
-HSLSliders
+```ColorTriangle```
+
+<img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/ColorTriangle.png" width="300">
+
+
+```HSLSliders```
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/HSLSliders.png" width="300">
 
 
-RGBSliders
+```RGBSliders```
 
 <img src="https://github.com/vpapenko/ColorPicker/blob/dev/Assets/RGBSliders.png" width="300">
+
 
 
 This library contains several base classes for custom color pickers.
@@ -49,7 +58,11 @@ Add color picker as any other Xamarin Forms control.
   
 **ConnectedColorPicker.** Multiple color pickers could be connected using this property. Bind color pickers one by one in chain.
 
+**WheelBackgroundColor.** For Color wheel and Color Triangle. Background inside outer ring.
+
 **ShowAlphaSlider.**
+
+**PickerRadiusScale.**
 
 ### Color wheel
 **ShowLuminosityWheel**
