@@ -22,6 +22,9 @@ namespace ColorPicker
             VerticalOptions = LayoutOptions.Center;
             Children.Add(colorCircle);
 
+            alphaSlider.ConnectedColorPicker = this;
+            luminositySlider.ConnectedColorPicker = this;
+
             UpdateAlphaSlider(ShowAlphaSlider);
 
             UpdateLuminositySlider(ShowLuminositySlider);
@@ -225,12 +228,10 @@ namespace ColorPicker
         {
             if (show)
             {
-                luminositySlider.ConnectedColorPicker = this;
                 Children.Add(luminositySlider);
             }
             else
             {
-                luminositySlider.ConnectedColorPicker = null;
                 Children.Remove(luminositySlider);
             }
         }
