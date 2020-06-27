@@ -15,7 +15,6 @@ namespace ColorPicker.BaseClasses
         {
             if (newValue != oldValue)
             {
-                ((SliderPickerWithAlpha)bindable).InvalidateSurface();
                 ((SliderPickerWithAlpha)bindable).UpdateSliders();
             }
         }

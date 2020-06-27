@@ -8,7 +8,7 @@ namespace ColorPicker.BaseClasses
 {
     public abstract class SkiaSharpPickerBase : ColorPickerViewBase
     {
-        private readonly View canvasView;
+        protected readonly View canvasView;
 
         public SkiaSharpPickerBase()
         {

@@ -158,6 +158,34 @@ namespace ColorPicker
             }
         }
 
+        public static readonly BindableProperty VerticalProperty = BindableProperty.Create(
+           nameof(Vertical),
+           typeof(bool),
+           typeof(SliderPicker),
+           false,
+           propertyChanged: new BindableProperty.BindingPropertyChangedDelegate(HandleVerticalSet));
+
+        static void HandleVerticalSet(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (newValue != oldValue)
+            {
+                ((ColorWheel)bindable).alphaSlider.Vertical = (bool)newValue;
+                ((ColorWheel)bindable).luminositySlider.Vertical = (bool)newValue;
+            }
+        }
+
+        public bool Vertical
+        {
+            get
+            {
+                return (bool)GetValue(VerticalProperty);
+            }
+            set
+            {
+                SetValue(VerticalProperty, value);
+            }
+        }
+
         protected override void SelectedColorChanged(Color color)
         {
         }
@@ -180,27 +208,62 @@ namespace ColorPicker
             {
                 aspectRatio -= 0.1;
             }
-            double minWidth = Math.Min(widthConstraint, aspectRatio * heightConstraint);
-            double minHeight = minWidth / aspectRatio;
+
+            double minWidth;
+            double minHeight;
+
+            if (Vertical)
+            {
+                minHeight = Math.Min(heightConstraint, aspectRatio * widthConstraint);
+                minWidth = minHeight / aspectRatio;
+            }
+            else
+            {
+                minWidth = Math.Min(widthConstraint, aspectRatio * heightConstraint);
+                minHeight = minWidth / aspectRatio;
+            }
 
             return new SizeRequest(new Size(minWidth, minHeight));
         }
 
         protected override void LayoutChildren(double x, double y, double width, double height)
         {
-            var bottom = y;
-            colorCircle.Layout(new Rectangle(x, bottom, width, width));
-            bottom += width;
+            var circleSize = Vertical ? height : width;
+            colorCircle.Layout(new Rectangle(x, y, circleSize, circleSize));
+
+            double bottom;
+            if (Vertical)
+            {
+                bottom = x + circleSize;
+            }
+            else
+            {
+                bottom = y + width;
+            }
 
             var sliderHeight = colorCircle.GetPickerRadiusPixels(new SkiaSharp.SKSize((float)width, (float)height)) * 2.4F;
             if (ShowLuminositySlider)
             {
-                luminositySlider.Layout(new Rectangle(x, bottom, width, sliderHeight));
+                if (Vertical)
+                {
+                    luminositySlider.Layout(new Rectangle(bottom, x, sliderHeight, circleSize));
+                }
+                else
+                {
+                    luminositySlider.Layout(new Rectangle(x, bottom, circleSize, sliderHeight));
+                }
                 bottom += sliderHeight;
             }
             if (ShowAlphaSlider)
             {
-                alphaSlider.Layout(new Rectangle(x, bottom, width, sliderHeight));
+                if (Vertical)
+                {
+                    alphaSlider.Layout(new Rectangle(bottom, x, sliderHeight, circleSize));
+                }
+                else
+                {
+                    alphaSlider.Layout(new Rectangle(x, bottom, circleSize, sliderHeight));
+                }
             }
         }
 

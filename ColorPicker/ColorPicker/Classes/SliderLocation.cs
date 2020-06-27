@@ -13,10 +13,10 @@ namespace ColorPicker.Classes
         public SliderBase Slider { get; private set; }
         public long? LocationProgressId { get; set; }
         public SKPoint Location { get; set; } = new SKPoint();
-        public float TopLocationMultiplier { get; set; }
-        public float GetSliderTop(float PickerRadiusPixels)
+        public float OffsetLocationMultiplier { get; set; }
+        public float GetSliderOffset(float PickerRadiusPixels)
         {
-            return PickerRadiusPixels * TopLocationMultiplier;
+            return PickerRadiusPixels * OffsetLocationMultiplier;
         }
     }
 }
