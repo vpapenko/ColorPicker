@@ -14,11 +14,13 @@
     <tags>ColorPicker ColorWheel Xamarin Forms Android iOS UWP dotnet netstandard csharp c-sharp</tags>
     <dependencies>
       <group targetFramework="netstandard2.1">
+        <dependency Include="ColorMinePortable" Version="2.0.1" />
         <dependency id="SkiaSharp" version="1.68.3" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
         <dependency id="Xamarin.Forms" version="4.6.0.847" />
       </group>
       <group targetFramework="netstandard2.0">
+        <dependency Include="ColorMinePortable" Version="2.0.1" />
         <dependency id="SkiaSharp" version="1.68.3" />
         <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
         <dependency id="Xamarin.Forms" version="4.6.0.847" />
