@@ -2,10 +2,13 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:testapp="clr-namespace:TestApp"
              mc:Ignorable="d"
              x:Class="TestApp.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <testapp:BoolToShowTriangleSwitchConverter x:Key="BoolToShowTriangleSwitchConverter"/>
+            <testapp:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

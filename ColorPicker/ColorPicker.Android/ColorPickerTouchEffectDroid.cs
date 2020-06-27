@@ -6,7 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 using Android.Views;
-using ColorPicker.Forms.Effects;
+using ColorPicker.Effects;
 using ColorPicker.Droid.Effects;
 
 [assembly: ResolutionGroupName("ColorPickerPlatformEffect")]
@@ -31,7 +31,7 @@ namespace ColorPicker.Droid.Effects
         protected override void OnAttached()
         {
             // Get the Android View corresponding to the Element that the effect is attached to
-            view = Control == null ? Container : Control;
+            view = Control ?? Container;
 
             // Get access to the TouchEffect class in the .NET Standard library
             ColorPickerTouchEffect touchEffect =

@@ -16,10 +16,10 @@ jobs:
       uses: warrenbuckley/Setup-MSBuild@v1
       
     - name: MSBuild Restore
-      run: msbuild /t:restore /p:Configuration=ReleaseNuGet ColorPicker.sln
+      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
       
     - name: MSBuild Build
-      run: msbuild /p:Configuration=ReleaseNuGet ColorPicker.sln
+      run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
       
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1

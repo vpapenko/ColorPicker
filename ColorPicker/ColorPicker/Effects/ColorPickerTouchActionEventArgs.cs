@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace ColorPicker.Forms.Effects
+namespace ColorPicker.Effects
 {
     public class ColorPickerTouchActionEventArgs : EventArgs
     {

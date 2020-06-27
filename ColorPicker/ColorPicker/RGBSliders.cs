@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 
+using ColorPicker.BaseClasses;
+using ColorPicker.Classes;
+
 namespace ColorPicker
 {
-    public class RGBSliders : SliderPicker
+    public class RGBSliders : SliderPickerWithAlpha
     {
         protected override IEnumerable<SliderBase> GetSliders()
         {

@@ -10,28 +10,33 @@
     <projectUrl>https://github.com/vpapenko/ColorPicker</projectUrl>
     <icon>NuGet.icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Color pickers for Xamarin Forms Android and iOS.</description>
-    <tags>ColorPicker Xamarin Forms Android iOS dotnet netstandard csharp c-sharp</tags>
+    <description>Color pickers for Xamarin Forms Android, iOS and UWP.</description>
+    <tags>ColorPicker ColorWheel Xamarin Forms Android iOS UWP dotnet netstandard csharp c-sharp</tags>
     <dependencies>
       <group targetFramework="netstandard2.1">
-        <dependency id="SkiaSharp" version="1.68.1.1" />
-        <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
-        <dependency id="Xamarin.Forms" version="4.4.0.991265" />
+        <dependency id="SkiaSharp" version="1.68.3" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
+        <dependency id="Xamarin.Forms" version="4.6.0.847" />
       </group>
       <group targetFramework="netstandard2.0">
-        <dependency id="SkiaSharp" version="1.68.1.1" />
-        <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
-        <dependency id="Xamarin.Forms" version="4.4.0.991265" />
+        <dependency id="SkiaSharp" version="1.68.3" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
+        <dependency id="Xamarin.Forms" version="4.6.0.847" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="SkiaSharp" version="1.68.1.1" />
-        <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
-        <dependency id="Xamarin.Forms" version="4.4.0.991265" />
+        <dependency id="SkiaSharp" version="1.68.3" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
+        <dependency id="Xamarin.Forms" version="4.6.0.847" />
       </group>
       <group targetFramework="Xamarin.iOS10">
-        <dependency id="SkiaSharp" version="1.68.1.1" />
-        <dependency id="SkiaSharp.Views.Forms" version="1.68.1.1" />
-        <dependency id="Xamarin.Forms" version="4.4.0.991265" />
+        <dependency id="SkiaSharp" version="1.68.3" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
+        <dependency id="Xamarin.Forms" version="4.6.0.847" />
+      </group>
+      <group targetFramework="UAP10">
+        <dependency id="SkiaSharp" version="1.68.3" />
+        <dependency id="SkiaSharp.Views.Forms" version="1.68.3" />
+        <dependency id="Xamarin.Forms" version="4.6.0.847" />
       </group>
     </dependencies>
   </metadata>
@@ -47,5 +52,8 @@
     <!-- Xamarin.iOS -->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.1/ColorPicker.dll"       target="lib/Xamarin.iOS10/ColorPicker.dll" />
     <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.iOS.dll"              target="lib/Xamarin.iOS10/ColorPicker.iOS.dll" />
+    <!-- UAP10 -->
+    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/UAP10/ColorPicker.dll" />
+    <file src="ColorPicker/ColorPicker.UWP/bin/x86/ReleaseNuGet/ColorPicker.UWP.dll"          target="lib/UAP10/ColorPicker.UWP.dll" />
   </files>
 </package>

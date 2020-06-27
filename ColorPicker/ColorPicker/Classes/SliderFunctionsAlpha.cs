@@ -2,7 +2,7 @@
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
 
-namespace ColorPicker
+namespace ColorPicker.Classes
 {
     public static class SliderFunctionsAlpha
     {
@@ -32,6 +32,7 @@ namespace ColorPicker
         {
             var paint = new SKPaint()
             {
+                IsAntialias = true,
                 Style = SKPaintStyle.Stroke,
                 StrokeCap = SKStrokeCap.Round,
                 StrokeJoin = SKStrokeJoin.Round,

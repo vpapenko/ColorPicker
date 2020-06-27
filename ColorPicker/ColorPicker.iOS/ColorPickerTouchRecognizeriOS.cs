@@ -7,7 +7,7 @@ using Xamarin.Forms;
 using CoreGraphics;
 using Foundation;
 using UIKit;
-using ColorPicker.Forms.Effects;
+using ColorPicker.Effects;
 
 namespace ColorPicker.iOS.Effects
 {

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using Xamarin.Forms;
 
-namespace ColorPicker
+namespace ColorPicker.Interfaces
 {
     public interface IColorPicker : INotifyPropertyChanged
     {

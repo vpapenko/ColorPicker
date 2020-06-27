@@ -4,7 +4,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 using UIKit;
-using ColorPicker.Forms.Effects;
+using ColorPicker.Effects;
 using ColorPicker.iOS.Effects;
 
 [assembly: ResolutionGroupName("ColorPickerPlatformEffect")]
@@ -20,7 +20,7 @@ namespace ColorPicker.iOS.Effects
         protected override void OnAttached()
         {
             // Get the iOS UIView corresponding to the Element that the effect is attached to
-            view = Control == null ? Container : Control;
+            view = Control ?? Container;
 
             // Get access to the TouchEffect class in the .NET Standard library
             ColorPickerTouchEffect effect = (ColorPickerTouchEffect)Element.Effects.FirstOrDefault(e => e is ColorPickerTouchEffect);

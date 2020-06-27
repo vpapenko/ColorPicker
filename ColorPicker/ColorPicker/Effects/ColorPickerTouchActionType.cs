@@ -1,4 +1,4 @@
-﻿namespace ColorPicker.Forms.Effects
+﻿namespace ColorPicker.Effects
 {
     public enum ColorPickerTouchActionType
     {

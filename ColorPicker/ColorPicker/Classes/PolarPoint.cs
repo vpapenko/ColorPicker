@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ColorPicker.Forms
+namespace ColorPicker.Classes
 {
     public class PolarPoint
     {
