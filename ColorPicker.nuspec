@@ -10,8 +10,8 @@
     <projectUrl>https://github.com/vpapenko/ColorPicker</projectUrl>
     <icon>NuGet.icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Color pickers for Xamarin Forms Android and iOS.</description>
-    <tags>ColorPicker ColorWheel Xamarin Forms Android iOS dotnet netstandard csharp c-sharp</tags>
+    <description>Color pickers for Xamarin Forms Android, iOS and UWP.</description>
+    <tags>ColorPicker ColorWheel Xamarin Forms Android iOS UWP dotnet netstandard csharp c-sharp</tags>
     <dependencies>
       <group targetFramework="netstandard2.1">
         <dependency id="SkiaSharp" version="1.68.3" />
