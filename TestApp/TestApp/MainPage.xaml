@@ -40,6 +40,11 @@
                 <Label Text="Show Luminosity As Wheel" HorizontalOptions="StartAndExpand"
                        VerticalOptions="Center"
                        IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
+                <Switch x:Name="RotateTriangleByHue" IsToggled="True"
+                        IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled }"/>
+                <Label Text="Rotate Triangle" HorizontalOptions="StartAndExpand"
+                       VerticalOptions="Center"
+                       IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled }"/>
             </StackLayout>
         </StackLayout>
         <colorpicker:ColorWheel x:Name="ColorWheel1"
@@ -52,6 +57,7 @@
         <colorpicker:ColorTriangle x:Name="ColorTriangle1"
                                    ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
                                    IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled }"
+                                   RotateTriangleByHue="{ Binding Source={x:Reference RotateTriangleByHue}, Path=IsToggled }"
                                    Padding="5"
                                    Grid.Row="1"/>
         <colorpicker:HSLSliders x:Name="HSLSliders1"

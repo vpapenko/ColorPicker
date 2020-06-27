@@ -20,6 +20,7 @@ namespace ColorPicker
         private SKPoint locationSV = new SKPoint();
         private SKPoint locationH1 = new SKPoint();
         private SKPoint locationH2 = new SKPoint();
+        private SKPoint locationMiddleH = new SKPoint();
         private readonly SKColor[] sweepGradientColors = new SKColor[256];
 
         public ColorTriangle() : base()
@@ -167,7 +168,14 @@ namespace ColorPicker
             PaintBackground(canvas, canvasRadius);
 
             PaintHGradient(canvas, canvasRadius);
-            PaintLinePicker(canvas);
+            if (RotateTriangleByHue)
+            {
+                PaintLinePicker(canvas);
+            }
+            else
+            {
+                PaintPicker(canvas, locationMiddleH);
+            }
 
             PaintSVTriangle(canvas, canvasRadius);
             PaintPicker(canvas, locationSV);
@@ -239,6 +247,10 @@ namespace ColorPicker
             }
 
             var angleH = lastHue * Math.PI * 2;
+
+            locationMiddleH = FromPolar(new PolarPoint(WheelHRadius(canvasRadius), (float)(Math.PI - angleH)));
+            locationMiddleH.X += canvasRadius;
+            locationMiddleH.Y += canvasRadius;
 
             locationH1 = FromPolar(new PolarPoint(WheelHRadius(canvasRadius) + GetPickerRadiusPixels(), (float)(Math.PI - angleH)));
             locationH1.X += canvasRadius;
@@ -502,6 +514,7 @@ namespace ColorPicker
 
             paint.Color = Color.Black.ToSKColor();
             paint.StrokeWidth = 4;
+
             using (SKPath pathTriangle = new SKPath())
             {
                 pathTriangle.MoveTo(locationH1);
