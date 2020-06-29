@@ -75,11 +75,9 @@ namespace ColorPicker.Droid.Effects
             // Get the id that identifies a finger over the course of its progress
             int id = motionEvent.GetPointerId(pointerIndex);
 
-
             senderView.GetLocationOnScreen(twoIntArray);
             Point screenPointerCoords = new Point(twoIntArray[0] + motionEvent.GetX(pointerIndex),
                                                   twoIntArray[1] + motionEvent.GetY(pointerIndex));
-
 
             // Use ActionMasked here rather than Action to reduce the number of possibilities
             switch (args.Event.ActionMasked)

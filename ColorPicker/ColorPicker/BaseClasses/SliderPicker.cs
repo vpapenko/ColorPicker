@@ -66,7 +66,7 @@ namespace ColorPicker.BaseClasses
             {
                 var sliderLocation = new SliderLocation(slider)
                 {
-                    OffsetLocationMultiplier = (float)(-1.1 + i * 2.2)
+                    OffsetLocationMultiplier = (float)(-1.1 + (i * 2.2))
                 };
                 sliders.Add(sliderLocation);
                 i++;
@@ -202,7 +202,7 @@ namespace ColorPicker.BaseClasses
             {
                 if (slider.Slider.IsSelectedColorChanged(color) || !IsInSliderArea(slider.Location, slider.GetSliderOffset(GetPickerRadiusPixels())))
                 {
-                    float left = GetPickerRadiusPixels() * 2 + SlidersWidht(canvasSize) * slider.Slider.NewValue(color);
+                    float left = (GetPickerRadiusPixels() * 2) + (SlidersWidht(canvasSize) * slider.Slider.NewValue(color));
                     if (Vertical)
                     {
                         slider.Location = new SKPoint(slider.GetSliderOffset(GetPickerRadiusPixels()), left);
@@ -219,11 +219,11 @@ namespace ColorPicker.BaseClasses
         {
             if (Vertical)
             {
-                return canvasSize.Height - GetPickerRadiusPixels() * 4;
+                return canvasSize.Height - (GetPickerRadiusPixels() * 4);
             }
             else
             {
-                return canvasSize.Width - GetPickerRadiusPixels() * 4;
+                return canvasSize.Width - (GetPickerRadiusPixels() * 4);
             }
         }
 
@@ -233,11 +233,11 @@ namespace ColorPicker.BaseClasses
             float newValue;
             if (Vertical)
             {
-                newValue = (slider.Location.Y - GetPickerRadiusPixels() * 2) / SlidersWidht(canvasSize);
+                newValue = (slider.Location.Y - (GetPickerRadiusPixels() * 2)) / SlidersWidht(canvasSize);
             }
             else
             {
-                newValue = (slider.Location.X - GetPickerRadiusPixels() * 2) / SlidersWidht(canvasSize);
+                newValue = (slider.Location.X - (GetPickerRadiusPixels() * 2)) / SlidersWidht(canvasSize);
             }
             newColor = slider.Slider.GetNewColor(newValue, newColor);
 
@@ -247,26 +247,25 @@ namespace ColorPicker.BaseClasses
 
         private void PaintSlider(SKCanvas canvas, SliderLocation slider, SKSize canvasSize)
         {
-            var sliderTop = slider.GetSliderOffset(GetPickerRadiusPixels());
-
+            var pickerRadiusPixels = GetPickerRadiusPixels();
+            var sliderTop = slider.GetSliderOffset(pickerRadiusPixels);
 
             SKPoint startPoint;
             SKPoint endPoint;
 
             if (Vertical)
             {
-                startPoint = new SKPoint(sliderTop, GetPickerRadiusPixels() * 2);
-                endPoint = new SKPoint(sliderTop, canvasSize.Height - GetPickerRadiusPixels() * 2);
+                startPoint = new SKPoint(sliderTop, pickerRadiusPixels * 2);
+                endPoint = new SKPoint(sliderTop, canvasSize.Height - (pickerRadiusPixels * 2));
             }
             else
             {
-                startPoint = new SKPoint(GetPickerRadiusPixels() * 2, sliderTop);
-                endPoint = new SKPoint(canvasSize.Width - GetPickerRadiusPixels() * 2, sliderTop);
+                startPoint = new SKPoint(pickerRadiusPixels * 2, sliderTop);
+                endPoint = new SKPoint(canvasSize.Width - (pickerRadiusPixels * 2), sliderTop);
             }
 
-
             var paint = slider.Slider.GetPaint(SelectedColor, startPoint, endPoint);
-            paint.StrokeWidth = GetPickerRadiusPixels() * 1.3F;
+            paint.StrokeWidth = pickerRadiusPixels * 1.3F;
             if (slider.Slider.PaintChessPattern)
             {
                 PaintChessPattern(canvas, slider, canvasSize);
@@ -276,8 +275,9 @@ namespace ColorPicker.BaseClasses
 
         private void PaintChessPattern(SKCanvas canvas, SliderLocation slider, SKSize canvasSize)
         {
-            var sliderTop = slider.GetSliderOffset(GetPickerRadiusPixels());
-            var scale = GetPickerRadiusPixels() / 3;
+            var pickerRadiusPixels = GetPickerRadiusPixels();
+            var sliderTop = slider.GetSliderOffset(pickerRadiusPixels);
+            var scale = pickerRadiusPixels / 3;
             SKPath path = new SKPath();
             path.MoveTo(-1 * scale, -1 * scale);
             path.LineTo(0 * scale, -1 * scale);
@@ -303,19 +303,19 @@ namespace ColorPicker.BaseClasses
 
             if (Vertical)
             {
-                patternRect = new SKRect(sliderTop - GetPickerRadiusPixels(), GetPickerRadiusPixels()
-                       , sliderTop + GetPickerRadiusPixels(), canvasSize.Height - GetPickerRadiusPixels());
-                clipRect = new SKRect(sliderTop - GetPickerRadiusPixels() * 0.65f, GetPickerRadiusPixels() * 1.35f
-                     , sliderTop + GetPickerRadiusPixels() * 0.65f, canvasSize.Height - GetPickerRadiusPixels() * 1.35f);
-                clipRoundRect = new SKRoundRect(clipRect, GetPickerRadiusPixels() * 0.65f, GetPickerRadiusPixels() * 0.65f);
+                patternRect = new SKRect(sliderTop - pickerRadiusPixels, pickerRadiusPixels
+                       , sliderTop + pickerRadiusPixels, canvasSize.Height - pickerRadiusPixels);
+                clipRect = new SKRect(sliderTop - (pickerRadiusPixels * 0.65f), pickerRadiusPixels * 1.35f
+                     , sliderTop + (pickerRadiusPixels * 0.65f), canvasSize.Height - (pickerRadiusPixels * 1.35f));
+                clipRoundRect = new SKRoundRect(clipRect, pickerRadiusPixels * 0.65f, pickerRadiusPixels * 0.65f);
             }
             else
             {
-                patternRect = new SKRect(GetPickerRadiusPixels(), sliderTop - GetPickerRadiusPixels()
-                   , canvasSize.Width - GetPickerRadiusPixels(), sliderTop + GetPickerRadiusPixels());
-                clipRect = new SKRect(GetPickerRadiusPixels() * 1.35f, sliderTop - GetPickerRadiusPixels() * 0.65f
-                   , canvasSize.Width - GetPickerRadiusPixels() * 1.35f, sliderTop + GetPickerRadiusPixels() * 0.65f);
-                clipRoundRect = new SKRoundRect(clipRect, GetPickerRadiusPixels() * 0.65f, GetPickerRadiusPixels() * 0.65f);
+                patternRect = new SKRect(pickerRadiusPixels, sliderTop - pickerRadiusPixels
+                   , canvasSize.Width - pickerRadiusPixels, sliderTop + pickerRadiusPixels);
+                clipRect = new SKRect(pickerRadiusPixels * 1.35f, sliderTop - (pickerRadiusPixels * 0.65f)
+                   , canvasSize.Width - (pickerRadiusPixels * 1.35f), sliderTop + (pickerRadiusPixels * 0.65f));
+                clipRoundRect = new SKRoundRect(clipRect, pickerRadiusPixels * 0.65f, pickerRadiusPixels * 0.65f);
             }
 
             canvas.Save();
@@ -344,14 +344,15 @@ namespace ColorPicker.BaseClasses
             if (Vertical)
             {
                 result.Y = result.Y >= GetPickerRadiusPixels() * 2 ? result.Y : GetPickerRadiusPixels() * 2;
-                result.Y = result.Y <= canvasSize.Height - GetPickerRadiusPixels() * 2 ? result.Y : canvasSize.Height - GetPickerRadiusPixels() * 2;
+                result.Y = result.Y <= canvasSize.Height - (GetPickerRadiusPixels() * 2) ? result.Y
+                    : canvasSize.Height - (GetPickerRadiusPixels() * 2);
                 result.X = slidersOffset;
-
             }
             else
             {
                 result.X = result.X >= GetPickerRadiusPixels() * 2 ? result.X : GetPickerRadiusPixels() * 2;
-                result.X = result.X <= canvasSize.Width - GetPickerRadiusPixels() * 2 ? result.X : canvasSize.Width - GetPickerRadiusPixels() * 2;
+                result.X = result.X <= canvasSize.Width - (GetPickerRadiusPixels() * 2) ? result.X
+                    : canvasSize.Width - (GetPickerRadiusPixels() * 2);
                 result.Y = slidersOffset;
             }
             return result;
