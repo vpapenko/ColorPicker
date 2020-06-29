@@ -15,7 +15,6 @@ namespace ColorPicker.BaseClasses
             HorizontalOptions = LayoutOptions.Center;
             VerticalOptions = LayoutOptions.Center;
 
-
             if (Device.RuntimePlatform == "Windows" && Device.Idiom == TargetIdiom.Phone)
             {
                 var view = new SKCanvasView();
@@ -73,7 +72,6 @@ namespace ColorPicker.BaseClasses
         protected abstract void OnTouchActionMoved(ColorPickerTouchActionEventArgs args);
         protected abstract void OnTouchActionReleased(ColorPickerTouchActionEventArgs args);
         protected abstract void OnTouchActionCancelled(ColorPickerTouchActionEventArgs args);
-
 
         protected override SizeRequest OnMeasure(double widthConstraint, double heightConstraint)
         {

@@ -218,7 +218,7 @@ namespace ColorPicker
             var signOld = polarL.Angle <= 0 ? 1 : -1;
             var angleL = color.Luminosity * Math.PI * signOld;
 
-            var resultL = FromPolar(new PolarPoint(WheelLRadius(canvasRadius), (float)(angleL - Math.PI / 2)));
+            var resultL = FromPolar(new PolarPoint(WheelLRadius(canvasRadius), (float)(angleL - (Math.PI / 2))));
             resultL.X += canvasRadius;
             resultL.Y += canvasRadius;
             locationL = resultL;
@@ -245,7 +245,8 @@ namespace ColorPicker
                 return false;
             }
             var polar = ToPolar(new SKPoint(point.X - canvasRadius, point.Y - canvasRadius));
-            return polar.Radius <= WheelLRadius(canvasRadius) + GetPickerRadiusPixels() / 2F && polar.Radius >= WheelLRadius(canvasRadius) - GetPickerRadiusPixels() / 2F;
+            return polar.Radius <= WheelLRadius(canvasRadius) + (GetPickerRadiusPixels() / 2F)
+                && polar.Radius >= WheelLRadius(canvasRadius) - (GetPickerRadiusPixels() / 2F);
         }
 
         private void PaintBackground(SKCanvas canvas, float canvasRadius)
@@ -375,7 +376,7 @@ namespace ColorPicker
 
         private PolarPoint ToPolar(SKPoint point)
         {
-            float radius = (float)Math.Sqrt(point.X * point.X + point.Y * point.Y);
+            float radius = (float)Math.Sqrt((point.X * point.X) + (point.Y * point.Y));
             float angle = (float)Math.Atan2(point.Y, point.X);
             return new PolarPoint(radius, angle);
         }
@@ -389,7 +390,7 @@ namespace ColorPicker
 
         private float WheelHSRadius(float canvasRadius)
         {
-            return !ShowLuminosityWheel ? canvasRadius - GetPickerRadiusPixels() : canvasRadius - 3 * GetPickerRadiusPixels() - 2;
+            return !ShowLuminosityWheel ? canvasRadius - GetPickerRadiusPixels() : canvasRadius - (3 * GetPickerRadiusPixels()) - 2;
         }
 
         private float WheelLRadius(float canvasRadius)

@@ -223,7 +223,7 @@ namespace ColorPicker
         {
             ColorToHSV(color, out _, out double saturation, out double value);
 
-            var luminosityX = -(float)(2 * triangleSide * saturation - triangleSide);
+            var luminosityX = -(float)((2 * triangleSide * saturation) - (triangleSide));
             var luminosityY = triangleHeight;
             var tmp = ToPolar(new SKPoint(luminosityX, luminosityY));
             tmp.Radius *= (float)value;
@@ -242,7 +242,7 @@ namespace ColorPicker
 
             if (RotateTriangleByHue)
             {
-                SKMatrix rotationHue = SKMatrix.MakeRotation((float)(-2D * Math.PI * lastHue - Math.PI / 2D), canvasRadius, canvasRadius);
+                SKMatrix rotationHue = SKMatrix.MakeRotation(-(float)((2D * Math.PI * lastHue) + (Math.PI / 2D)), canvasRadius, canvasRadius);
                 locationSV = rotationHue.MapPoint(locationSV);
             }
 
@@ -318,7 +318,8 @@ namespace ColorPicker
         {
             canvas.Save();
 
-            SKMatrix rotationHue = SKMatrix.MakeRotation((float)(-2D * Math.PI * lastHue - Math.PI / 2D), canvasRadius, canvasRadius);
+            SKMatrix rotationHue = SKMatrix.MakeRotation(-(float)((2D * Math.PI * lastHue) + (Math.PI / 2D))
+                , canvasRadius, canvasRadius);
 
             if (RotateTriangleByHue)
             {
@@ -326,8 +327,10 @@ namespace ColorPicker
             }
 
             var point1 = new SKPoint(canvasRadius, canvasRadius - WheelSVRadius(canvasRadius));
-            var point2 = new SKPoint(canvasRadius + triangleSide * WheelSVRadius(canvasRadius), canvasRadius + triangleVerticalOffset * WheelSVRadius(canvasRadius));
-            var point3 = new SKPoint(canvasRadius - triangleSide * WheelSVRadius(canvasRadius), canvasRadius + triangleVerticalOffset * WheelSVRadius(canvasRadius));
+            var point2 = new SKPoint(canvasRadius + (triangleSide * WheelSVRadius(canvasRadius))
+                , canvasRadius + (triangleVerticalOffset * WheelSVRadius(canvasRadius)));
+            var point3 = new SKPoint(canvasRadius - (triangleSide * WheelSVRadius(canvasRadius))
+                , canvasRadius + (triangleVerticalOffset * WheelSVRadius(canvasRadius)));
             using (SKPath pathTriangle = new SKPath())
             {
                 pathTriangle.MoveTo(point1);
@@ -425,7 +428,7 @@ namespace ColorPicker
         {
             if (RotateTriangleByHue)
             {
-                SKMatrix rotationHue = SKMatrix.MakeRotation(-(float)(-2D * Math.PI * lastHue - Math.PI / 2D));
+                SKMatrix rotationHue = SKMatrix.MakeRotation((float)(2D * Math.PI * lastHue + Math.PI / 2D));
                 pointSV = rotationHue.MapPoint(pointSV);
             }
 
@@ -440,15 +443,15 @@ namespace ColorPicker
             var x2 = x1 * 2;
             var y2 = 0F;
 
-            var vCurrent = (pointSV.X * (y2 - y1) - pointSV.Y * (x2 - x1) + x2 * y1 - y2 * x1) / Math.Sqrt(Math.Pow(y2 - y1, 2) + Math.Pow(x2 - x1, 2));
+            var vCurrent = ((pointSV.X * (y2 - y1)) - (pointSV.Y * (x2 - x1)) + (x2 * y1) - (y2 * x1)) / Math.Sqrt(Math.Pow(y2 - y1, 2) + Math.Pow(x2 - x1, 2));
             var v = (y1 - vCurrent) / y1;
 
-            var sMax = x2 - vCurrent / Math.Sin(Math.PI / 3);
+            var sMax = x2 - (vCurrent / Math.Sin(Math.PI / 3));
             var sCurrent = pointSV.Y / Math.Sin(Math.PI / 3);
             var s = sCurrent / sMax;
 
             lastHue = h;
-            var result = ColorFromHSV(h, s, v, (int)SelectedColor.A);
+            var result = ColorFromHSV(h, s, v, SelectedColor.A);
 
             return result;
         }
@@ -482,7 +485,7 @@ namespace ColorPicker
 
         private PolarPoint ToPolar(SKPoint point)
         {
-            float radius = (float)Math.Sqrt(point.X * point.X + point.Y * point.Y);
+            float radius = (float)Math.Sqrt((point.X * point.X) + (point.Y * point.Y));
             float angle = (float)Math.Atan2(point.Y, point.X);
             return new PolarPoint(radius, angle);
         }
@@ -496,7 +499,7 @@ namespace ColorPicker
 
         private float WheelSVRadius(float canvasRadius)
         {
-            return canvasRadius - 2 * GetPickerRadiusPixels() - 2;
+            return canvasRadius - (2 * GetPickerRadiusPixels()) - 2;
         }
 
         private float WheelHRadius(float canvasRadius)
@@ -532,7 +535,7 @@ namespace ColorPicker
             value = hsv.V;
         }
 
-        public static Color ColorFromHSV(double hue, double saturation, double value, int a)
+        public static Color ColorFromHSV(double hue, double saturation, double value, double a)
         {
             var result = Color.FromHsv(hue, saturation, value);
             return new Color(result.R, result.G, result.B, a);
