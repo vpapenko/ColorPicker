@@ -448,7 +448,7 @@ namespace ColorPicker
             var s = sCurrent / sMax;
 
             lastHue = h;
-            var result = ColorFromHSV(h, s, v, (int)SelectedColor.A);
+            var result = ColorFromHSV(h, s, v, SelectedColor.A);
 
             return result;
         }
@@ -532,7 +532,7 @@ namespace ColorPicker
             value = hsv.V;
         }
 
-        public static Color ColorFromHSV(double hue, double saturation, double value, int a)
+        public static Color ColorFromHSV(double hue, double saturation, double value, double a)
         {
             var result = Color.FromHsv(hue, saturation, value);
             return new Color(result.R, result.G, result.B, a);
