@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/vpapenko/ColorPicker</projectUrl>
     <icon>NuGet.icon.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Color pickers for Xamarin Forms Android, iOS and UWP.</description>
+    <description>Collection of color pickers for Xamarin Forms Android, iOS, and UWP.</description>
     <tags>ColorPicker ColorWheel Xamarin Forms Android iOS UWP dotnet netstandard csharp c-sharp</tags>
     <dependencies>
       <group targetFramework="netstandard2.1">
