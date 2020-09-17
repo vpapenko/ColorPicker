@@ -53,13 +53,28 @@
     <!-- NetStandard 2.0-->
     <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/netstandard2.0/ColorPicker.dll" />
     <!-- Xamarin.Android -->
-    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.1/ColorPicker.dll"       target="lib/MonoAndroid10/ColorPicker.dll" />
+    <file src="ColorPicker/ColorPicker.Android/bin/ReleaseNuGet/ColorPicker.dll"              target="lib/MonoAndroid10/ColorPicker.dll" />
     <file src="ColorPicker/ColorPicker.Android/bin/ReleaseNuGet/ColorPicker.Android.dll"      target="lib/MonoAndroid10/ColorPicker.Android.dll" />
     <!-- Xamarin.iOS -->
-    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.1/ColorPicker.dll"       target="lib/Xamarin.iOS10/ColorPicker.dll" />
+    <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.dll"                  target="lib/Xamarin.iOS10/ColorPicker.dll" />
     <file src="ColorPicker/ColorPicker.iOS/bin/ReleaseNuGet/ColorPicker.iOS.dll"              target="lib/Xamarin.iOS10/ColorPicker.iOS.dll" />
-    <!-- UAP10 -->
-    <file src="ColorPicker/ColorPicker/bin/ReleaseNuGet/netstandard2.0/ColorPicker.dll"       target="lib/UAP10/ColorPicker.dll" />
-    <file src="ColorPicker/ColorPicker.UWP/bin/x86/ReleaseNuGet/ColorPicker.UWP.dll"          target="lib/UAP10/ColorPicker.UWP.dll" />
+    
+    <!-- UAP10 x86-->
+    <file src="ColorPicker/ColorPicker.UWP/bin/x86/ReleaseNuGet/ColorPicker.UWP.dll"          target="lib/UAP10/x86" />
+    <file src="ColorPicker/ColorPicker.UWP/bin/x86/ReleaseNuGet/ColorPicker.dll"              target="lib/UAP10/x86/ColorPicker.dll" />
+    
+    <!-- UAP10 x64-->
+    <file src="ColorPicker/ColorPicker.UWP/bin/x64/ReleaseNuGet/ColorPicker.UWP.dll"          target="lib/UAP10/x64" />
+    <file src="ColorPicker/ColorPicker.UWP/bin/x64/ReleaseNuGet/ColorPicker.dll"              target="lib/UAP10/x64/ColorPicker.dll" />
+    
+    <!-- UAP10 ARM-->
+    <file src="ColorPicker/ColorPicker.UWP/bin/ARM/ReleaseNuGet/ColorPicker.UWP.dll"          target="lib/UAP10/ARM" />
+    <file src="ColorPicker/ColorPicker.UWP/bin/ARM/ReleaseNuGet/ColorPicker.dll"              target="lib/UAP10/ARM/ColorPicker.dll" />
+    
+    <!-- UAP10 ARM64-->
+    <file src="ColorPicker/ColorPicker.UWP/bin/ARM64/ReleaseNuGet/ColorPicker.UWP.dll"        target="lib/UAP10/ARM64" />
+    <file src="ColorPicker/ColorPicker.UWP/bin/ARM64/ReleaseNuGet/ColorPicker.dll"            target="lib/UAP10/ARM64/ColorPicker.dll" />
+    
+    <file src="ColorPicker.Xamarin.Forms.props"                                               target="build/UAP10" />
   </files>
 </package>
