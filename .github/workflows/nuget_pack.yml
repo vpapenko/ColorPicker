@@ -22,6 +22,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "3.1.302"
+          source-url: https://nuget.pkg.github.com/${{ secrets.PACKAGES_ACCOUNT }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.COLORPICKER_RELEASE }}
 
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.1
@@ -53,14 +56,11 @@ jobs:
       - name: Setup Nuget.exe
         uses: nuget/setup-nuget@v1
 
-      - name: Set GitHub Packages source
-        run: nuget source Add -Name "${{ secrets.PACKAGES_ACCOUNT }}" -Source "https://nuget.pkg.github.com/${{ secrets.PACKAGES_ACCOUNT }}/index.json" -UserName ${{ secrets.PACKAGES_ACCOUNT }} -Password ${{ secrets.COLORPICKER_RELEASE }}
-
       - name: Pack
         run: nuget pack ColorPicker.nuspec -version ${{ env.NBGV_Version }}-rc
 
       - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}-rc
-        run: nuget push ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg -Source "${{ secrets.PACKAGES_ACCOUNT }}"
+        run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
 
       - name: Create release
         id: create_release
