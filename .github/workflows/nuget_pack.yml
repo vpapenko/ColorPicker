@@ -57,7 +57,7 @@ jobs:
         run: nuget source Add -Name "vpapenko" -Source "https://nuget.pkg.github.com/vpapenko/index.json" -UserName vpapenko -Password ${{ secrets.COLORPICKER_RELEASE }}
 
       - name: Pack
-        run: nuget pack ColorPicker.nuspec -version $env:NBGV_Version
+        run: nuget pack ColorPicker.nuspec -version $env:NBGV_Version-rc
 
       - name: Create release
         id: create_release
@@ -65,7 +65,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v$env:NBGV_Version
           release_name: v$env:NBGV_Version
           draft: false
           prerelease: false
