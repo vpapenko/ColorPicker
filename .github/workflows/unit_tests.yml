@@ -34,11 +34,17 @@ jobs:
     - name: MSBuild Restore ARM
       run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="ARM" ColorPicker.sln
       
+    - name: MSBuild Build ARM
+      run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="ARM" ColorPicker.sln
+
+    - name: MSBuild Restore ARM64
+      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="ARM64" ColorPicker.sln
+      
     - name: MSBuild Build ARM64
       run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="ARM64" ColorPicker.sln
 
     - name: Setup Nuget.exe
-      uses: warrenbuckley/Setup-Nuget@v1
+      uses: nuget/setup-nuget@v1
       
     - name: Pack
       run: nuget pack ColorPicker.nuspec
