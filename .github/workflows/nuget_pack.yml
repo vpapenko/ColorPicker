@@ -1,8 +1,9 @@
 name: Publish to NuGet
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - dev
 
 jobs:
   build:
@@ -11,6 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Use Nerdbank.GitVersioning to set version variables
+        uses: aarnott/nbgv@v0.3
+        with:
+          setAllVars: true
 
       - name: Install .NET Core
         uses: actions/setup-dotnet@v1
@@ -48,7 +54,4 @@ jobs:
         uses: nuget/setup-nuget@v1
 
       - name: Pack
-        run: nuget pack ColorPicker.nuspec -version ${{ github.event.release.tag_name }}
-
-      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ github.event.release.tag_name }}
-        run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+        run: nuget pack ColorPicker.nuspec -version $env:NBGV_Version
