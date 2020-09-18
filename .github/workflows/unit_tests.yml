@@ -20,7 +20,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.1
       
     - name: MSBuild Restore x86
-      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:RuntimeIdentifier="x86" ColorPicker.sln
+      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
       
     - name: MSBuild Build x86
       run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
