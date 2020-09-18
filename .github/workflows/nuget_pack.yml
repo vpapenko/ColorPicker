@@ -53,6 +53,9 @@ jobs:
       - name: Setup Nuget.exe
         uses: nuget/setup-nuget@v1
 
+      - name: Set itHub Packages source
+        run: nuget source Add -Name "vpapenko" -Source "https://nuget.pkg.github.com/vpapenko/index.json" -UserName vpapenko -Password ${{ secrets.COLORPICKER_RELEASE }}
+
       - name: Pack
         run: nuget pack ColorPicker.nuspec -version $env:NBGV_Version
 
