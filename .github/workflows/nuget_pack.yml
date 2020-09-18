@@ -62,8 +62,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: $env:NBGV_Version
-          release_name: $env:NBGV_Version
+          tag_name: v$env:NBGV_Version
+          release_name: v$env:NBGV_Version
           draft: false
           prerelease: false
 
