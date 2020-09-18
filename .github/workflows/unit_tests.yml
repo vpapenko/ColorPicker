@@ -10,33 +10,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-      
+
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '3.1.302'
+
     - name: Setup MSBuild.exe
-      uses: warrenbuckley/Setup-MSBuild@v1
+      uses: microsoft/setup-msbuild@v1.0.1
       
     - name: MSBuild Restore x86
       run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
       
     - name: MSBuild Build x86
       run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
-
-    - name: MSBuild Restore x64
-      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="x64" ColorPicker.sln
-      
-    - name: MSBuild Build x64
-      run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="x64" ColorPicker.sln
-
-    - name: MSBuild Restore ARM
-      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="ARM" ColorPicker.sln
-      
-    - name: MSBuild Build ARM
-      run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="ARM" ColorPicker.sln
-
-    - name: MSBuild Restore ARM64
-      run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="ARM64" ColorPicker.sln
-      
-    - name: MSBuild Build ARM64
-      run: msbuild /p:Configuration=ReleaseNuGet /p:Platform="ARM64" ColorPicker.sln
 
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
