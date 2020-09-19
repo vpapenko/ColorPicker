@@ -1,4 +1,4 @@
-name: NuGet pack
+name: Publish to GitHub.com
 
 on:
   push:

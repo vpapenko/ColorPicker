@@ -1,8 +1,9 @@
-name: Publish to NuGet
+name: Publish to NuGet.org
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -11,6 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Use Nerdbank.GitVersioning to set version variables
+        uses: aarnott/nbgv@v0.3
+        with:
+          setAllVars: true
 
       - name: Install .NET Core
         uses: actions/setup-dotnet@v1
@@ -48,7 +54,29 @@ jobs:
         uses: nuget/setup-nuget@v1
 
       - name: Pack
-        run: nuget pack ColorPicker.nuspec -version ${{ github.event.release.tag_name }}
+        run: nuget pack ColorPicker.nuspec -version ${{ env.NBGV_Version }}
 
-      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ github.event.release.tag_name }}
-        run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ github.event.release.tag_name }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.NBGV_Version }}
+          release_name: v${{ env.NBGV_Version }}
+          draft: false
+          prerelease: true
+
+      - name: Update release asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
+          asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
+          asset_content_type: application/nupkg
+
+      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}
+        run: dotnet nuget push ColorPicker.Xamarin.Forms.v${{ env.NBGV_Version }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
