@@ -65,7 +65,7 @@ jobs:
           tag_name: v${{ env.NBGV_Version }}
           release_name: v${{ env.NBGV_Version }}
           draft: false
-          prerelease: true
+          prerelease: false
 
       - name: Update release asset
         id: upload-release-asset
