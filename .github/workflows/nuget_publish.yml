@@ -54,7 +54,7 @@ jobs:
         uses: nuget/setup-nuget@v1
 
       - name: Pack
-        run: nuget pack ColorPicker.nuspec -version ${{ env.NBGV_Version }}
+        run: nuget pack ColorPicker.nuspec -version ${{ env.NBGV_SimpleVersion }}
 
       - name: Create release
         id: create_release
@@ -62,8 +62,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.NBGV_Version }}
-          release_name: v${{ env.NBGV_Version }}
+          tag_name: v${{ env.NBGV_SimpleVersion }}
+          release_name: v${{ env.NBGV_SimpleVersion }}
           draft: false
           prerelease: true
 
@@ -74,9 +74,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
-          asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
+          asset_path: ColorPicker.Xamarin.Forms.${{ env.NBGV_SimpleVersion }}.nupkg
+          asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_SimpleVersion }}.nupkg
           asset_content_type: application/nupkg
 
-      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}
-        run: dotnet nuget push ColorPicker.Xamarin.Forms.v${{ env.NBGV_Version }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_SimpleVersion }}
+        run: dotnet nuget push ColorPicker.Xamarin.Forms.v${{ env.NBGV_SimpleVersion }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
