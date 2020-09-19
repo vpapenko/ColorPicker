@@ -81,5 +81,5 @@ jobs:
           asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
           asset_content_type: application/nupkg
 
-      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}-rc
+      - name: NuGet publish to GitHub ColorPicker.Xamarin.Forms ${{ env.NBGV_Version }}-rc
         run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg

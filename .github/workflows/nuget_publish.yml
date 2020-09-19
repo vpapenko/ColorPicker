@@ -65,7 +65,7 @@ jobs:
           tag_name: v${{ env.NBGV_Version }}
           release_name: v${{ env.NBGV_Version }}
           draft: false
-          prerelease: true
+          prerelease: false
 
       - name: Update release asset
         id: upload-release-asset
@@ -78,5 +78,5 @@ jobs:
           asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
           asset_content_type: application/nupkg
 
-      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}
-        run: dotnet nuget push ColorPicker.Xamarin.Forms.v${{ env.NBGV_Version }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+      - name: NuGet publish ColorPicker.Xamarin.Forms ${{ env.NBGV_Version }}
+        run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
