@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="ColorPicker.UWP" Condition="'$(Platform)' == 'x86'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/x86/ColorPicker.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker" Condition="'$(Platform)' == 'x86'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/x86/ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker.UWP" Condition="'$(Platform)' == 'x64'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/x64/ColorPicker.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker" Condition="'$(Platform)' == 'x64'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/x64/ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker.UWP" Condition="'$(Platform)' == 'ARM'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/ARM/ColorPicker.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker" Condition="'$(Platform)' == 'ARM'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/ARM/ColorPicker.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker.UWP" Condition="'$(Platform)' == 'ARM64'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/ARM64/ColorPicker.UWP.dll</HintPath>
+    </Reference>
+    <Reference Include="ColorPicker" Condition="'$(Platform)' == 'ARM64'">
+      <HintPath>$(MSBuildThisFileDirectory)../../lib/UAP10/ARM64/ColorPicker.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,9 +1,9 @@
-name: Publish to NuGet.org
+name: Publish to GitHub.com
 
 on:
   push:
     branches:
-      - master
+      - dev
 
 jobs:
   build:
@@ -22,6 +22,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "3.1.302"
+          source-url: https://nuget.pkg.github.com/${{ secrets.PACKAGES_ACCOUNT }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.COLORPICKER_RELEASE }}
 
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.1
@@ -54,7 +57,7 @@ jobs:
         uses: nuget/setup-nuget@v1
 
       - name: Pack
-        run: nuget pack ColorPicker.nuspec -version ${{ env.NBGV_Version }}
+        run: nuget pack ColorPicker.nuspec -version ${{ env.NBGV_Version }}-rc
 
       - name: Create release
         id: create_release
@@ -62,8 +65,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.NBGV_Version }}
-          release_name: v${{ env.NBGV_Version }}
+          tag_name: v${{ env.NBGV_Version }}-rc
+          release_name: v${{ env.NBGV_Version }}-rc
           draft: false
           prerelease: true
 
@@ -74,9 +77,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
-          asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}.nupkg
+          asset_path: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
+          asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
           asset_content_type: application/nupkg
 
-      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}
-        run: dotnet nuget push ColorPicker.Xamarin.Forms.v${{ env.NBGV_Version }}.nupkg -k ${{ secrets.ColorPicker_NuGet_API_Key }} -s https://api.nuget.org/v3/index.json
+      - name: NuGet publish ColorPicker.Xamarin.Forms v${{ env.NBGV_Version }}-rc
+        run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
