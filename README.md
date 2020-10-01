@@ -48,9 +48,25 @@ TestApp provides basic examples of how to use color pickers.
 # How to use
 Add this package both to Xamarin Forms and platform-specific projects.
 
-For iOS project: add ```ColorPickerEffects.Init()``` to ```AppDelegate.FinishedLaunching```
-
 Add color picker as any other Xamarin Forms control.
+
+### iOS project
+add 
+```C#
+ColorPickerEffects.Init();
+```
+to ```AppDelegate.FinishedLaunching```
+
+### UWP project
+Replase
+```C#
+Xamarin.Forms.Forms.Init(e);
+``` 
+in ```OnLaunched``` of ```App.xaml.cs``` by
+```C#
+var rendererAssemblies = ColorPicker.UWP.ColorPickerEffects.GetRendererAssemblies();
+Xamarin.Forms.Forms.Init(e, rendererAssemblies);
+```
 
 ## Useful properties
 
