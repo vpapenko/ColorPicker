@@ -58,7 +58,7 @@ ColorPickerEffects.Init();
 to ```AppDelegate.FinishedLaunching```
 
 ### UWP project
-Replase
+Replace
 ```C#
 Xamarin.Forms.Forms.Init(e);
 ``` 
