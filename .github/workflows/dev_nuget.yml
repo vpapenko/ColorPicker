@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - dev
+    paths-ignore:
+      - "README.md"
 
 jobs:
   build:
@@ -22,9 +24,6 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: "3.1.302"
-          source-url: https://nuget.pkg.github.com/${{ secrets.PACKAGES_ACCOUNT }}/index.json
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.COLORPICKER_RELEASE }}
 
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.1
@@ -80,6 +79,3 @@ jobs:
           asset_path: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
           asset_name: ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
           asset_content_type: application/nupkg
-
-      - name: NuGet publish to GitHub ColorPicker.Xamarin.Forms ${{ env.NBGV_Version }}-rc
-        run: dotnet nuget push ColorPicker.Xamarin.Forms.${{ env.NBGV_Version }}-rc.nupkg
