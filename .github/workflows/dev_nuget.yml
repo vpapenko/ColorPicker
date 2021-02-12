@@ -19,6 +19,7 @@ jobs:
         uses: aarnott/nbgv@v0.3
         with:
           setAllVars: true
+        env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       - name: Install .NET Core
