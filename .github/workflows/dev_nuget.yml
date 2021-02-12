@@ -29,6 +29,8 @@ jobs:
 
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       - name: MSBuild Restore x86
         run: msbuild /t:restore /p:Configuration=ReleaseNuGet /p:Platform="x86" ColorPicker.sln
