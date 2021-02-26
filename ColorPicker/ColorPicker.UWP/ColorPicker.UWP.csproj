@@ -130,13 +130,13 @@
       <Version>6.2.12</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
-      <Version>1.60.3</Version>
+      <Version>2.80.2</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views.Forms">
-      <Version>1.60.3</Version>
+      <Version>2.80.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>5.0.0.1931</Version>
+      <Version>5.0.0.2012</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
