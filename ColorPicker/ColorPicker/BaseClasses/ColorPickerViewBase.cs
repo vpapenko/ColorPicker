@@ -1,10 +1,14 @@
-﻿using ColorPicker.Interfaces;
+﻿using ColorPicker.BaseClasses.ColorPickerEventArgs;
+using ColorPicker.Interfaces;
+using System;
 using Xamarin.Forms;
 
 namespace ColorPicker.BaseClasses
 {
     public abstract class ColorPickerViewBase : Layout<View>, IColorPicker
     {
+        public event EventHandler<ColorChangedEventArgs> SelectedColorChanged;
+
         public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create(
            nameof(SelectedColor),
            typeof(Color),
@@ -16,11 +20,12 @@ namespace ColorPicker.BaseClasses
         {
             if (oldValue != newValue)
             {
-                ((ColorPickerViewBase)bindable).SelectedColorChanged((Color)newValue);
+                ((ColorPickerViewBase)bindable).ChangeSelectedColor((Color)newValue);
                 if (((ColorPickerViewBase)bindable).ConnectedColorPicker != null)
                 {
                     ((ColorPickerViewBase)bindable).ConnectedColorPicker.SelectedColor = (Color)newValue;
                 }
+                ((ColorPickerViewBase)bindable).RaiseSelectedColorChanged((Color)oldValue, (Color)newValue);
             }
         }
 
@@ -68,7 +73,7 @@ namespace ColorPicker.BaseClasses
             }
         }
 
-        protected abstract void SelectedColorChanged(Color color);
+        protected abstract void ChangeSelectedColor(Color color);
 
         private void BindedIColorPicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -76,6 +81,11 @@ namespace ColorPicker.BaseClasses
             {
                 SelectedColor = ((IColorPicker)sender).SelectedColor;
             }
+        }
+
+        protected virtual void RaiseSelectedColorChanged(Color oldColor, Color newColor)
+        {
+            SelectedColorChanged?.Invoke(this, new ColorChangedEventArgs(oldColor, newColor));
         }
     }
 }
