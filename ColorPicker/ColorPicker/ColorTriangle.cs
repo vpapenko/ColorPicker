@@ -181,7 +181,7 @@ namespace ColorPicker
             PaintPicker(canvas, locationSV);
         }
 
-        protected override void SelectedColorChanged(Color color)
+        protected override void ChangeSelectedColor(Color color)
         {
             if (color.Saturation > 0.00390625D)
             {

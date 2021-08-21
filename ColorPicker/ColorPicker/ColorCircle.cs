@@ -171,7 +171,7 @@ namespace ColorPicker
             PaintPicker(canvas, locationHS);
         }
 
-        protected override void SelectedColorChanged(Color color)
+        protected override void ChangeSelectedColor(Color color)
         {
             InvalidateSurface();
         }
