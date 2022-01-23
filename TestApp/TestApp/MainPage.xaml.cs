@@ -13,6 +13,12 @@ namespace TestApp
         public MainPage()
         {
             InitializeComponent();
+            HSLSliders1.SelectedColorChanged += HSLSliders1_SelectedColorChanged;
+        }
+
+        private void HSLSliders1_SelectedColorChanged(object sender, ColorPicker.BaseClasses.ColorPickerEventArgs.ColorChangedEventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         private void SKCanvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
