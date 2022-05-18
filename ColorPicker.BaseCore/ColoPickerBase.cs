@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using Xamarin.Forms;
 
 namespace ColorPicker.BaseCore
 {
@@ -7,6 +7,7 @@ namespace ColorPicker.BaseCore
         public abstract bool IsInActiveAria(AbstractPoint point, Color color);
         public abstract AbstractPoint FitToActiveAria(AbstractPoint point, Color color);
         public abstract Color UpdateColor(AbstractPoint point, Color color);
+        public abstract AbstractPoint ColorToPoint(Color color);
 
         protected AbstractPoint ShiftToCenter(AbstractPoint point)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ColorPicker.BaseCore.ColorWheel;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,7 +13,7 @@ namespace ColorPicker.BaseCore.Slider.Tests
         [DynamicData(nameof(FitToActiveAriaTestData), DynamicDataSourceType.Property)]
         public void FitToActiveAriaTest(AbstractPoint point, Color inputColor, float x, float y)
         {
-            var coloPicker = new LightnessWheel();
+            var coloPicker = new LuminosityWheel();
             var p = coloPicker.FitToActiveAria(point, inputColor);
             var text = $"Input: [{point.X}; {point.Y}], Expected: [{x}; {y}], Actual: [{p.X}; {p.Y}]";
             Assert.AreEqual(x, p.X, Delta, $"Incorrect X. " + text);
@@ -23,7 +24,7 @@ namespace ColorPicker.BaseCore.Slider.Tests
         [DynamicData(nameof(IsInActiveAriaTestData), DynamicDataSourceType.Property)]
         public void IsInActiveAriaTest(AbstractPoint point, Color inputColor, bool isInActive)
         {
-            var coloPicker = new LightnessWheel();
+            var coloPicker = new LuminosityWheel();
             Assert.AreEqual(isInActive, coloPicker.IsInActiveAria(point, inputColor), $"Input: [{point.X}; {point.Y}]");
         }
 
@@ -31,7 +32,7 @@ namespace ColorPicker.BaseCore.Slider.Tests
         [DynamicData(nameof(UpdateColorTestData), DynamicDataSourceType.Property)]
         public void UpdateColorTest(AbstractPoint point, Color inputColor, Color outputColor)
         {
-            var coloPicker = new LightnessWheel();
+            var coloPicker = new LuminosityWheel();
             var c = coloPicker.UpdateColor(point, inputColor);
             Assert.AreEqual(outputColor, c, $"Input: [{point.X}; {point.Y}]");
         }

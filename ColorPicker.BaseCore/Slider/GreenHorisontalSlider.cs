@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using Xamarin.Forms;
 
 namespace ColorPicker.BaseCore.Slider
 {
@@ -6,8 +6,13 @@ namespace ColorPicker.BaseCore.Slider
     {
         public override Color UpdateColor(AbstractPoint point, Color color)
         {
-            var newValue = (int)(GetSliderValue(point, color) * 255);
-            return Color.FromArgb(color.A, color.R, newValue, color.B);
+            var newValue = GetSliderValue(point, color);
+            return Color.FromRgba(color.R, newValue, color.B, color.A);
+        }
+
+        protected override float GetSliderValue(Color color)
+        {
+            return (float)color.G;
         }
     }
 }

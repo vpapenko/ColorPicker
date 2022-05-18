@@ -1,5 +1,8 @@
-﻿using SkiaSharp;
-using SkiaSharp.Views.Forms;
+﻿using ColorPicker.BaseCore;
+using ColorPicker.BaseCore.ColorTriangle;
+using ColorPicker.BaseCore.ColorWheel;
+using ColorPicker.BaseCore.Slider;
+using System;
 using System.ComponentModel;
 using Xamarin.Forms;
 
@@ -10,46 +13,45 @@ namespace TestApp
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        ColoPickerBase _coloPicker;
         public MainPage()
         {
             InitializeComponent();
-            HSLSliders1.SelectedColorChanged += HSLSliders1_SelectedColorChanged;
+            _coloPicker = new RotatingColorTriangle();
         }
 
-        private void HSLSliders1_SelectedColorChanged(object sender, ColorPicker.BaseClasses.ColorPickerEventArgs.ColorChangedEventArgs e)
+        private void Slider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            UpdateLocation();
         }
 
-        private void SKCanvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e)
+        private void VSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            SKCanvas canvas = e.Surface.Canvas;
+            UpdateLocation();
+        }
 
-            var scale = 21F;
-            SKPath path = new SKPath();
-            path.MoveTo(-1 * scale, -1 * scale);
-            path.LineTo(0 * scale, -1 * scale);
-            path.LineTo(0 * scale, 0 * scale);
-            path.LineTo(1 * scale, 0 * scale);
-            path.LineTo(1 * scale, 1 * scale);
-            path.LineTo(0 * scale, 1 * scale);
-            path.LineTo(0 * scale, 0 * scale);
-            path.LineTo(-1 * scale, 0 * scale);
-            path.LineTo(-1 * scale, -1 * scale);
+        private void UpdateLocation()
+        {
+            var p = new AbstractPoint((float)HSlider.Value, -(float)VSlider.Value);
+            var p1 = _coloPicker.FitToActiveAria(p, ColorWheel1.SelectedColor);
+            var x = AbsoluteLayout.Width * (p1.X / 2 + 0.25);
+            var y = AbsoluteLayout.Width * (p1.Y / 2 + 0.25);
+            var rect1 = new Rectangle(x, y, 3, 3);
+            BoxView1.Layout(rect1);
+            LabelXY.Text = $"CP X: {p1.Y}; Y: {p1.Y}";
+            LabelSlideXY.Text = $"SL X: {HSlider.Value}; Y: {-VSlider.Value}";
+            Label1.Text = $"IsInActiveAria: {_coloPicker.IsInActiveAria(new AbstractPoint((float)HSlider.Value, -(float)VSlider.Value), ColorWheel1.SelectedColor)}";
+            var color = _coloPicker.UpdateColor(p, ColorWheel1.SelectedColor);
+            ColorWheel1.SelectedColor = color;
+        }
 
-            SKMatrix matrix = SKMatrix.MakeScale(2 * scale, 2 * scale);
-            SKPaint paint = new SKPaint
-            {
-                PathEffect = SKPathEffect.Create2DPath(matrix, path),
-                Color = Color.LightGray.ToSKColor(),
-                IsAntialias = true
-            };
-
-            var patternRect = new SKRect(0, 0, ((SKCanvasView)sender).CanvasSize.Width, ((SKCanvasView)sender).CanvasSize.Height);
-
-            canvas.Save();
-            canvas.DrawRect(patternRect, paint);
-            canvas.Restore();
+        private void ColorWheel1_SelectedColorChanged(object sender, ColorPicker.BaseClasses.ColorPickerEventArgs.ColorChangedEventArgs e)
+        {
+            var p = _coloPicker.ColorToPoint(e.NewColor);
+            var x = AbsoluteLayout.Width * (p.X / 2 + 0.25);
+            var y = AbsoluteLayout.Width * (p.Y / 2 + 0.25);
+            var rect2 = new Rectangle(x - 3, y - 3, 3, 3);
+            BoxView2.Layout(rect2);
         }
     }
 }

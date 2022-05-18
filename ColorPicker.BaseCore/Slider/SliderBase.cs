@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using Xamarin.Forms;
 
 namespace ColorPicker.BaseCore.Slider
 {
@@ -6,9 +6,24 @@ namespace ColorPicker.BaseCore.Slider
     {
         protected virtual Orientation Orientation { get => Orientation.Horisontal; }
 
+        protected abstract float GetSliderValue(Color color);
+
         public override bool IsInActiveAria(AbstractPoint point, Color color)
         {
             return point.X >= 0 && point.X <= 1 && point.Y >= 0 && point.Y <= 1;
+        }
+
+        public override AbstractPoint ColorToPoint(Color color)
+        {
+            var sliderValue = GetSliderValue(color);
+            if (Orientation == Orientation.Horisontal)
+            {
+                return new AbstractPoint(sliderValue, 0.5f);
+            }
+            else
+            {
+                return new AbstractPoint(0.5f, sliderValue);
+            }
         }
 
         public override AbstractPoint FitToActiveAria(AbstractPoint point, Color color)

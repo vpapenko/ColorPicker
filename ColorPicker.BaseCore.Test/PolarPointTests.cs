@@ -118,6 +118,59 @@ namespace ColorPicker.BaseCore.Tests
             Assert.AreEqual(1, point.Radius);
             Assert.AreEqual((float)Math.PI / 3, point.Angle, Precision);
         }
+        [TestMethod]
+        public void PolarPointTestToPolarPoint1()
+        {
+            var abstractPoint = new AbstractPoint(0, 0);
+            var point = abstractPoint.ToPolarPoint();
+            Assert.AreEqual(0, point.Radius);
+            Assert.AreEqual(0, point.Angle);
+        }
+
+        [TestMethod]
+        public void PolarPointTestToPolarPoint2()
+        {
+            var abstractPoint = new AbstractPoint(0, 1);
+            var point = abstractPoint.ToPolarPoint();
+            Assert.AreEqual(1, point.Radius);
+            Assert.AreEqual((float)Math.PI / 2, point.Angle, Precision);
+        }
+
+        [TestMethod]
+        public void PolarPointTestToPolarPoint3()
+        {
+            var abstractPoint = new AbstractPoint(0, -1);
+            var point = abstractPoint.ToPolarPoint();
+            Assert.AreEqual(1, point.Radius);
+            Assert.AreEqual(-(float)Math.PI / 2, point.Angle, Precision);
+        }
+
+        [TestMethod]
+        public void PolarPointTestToPolarPoint4()
+        {
+            var abstractPoint = new AbstractPoint(1, 0);
+            var point = abstractPoint.ToPolarPoint();
+            Assert.AreEqual(1, point.Radius);
+            Assert.AreEqual(0, point.Angle, Precision);
+        }
+
+        [TestMethod]
+        public void PolarPointTestToPolarPoint5()
+        {
+            var abstractPoint = new AbstractPoint(-1, 0);
+            var point = abstractPoint.ToPolarPoint();
+            Assert.AreEqual(1, point.Radius);
+            Assert.AreEqual(-(float)Math.PI, point.Angle, Precision);
+        }
+
+        [TestMethod]
+        public void PolarPointTestToPolarPoint6()
+        {
+            var abstractPoint = new AbstractPoint(0.49999997F, 0.866025448F);
+            var point = abstractPoint.ToPolarPoint();
+            Assert.AreEqual(1, point.Radius);
+            Assert.AreEqual((float)Math.PI / 3, point.Angle, Precision);
+        }
 
         [TestMethod]
         public void ToAbstractPointTest1()

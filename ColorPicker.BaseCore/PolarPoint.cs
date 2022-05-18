@@ -33,6 +33,18 @@ namespace ColorPicker.BaseCore
             }
         }
 
+        public PolarPoint AddAngle(float angel)
+        {
+            Angle += angel;
+            return this;
+        }
+
+        public PolarPoint AddRadius(float radius)
+        {
+            Radius += radius;
+            return this;
+        }
+
         public AbstractPoint ToAbstractPoint()
         {
             float x = (float)(Radius * Math.Cos(Angle));

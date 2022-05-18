@@ -1,5 +1,6 @@
 ﻿using ColorMine.ColorSpaces;
-using System.Drawing;
+using System;
+using Xamarin.Forms;
 
 namespace ColorPicker.BaseCore.Slider
 {
@@ -8,9 +9,12 @@ namespace ColorPicker.BaseCore.Slider
         public override Color UpdateColor(AbstractPoint point, Color color)
         {
             var newValue = GetSliderValue(point, color);
-            var hsl = new Hsl() { H = newValue, S = color.GetSaturation(), L = color.GetBrightness() };
-            var rgb = hsl.To<Rgb>();
-            return Color.FromArgb(color.A, (int)rgb.R, (int)rgb.G, (int)rgb.B);
+            return Color.FromHsla(newValue, color.Saturation, color.Luminosity, color.A);
+        }
+
+        protected override float GetSliderValue(Color color)
+        {
+            return (float)color.Hue;
         }
     }
 }
