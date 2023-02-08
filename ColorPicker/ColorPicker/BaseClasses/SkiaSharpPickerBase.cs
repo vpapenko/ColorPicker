@@ -139,7 +139,7 @@ namespace ColorPicker.BaseClasses
 
         private void GLView_PaintSurface(object sender, SKPaintGLSurfaceEventArgs e)
         {
-            OnPaintSurface(e.Surface.Canvas, e.RenderTarget.Width, e.RenderTarget.Height);
+            OnPaintSurface(e.Surface.Canvas, e.BackendRenderTarget.Width, e.BackendRenderTarget.Height);
         }
 
         private void TouchEffect_TouchAction(object sender, ColorPickerTouchActionEventArgs e)

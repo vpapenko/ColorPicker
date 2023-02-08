@@ -3,7 +3,6 @@ using System;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
-
 using ColorPicker.BaseClasses;
 using ColorPicker.Classes;
 using ColorPicker.Effects;
@@ -242,7 +241,7 @@ namespace ColorPicker
 
             if (RotateTriangleByHue)
             {
-                SKMatrix rotationHue = SKMatrix.MakeRotation(-(float)((2D * Math.PI * lastHue) + (Math.PI / 2D)), canvasRadius, canvasRadius);
+                SKMatrix rotationHue = SKMatrix.CreateRotation(-(float)((2D * Math.PI * lastHue) + (Math.PI / 2D)), canvasRadius, canvasRadius);
                 locationSV = rotationHue.MapPoint(locationSV);
             }
 
@@ -318,8 +317,7 @@ namespace ColorPicker
         {
             canvas.Save();
 
-            SKMatrix rotationHue = SKMatrix.MakeRotation(-(float)((2D * Math.PI * lastHue) + (Math.PI / 2D))
-                , canvasRadius, canvasRadius);
+            SKMatrix rotationHue = SKMatrix.CreateRotation(-(float)((2D * Math.PI * lastHue) + (Math.PI / 2D)), canvasRadius, canvasRadius);
 
             if (RotateTriangleByHue)
             {
@@ -339,7 +337,7 @@ namespace ColorPicker
                 canvas.ClipPath(pathTriangle, SKClipOperation.Intersect, true);
             }
 
-            SKMatrix matrix = SKMatrix.MakeRotation(-(float)Math.PI / 3F, point3.X, point3.Y);
+            SKMatrix matrix = SKMatrix.CreateRotation(-(float)Math.PI / 3F, point3.X, point3.Y);
 
             if (RotateTriangleByHue)
             {
@@ -428,7 +426,7 @@ namespace ColorPicker
         {
             if (RotateTriangleByHue)
             {
-                SKMatrix rotationHue = SKMatrix.MakeRotation((float)(2D * Math.PI * lastHue + Math.PI / 2D));
+                SKMatrix rotationHue = SKMatrix.CreateRotation((float)(2D * Math.PI * lastHue + Math.PI / 2D));
                 pointSV = rotationHue.MapPoint(pointSV);
             }
 

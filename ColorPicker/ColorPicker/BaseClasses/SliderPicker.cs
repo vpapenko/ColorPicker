@@ -289,7 +289,7 @@ namespace ColorPicker.BaseClasses
             path.LineTo(-1 * scale, 0 * scale);
             path.LineTo(-1 * scale, -1 * scale);
 
-            SKMatrix matrix = SKMatrix.MakeScale(2 * scale, 2 * scale);
+            SKMatrix matrix = SKMatrix.CreateScale(2 * scale, 2 * scale);
             SKPaint paint = new SKPaint
             {
                 PathEffect = SKPathEffect.Create2DPath(matrix, path),

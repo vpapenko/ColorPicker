@@ -1,6 +1,6 @@
-﻿using ColorPicker.BaseClasses.ColorPickerEventArgs;
+﻿using System;
+using ColorPicker.BaseClasses.ColorPickerEventArgs;
 using ColorPicker.Interfaces;
-using System;
 using Xamarin.Forms;
 
 namespace ColorPicker.BaseClasses
@@ -21,6 +21,7 @@ namespace ColorPicker.BaseClasses
             if (oldValue != newValue)
             {
                 ((ColorPickerViewBase)bindable).ChangeSelectedColor((Color)newValue);
+
                 if (((ColorPickerViewBase)bindable).ConnectedColorPicker != null)
                 {
                     ((ColorPickerViewBase)bindable).ConnectedColorPicker.SelectedColor = (Color)newValue;
@@ -31,14 +32,8 @@ namespace ColorPicker.BaseClasses
 
         public Color SelectedColor
         {
-            get
-            {
-                return (Color)GetValue(SelectedColorProperty);
-            }
-            set
-            {
-                SetValue(SelectedColorProperty, value);
-            }
+            get => (Color)GetValue(SelectedColorProperty);
+            set => SetValue(SelectedColorProperty, value);
         }
 
         public static readonly BindableProperty ConnectedColorPickerProperty = BindableProperty.Create(
@@ -63,14 +58,8 @@ namespace ColorPicker.BaseClasses
 
         public IColorPicker ConnectedColorPicker
         {
-            get
-            {
-                return (IColorPicker)GetValue(ConnectedColorPickerProperty);
-            }
-            set
-            {
-                SetValue(ConnectedColorPickerProperty, value);
-            }
+            get => (IColorPicker)GetValue(ConnectedColorPickerProperty);
+            set => SetValue(ConnectedColorPickerProperty, value);
         }
 
         protected abstract void ChangeSelectedColor(Color color);

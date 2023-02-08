@@ -1,80 +1,126 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
-             xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
-             mc:Ignorable="d"
-             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:testapp="clr-namespace:TestApp"
-             Title="Safe Area"
-             ios:Page.UseSafeArea="true"
-             x:Class="TestApp.MainPage">
+<ContentPage
+    x:Class="TestApp.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:forms="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:testapp="clr-namespace:TestApp"
+    Title="Safe Area"
+    ios:Page.UseSafeArea="true"
+    mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
         </Grid.RowDefinitions>
-        <forms:SKCanvasView PaintSurface="SKCanvasView_PaintSurface"
-                            Grid.Row="0"/>
-        <StackLayout BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}"
-                     Grid.Row="0">
+
+        <forms:SKCanvasView Grid.Row="0" PaintSurface="SKCanvasView_PaintSurface" />
+
+        <StackLayout Grid.Row="0" BackgroundColor="{Binding Source={x:Reference ColorWheel1}, Path=SelectedColor}">
+
             <StackLayout Orientation="Horizontal">
-                <Label HorizontalOptions="EndAndExpand" VerticalOptions="Center"  
-                       Text="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource BoolToShowTriangleSwitchConverter} }"/>
-                <Switch x:Name="ShowTriangleSwitch" HorizontalOptions="Start" VerticalOptions="Center"/>
-                <Label Text="Show Alpha" HorizontalOptions="EndAndExpand"
-                       VerticalOptions="Center"/>
-                <Switch x:Name="ShowAlphaSwitch" HorizontalOptions="Start" VerticalOptions="Center"/>
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    Text="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource BoolToShowTriangleSwitchConverter}}"
+                    VerticalOptions="Center" />
+                <Switch
+                    x:Name="ShowTriangleSwitch"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center" />
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    Text="Show Alpha"
+                    VerticalOptions="Center" />
+                <Switch
+                    x:Name="ShowAlphaSwitch"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center" />
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="Luminosity As Slider" HorizontalOptions="EndAndExpand"
-                       VerticalOptions="Center"
-                       IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
-                <Switch x:Name="ShowLuminositySlider" HorizontalOptions="Start" VerticalOptions="Center"
-                        IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
-                <Label Text="Luminosity As Wheel" HorizontalOptions="EndAndExpand"
-                       VerticalOptions="Center"
-                       IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
-                <Switch x:Name="ShowLuminosityWheel" IsToggled="True" HorizontalOptions="Start" VerticalOptions="Center"
-                        IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
-                <Label Text="Vertical Slider" HorizontalOptions="EndAndExpand"
-                       VerticalOptions="Center"
-                       IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
-                <Switch x:Name="VerticalSlider" IsToggled="False" HorizontalOptions="Start" VerticalOptions="Center"
-                        IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"/>
-                <Label Text="Rotate Triangle" HorizontalOptions="EndAndExpand"
-                       VerticalOptions="Center"
-                       IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled }"/>
-                <Switch x:Name="RotateTriangleByHue" IsToggled="True" HorizontalOptions="Start" VerticalOptions="Center"
-                        IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled }"/>
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+                    Text="Luminosity As Slider"
+                    VerticalOptions="Center" />
+                <Switch
+                    x:Name="ShowLuminositySlider"
+                    HorizontalOptions="Start"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+                    VerticalOptions="Center" />
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+                    Text="Luminosity As Wheel"
+                    VerticalOptions="Center" />
+                <Switch
+                    x:Name="ShowLuminosityWheel"
+                    HorizontalOptions="Start"
+                    IsToggled="True"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+                    VerticalOptions="Center" />
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+                    Text="Vertical Slider"
+                    VerticalOptions="Center" />
+                <Switch
+                    x:Name="VerticalSlider"
+                    HorizontalOptions="Start"
+                    IsToggled="False"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+                    VerticalOptions="Center" />
+                <Label
+                    HorizontalOptions="EndAndExpand"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled}"
+                    Text="Rotate Triangle"
+                    VerticalOptions="Center" />
+                <Switch
+                    x:Name="RotateTriangleByHue"
+                    HorizontalOptions="Start"
+                    IsToggled="True"
+                    IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled}"
+                    VerticalOptions="Center" />
             </StackLayout>
+
         </StackLayout>
-        <colorpicker:ColorWheel x:Name="ColorWheel1"
-                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
-                                ShowLuminositySlider="{ Binding Source={x:Reference ShowLuminositySlider}, Path=IsToggled }"
-                                ShowLuminosityWheel="{ Binding Source={x:Reference ShowLuminosityWheel}, Path=IsToggled }"
-                                IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter} }"
-                                Vertical="{ Binding Source={x:Reference VerticalSlider}, Path=IsToggled }"
-                                Padding="5"
-                                Grid.Row="1"/>
-        <colorpicker:ColorTriangle x:Name="ColorTriangle1"
-                                   ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
-                                   IsVisible="{ Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled }"
-                                   RotateTriangleByHue="{ Binding Source={x:Reference RotateTriangleByHue}, Path=IsToggled }"
-                                   Padding="5"
-                                   Grid.Row="1"/>
-        <colorpicker:HSLSliders x:Name="HSLSliders1"
-                                ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
-                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
-                                Padding="5"
-                                Grid.Row="2"/>
-        <colorpicker:RGBSliders x:Name="RGBSliders1"
-                                ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
-                                ShowAlphaSlider="{ Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled }"
-                                Padding="5"
-                                Grid.Row="3"/>
+
+        <colorpicker:ColorWheel
+            x:Name="ColorWheel1"
+            Grid.Row="1"
+            Padding="5"
+            IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled, Converter={StaticResource InverseBoolConverter}}"
+            ShowAlphaSlider="{Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled}"
+            ShowLuminositySlider="{Binding Source={x:Reference ShowLuminositySlider}, Path=IsToggled}"
+            ShowLuminosityWheel="{Binding Source={x:Reference ShowLuminosityWheel}, Path=IsToggled}"
+            Vertical="{Binding Source={x:Reference VerticalSlider}, Path=IsToggled}" />
+
+        <colorpicker:ColorTriangle
+            x:Name="ColorTriangle1"
+            Grid.Row="1"
+            Padding="5"
+            ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
+            IsVisible="{Binding Source={x:Reference ShowTriangleSwitch}, Path=IsToggled}"
+            RotateTriangleByHue="{Binding Source={x:Reference RotateTriangleByHue}, Path=IsToggled}" />
+
+        <colorpicker:HSLSliders
+            x:Name="HSLSliders1"
+            Grid.Row="2"
+            Padding="5"
+            ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
+            ShowAlphaSlider="{Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled}" />
+        <colorpicker:RGBSliders
+            x:Name="RGBSliders1"
+            Grid.Row="3"
+            Padding="5"
+            ConnectedColorPicker="{x:Reference Name=ColorWheel1}"
+            ShowAlphaSlider="{Binding Source={x:Reference ShowAlphaSwitch}, Path=IsToggled}" />
+
     </Grid>
 </ContentPage>
